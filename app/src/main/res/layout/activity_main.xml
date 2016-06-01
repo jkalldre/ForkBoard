@@ -28,5 +28,14 @@
         android:layout_centerHorizontal="true"
         android:onClick="changeBackground" />
 
-    
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calendar"
+        android:id="@+id/button"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/button1"
+        android:onClick="toCalendar" />
+
+
 </RelativeLayout>

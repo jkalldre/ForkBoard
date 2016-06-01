@@ -1,5 +1,6 @@
 package com.forkboard.forkboard;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
@@ -23,5 +24,10 @@ public class MainActivity extends AppCompatActivity {
         RelativeLayout rl = (RelativeLayout)findViewById(R.id.background);
         rl.setBackgroundColor(myCOLOR);
 
+    }
+
+    public void toCalendar(View v) {
+        Intent intent = new Intent(this, CalendarView.class);
+        startActivity(intent);
     }
 }
