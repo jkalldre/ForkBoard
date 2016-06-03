@@ -30,4 +30,8 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CalendarView.class);
         startActivity(intent);
     }
+
+    public void test(View v) {
+        Intent intent = new Intent();
+    }
 }
