@@ -11,8 +11,3 @@ public class CalendarView extends AppCompatActivity {
         setContentView(R.layout.activity_calendar_view);
     }
 }
-
-class myCalendarView extends CalendarView {
-    CalendarView calendar = new CalendarView();
-
-}
