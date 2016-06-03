@@ -30,12 +30,4 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, CalendarView.class);
         startActivity(intent);
     }
-
-    public void test(View v) {
-        Intent intent = new Intent();
-        startActivity(intent);
-        // comment 1
-        // comment 2
-        Intent.makeRestartActivityTask(myCOLOR); // git it
-    }
 }
