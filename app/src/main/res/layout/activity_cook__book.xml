@@ -3,18 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.forkboard.forkboard.Cook_Book">
+    tools:context="com.forkboard.forkboard.Cookbook">
 
     <include layout="@layout/my_toolbar"
-        android:id="@+id/include" />
+        android:id="@+id/my_toolbar" />
 
     <TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Cookbook"
         android:id="@+id/textView5"
-        android:layout_below="@+id/include"
+        android:layout_below="@+id/my_toolbar"
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
         android:textAlignment="center" />
+
 </RelativeLayout>

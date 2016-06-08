@@ -1,15 +1,11 @@
 package com.forkboard.forkboard;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-
-import java.util.TooManyListenersException;
 
 public class Cookbook extends AppCompatActivity {
 
@@ -30,7 +26,6 @@ public class Cookbook extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected (MenuItem item){
-        // System.out.println(item.getTitle());
         Intent intent = null;
         if(item.getTitle().equals("Main Menu")){
             intent = new Intent(this,MainActivity.class);

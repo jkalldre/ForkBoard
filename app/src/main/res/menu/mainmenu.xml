@@ -13,8 +13,4 @@
             android:id="@+id/cookbook"
             android:title="Cookbook"
             android:orderInCategory="3"/>
-
-
-
-
 </menu>

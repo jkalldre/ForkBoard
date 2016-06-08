@@ -1,6 +1,5 @@
 package com.forkboard.forkboard;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +8,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 public class Day_View extends AppCompatActivity {
 
@@ -34,7 +31,6 @@ public class Day_View extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected (MenuItem item){
-       // System.out.println(item.getTitle());
         Intent intent = null;
         if(item.getTitle().equals("Main Menu")){
             intent = new Intent(this,MainActivity.class);
