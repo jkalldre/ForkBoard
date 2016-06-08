@@ -15,7 +15,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".CalendarView"></activity>
+        <activity android:name=".Calendar_View" />
+        <activity android:name=".Day_View"></activity>
     </application>
 
 </manifest>

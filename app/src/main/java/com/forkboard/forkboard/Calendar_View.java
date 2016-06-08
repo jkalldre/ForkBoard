@@ -9,10 +9,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.CalendarView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-public class CalendarView extends AppCompatActivity {
+import java.util.Calendar;
+
+public class Calendar_View extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +23,19 @@ public class CalendarView extends AppCompatActivity {
         setContentView(R.layout.activity_calendar_view);
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
+        tb.setTitle("ForkBoard");
+        CalendarView calendar = (CalendarView) findViewById(R.id.cv);
+        calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
+            @Override
+            public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
+                Intent intent = new Intent(Calendar_View.this,Day_View.class);
+                intent.putExtra("Day", dayOfMonth);
+                intent.putExtra("Month", month);
+                intent.putExtra("Year", year);
+                startActivity(intent);
 
+            }
+        });
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

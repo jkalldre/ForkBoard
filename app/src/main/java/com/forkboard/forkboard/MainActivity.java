@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         if(item.getTitle().equals("Calendar")){
-            intent = new Intent(this,CalendarView.class);
+            intent = new Intent(this,Calendar_View.class);
             startActivity(intent);
         }
         return true;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void goToCalendar(View v){
 
-        Intent intent = new Intent(getApplicationContext(),CalendarView.class);
+        Intent intent = new Intent(getApplicationContext(),Calendar_View.class);
         startActivity(intent);
     }
 
