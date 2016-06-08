@@ -35,18 +35,19 @@ public class MainActivity extends AppCompatActivity {
                 ((TextView) view).setText(null);
                 // if you want you can change background here
                 Intent intent = null;
-                switch(position){
-                    case 0:
-                        intent = new Intent(MainActivity.this, MainActivity.class);
-                        break;
-                    case 1:
-                        intent = new Intent(MainActivity.this, CalendarView.class);
-                        break;
-                        // and so on
-                       // .....
+                String pos = parent.getItemAtPosition(position).toString();
 
+                System.out.println(this.getClass());
+               /* if (pos.equals("Main Menu")){
+                    intent = new Intent(getApplicationContext(),MainActivity.class);
+                  //  System.out.println(pos);
+                    startActivity(intent);
                 }
-                startActivity(intent);
+                if (pos.equals("Calendar")){
+                    intent = new Intent(getApplicationContext(),CalendarView.class);
+                    System.out.println(pos);
+                    startActivity(intent);
+                }*/
             }
 
             @Override
@@ -54,6 +55,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
+    }
+    public void gotocalendar(View v){
+      Intent intent = new Intent(this,CalendarView.class);
+        startActivity(intent);
     }
 }
 /*
