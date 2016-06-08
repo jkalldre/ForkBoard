@@ -19,7 +19,7 @@
         android:id="@+id/button"
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
-        android:onClick="gotocalendar" />
+        android:onClick="goToCalendar" />
 
 
 </RelativeLayout>
