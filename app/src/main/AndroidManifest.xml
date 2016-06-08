@@ -16,7 +16,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Calendar_View" />
-        <activity android:name=".Day_View"></activity>
+        <activity android:name=".Day_View" />
+        <activity android:name=".Cookbook"></activity>
     </application>
 
 </manifest>

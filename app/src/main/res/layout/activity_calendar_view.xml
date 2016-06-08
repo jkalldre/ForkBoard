@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    tools:context="com.forkboard.forkboard.CalendarView">
+    tools:context="com.forkboard.forkboard.Calendar_View">
 
     <include layout="@layout/my_toolbar" />
 

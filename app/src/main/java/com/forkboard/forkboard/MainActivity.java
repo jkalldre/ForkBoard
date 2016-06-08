@@ -56,6 +56,10 @@ public class MainActivity extends AppCompatActivity {
             intent = new Intent(this,Calendar_View.class);
             startActivity(intent);
         }
+        if(item.getTitle().equals("Cookbook")){
+            intent = new Intent(this,Cookbook.class);
+            startActivity(intent);
+        }
         return true;
     }
 

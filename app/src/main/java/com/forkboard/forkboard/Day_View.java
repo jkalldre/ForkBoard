@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -43,6 +44,15 @@ public class Day_View extends AppCompatActivity {
             intent = new Intent(this,Calendar_View.class);
             startActivity(intent);
         }
+        if(item.getTitle().equals("Cookbook")){
+            intent = new Intent(this,Cookbook.class);
+            startActivity(intent);
+        }
         return true;
+    }
+
+    public void goToCookbook(View v){
+        Intent intent = new Intent(this,Cookbook.class);
+        startActivity(intent);
     }
 }
