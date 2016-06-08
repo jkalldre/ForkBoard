@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.forkboard.forkboard.Day_View">
+    tools:context="com.forkboard.forkboard.Day_View"
+    android:background="@color/primary">
 
     <include layout="@layout/my_toolbar"
         android:id="@+id/my_toolbar" />
@@ -15,6 +16,7 @@
         android:id="@+id/textView"
         android:layout_below="@+id/my_toolbar"
         android:layout_alignParentStart="true"
+        android:textColor="@color/accent"
         android:textSize="35dp"
         android:textAlignment="center"/>
 
@@ -25,11 +27,13 @@
         android:text="Breakfast"
         android:id="@+id/textView2"
         android:textAlignment="center"
+        android:gravity="center"
         android:textSize="40dp"
         android:layout_marginTop="72dp"
         android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
-        android:onClick="goToCookbook" />
+        android:onClick="goToCookbook"
+        android:textColor="@color/accent" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -38,11 +42,13 @@
         android:text="Lunch"
         android:id="@+id/textView3"
         android:textAlignment="center"
+        android:gravity="center"
         android:textSize="40dp"
         android:layout_centerVertical="true"
         android:layout_alignParentStart="true"
         android:layout_below="@+id/textView2"
-        android:onClick="goToCookbook" />
+        android:onClick="goToCookbook"
+        android:textColor="@color/accent" />
 
     <TextView
         android:layout_width="fill_parent"
@@ -51,10 +57,11 @@
         android:text="Dinner"
         android:id="@+id/textView4"
         android:textAlignment="center"
+        android:gravity="center"
         android:textSize="40dp"
-        android:layout_alignParentBottom="true"
+        android:onClick="goToCookbook"
+        android:layout_below="@+id/textView3"
         android:layout_alignParentStart="true"
-        android:layout_below="@id/textView3"
-        android:onClick="goToCookbook" />
+        android:textColor="@color/accent" />
 
 </RelativeLayout>
