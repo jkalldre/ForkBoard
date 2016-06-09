@@ -16,6 +16,7 @@ public class Cookbook extends AppCompatActivity {
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
         tb.setTitle("Cookbook");
+        tb.setSubtitle("Cookbook");
     }
 
     @Override
