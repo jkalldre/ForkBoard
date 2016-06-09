@@ -8,12 +8,11 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="56dp"
-        android:paddingLeft="24dp"
-        android:paddingRight="24dp">
+        android:layout_height="wrap_content">
 
-        <ImageView android:src="@drawable/fork"
+        <include layout="@layout/my_toolbar" />
+        <!--android:src="@drawable/fork" -->
+        <ImageView
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
@@ -38,7 +37,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_email"
+            <android.support.v7.widget.AppCompatEditText android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress"
@@ -51,7 +50,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:layout_marginBottom="8dp">
-            <EditText android:id="@+id/input_password"
+            <android.support.v7.widget.AppCompatEditText android:id="@+id/input_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textPassword"

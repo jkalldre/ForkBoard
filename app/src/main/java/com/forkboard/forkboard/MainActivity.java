@@ -8,7 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
+
 
 
 
@@ -20,11 +20,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar tb = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
-        //getSupportActionBar().setTitle("ForkBoard");
+        tb.setTitle("ForkBoard");
 
         //stuff janine added
-        Intent intent = new Intent(this, LoginActivity.class);
-        startActivity(intent);
+       // Intent intent = new Intent(this, LoginActivity.class);
+        //startActivity(intent);
     }
 
     @Override
