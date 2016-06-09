@@ -20,7 +20,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar tb = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
-        getSupportActionBar().setTitle("ForkBoard");
+        //getSupportActionBar().setTitle("ForkBoard");
+
+        //stuff janine added
+        Intent intent = new Intent(this, LoginActivity.class);
+        startActivity(intent);
     }
 
     @Override
