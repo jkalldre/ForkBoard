@@ -15,12 +15,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".Calendar_View" android:screenOrientation="portrait"/>
-        <activity android:name=".Day_View" android:screenOrientation="portrait"/>
+        <activity android:name=".Day_View"/>
         <activity android:name=".Cookbook" android:screenOrientation="portrait"></activity>
 
 
     <!-- STUFF JANINE ADDED-->
-        <activity android:name=".LoginActivity" android:theme="@style/AppTheme.Dark" android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity" android:theme="@style/AppTheme.Dark"/>
         <activity android:name=".SignupActivity" android:theme="@style/AppTheme.Dark" android:screenOrientation="portrait"/>
 
     </application>
