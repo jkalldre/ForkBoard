@@ -39,8 +39,11 @@ public class MainActivity extends AppCompatActivity {
         if(item.getTitle().equals("Main Menu")){
             intent = new Intent(this,MainActivity.class);
 
-            intent.putExtra("loggingIn", false);
-            startActivity(intent);
+            //intent.putExtra("loggingIn", false);
+            if(getIntent().getBooleanExtra("loggingIn", false)){
+                startActivity(intent);
+            }
+
 
         }
         if(item.getTitle().equals("Calendar")){
