@@ -12,8 +12,6 @@ import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
-    boolean _hasLogged = false;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
 
         //stuff janine added
         if(!getIntent().getBooleanExtra("hasLogged", false)) {
-            _hasLogged = true;
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }

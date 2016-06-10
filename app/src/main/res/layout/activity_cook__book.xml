@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.forkboard.forkboard.Cookbook">
+    tools:context="com.forkboard.forkboard.Cookbook"
+    android:background="@color/primary_dark">
 
     <include layout="@layout/my_toolbar"
         android:id="@+id/my_toolbar" />
@@ -16,6 +17,7 @@
         android:layout_below="@+id/my_toolbar"
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
-        android:textAlignment="center" />
+        android:textAlignment="center"
+        android:textColor="@color/accent"/>
 
 </RelativeLayout>
