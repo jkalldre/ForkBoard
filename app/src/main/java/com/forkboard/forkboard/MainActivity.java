@@ -8,9 +8,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-
-
-
+import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -54,5 +52,22 @@ public class MainActivity extends AppCompatActivity {
             startActivity(intent);
         }
         return true;
+    }
+
+    public void changeActivity(View v){
+        Intent intent = null;
+        if(v.getId() == R.id.buttonToInfo){
+        }
+        if(v.getId() == R.id.buttonToCalendar){
+            intent = new Intent(this,Calendar_View.class);
+        }
+        if(v.getId() == R.id.buttonToCookbook){
+            intent = new Intent(this,Cookbook.class);
+        }
+        if(v.getId() == R.id.buttonToShopping){
+        }
+        if (intent != null){
+            startActivity(intent);
+        }
     }
 }
