@@ -11,8 +11,8 @@
         android:layout_height="wrap_content">
 
         <include layout="@layout/my_toolbar" />
-        <!--android:src="@drawable/fork" -->
-        <ImageView
+
+        <ImageView android:src="@drawable/fork"
             android:layout_width="wrap_content"
             android:layout_height="72dp"
             android:layout_marginBottom="24dp"
