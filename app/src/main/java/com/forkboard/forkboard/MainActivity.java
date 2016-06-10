@@ -12,6 +12,8 @@ import android.view.View;
 
 
 public class MainActivity extends AppCompatActivity {
+    boolean _hasLogged = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +22,8 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(tb);
 
         //stuff janine added
-        if(getIntent().getBooleanExtra("loggingIn", true)) {
+        if(!getIntent().getBooleanExtra("hasLogged", false)) {
+            _hasLogged = true;
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
         }
@@ -38,22 +41,18 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = null;
         if(item.getTitle().equals("Main Menu")){
             intent = new Intent(this,MainActivity.class);
-
-            //intent.putExtra("loggingIn", false);
-            if(getIntent().getBooleanExtra("loggingIn", false)){
-                startActivity(intent);
-            }
-
-
         }
         if(item.getTitle().equals("Calendar")){
             intent = new Intent(this,Calendar_View.class);
-            startActivity(intent);
         }
         if(item.getTitle().equals("Cookbook")){
             intent = new Intent(this,Cookbook.class);
+        }
+        if (intent != null){
+            intent.putExtra("hasLogged", true);
             startActivity(intent);
         }
+
         return true;
     }
 
