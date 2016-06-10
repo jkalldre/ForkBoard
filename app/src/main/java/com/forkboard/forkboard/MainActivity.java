@@ -21,7 +21,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar tb = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
 
-
         //stuff janine added
         if(getIntent().getBooleanExtra("loggingIn", true)) {
             Intent intent = new Intent(this, LoginActivity.class);
