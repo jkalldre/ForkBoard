@@ -108,16 +108,16 @@ public class Food {
 
     public String toString() {
         String printout = "";
-        printout += quantity() + " " + units();
-        if (!units().toString().equals("") && quantity() != 1)
-            printout +="s ";
-        else if (quantity() == 1 && !units().toString().equals(""))
-            printout += " ";
-        printout += _type;
-        if (units().toString().equals("") && quantity() != 1)
-            printout +="s";
-        if (canDeficit())
-            printout += " | (count allowed to be less than zero)";
+        printout += quantity();
+
+        if (_units != Units.item) printout += " " + units();
+
+        printout += " " + type();
+
+        if (quantity() != 1 && _units == Units.item)
+            printout += "s";
+
+        if (canDeficit()) printout += " *";
 
         return printout;
     }
