@@ -19,7 +19,7 @@
         <activity android:name=".Cookbook"></activity>
 
 
-    // STUFF JANINE ADDED
+    <!-- STUFF JANINE ADDED-->
         <activity android:name=".LoginActivity" android:theme="@style/AppTheme.Dark" />
         <activity android:name=".SignupActivity" android:theme="@style/AppTheme.Dark" />
 
