@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
         android:textAlignment="center"
-        android:textColor="@color/accent"/>
+        android:textColor="@color/secondary_accent"/>
 
     <ListView
         android:layout_width="wrap_content"
@@ -26,6 +26,6 @@
         android:id="@+id/listView"
         android:layout_below="@+id/textView5"
         android:layout_alignParentStart="true"
-        android:background="@color/accent"/>
+        android:background="@color/secondary_accent"/>
 
 </RelativeLayout>

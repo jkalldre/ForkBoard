@@ -4,8 +4,8 @@
     android:background="@color/jet"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    app:titleTextColor="@color/accent"
-    android:subtitleTextColor="@color/accent"
+    app:titleTextColor="@color/primary_accent"
+    android:subtitleTextColor="@color/secondary_accent"
     android:titleTextAppearance="@style/Toolbar.TitleText"
     android:id="@+id/my_toolbar">
 
