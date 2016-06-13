@@ -22,7 +22,7 @@ public class Cookbook extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        getMenuInflater().inflate(R.menu.cookbook_menu, menu);
         return true;
     }
 
@@ -37,6 +37,9 @@ public class Cookbook extends AppCompatActivity {
         }
         if(item.getTitle().equals("Cookbook")){
             intent = new Intent(this,Cookbook.class);
+        }
+        if(item.getTitle().equals("Add Item")){
+            // add recipe item code
         }
         if (intent != null){
             intent.putExtra("hasLogged", true);
