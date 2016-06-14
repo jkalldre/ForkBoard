@@ -16,7 +16,7 @@ public class Calendar_View extends AppCompatActivity {
         setContentView(R.layout.activity_calendar_view);
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
-        tb.setSubtitle("Calendar");
+
         CalendarView calendar = (CalendarView) findViewById(R.id.cv);
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override

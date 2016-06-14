@@ -1,22 +1,17 @@
 package com.forkboard.forkboard;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class Cookbook extends AppCompatActivity {
+public class Conversion_Calculator extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cook__book);
-        Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
-        setSupportActionBar(tb);
-        tb.setTitle("Cookbook");
-
+        setContentView(R.layout.activity_conversion__calculator);
     }
 
     @Override
@@ -27,8 +22,7 @@ public class Cookbook extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected (MenuItem item){
-        new ActivityChanger().changeActivity(item,this);
+        new ActivityChanger().changeActivity(item, this);
         return true;
     }
-
 }

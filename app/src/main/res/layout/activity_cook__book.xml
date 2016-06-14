@@ -18,7 +18,7 @@
         android:layout_centerHorizontal="true"
         android:textSize="40dp"
         android:textAlignment="center"
-        android:textColor="@color/accent"/>
+        android:textColor="@color/white"/>
 
     <include layout="@layout/custom_listview"
         android:layout_below="@id/textView5"
