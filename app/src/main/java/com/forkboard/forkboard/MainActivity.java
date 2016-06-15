@@ -48,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         if(v.getId() == R.id.buttonToCookbook){
             intent = new Intent(this, Cookbook.class);
         }
+        if(v.getId() == R.id.buttonToCalc){
+            intent = new Intent(this, Conversion_Calculator.class);
+        }
         if(v.getId() == R.id.buttonToShopping){
         }
         if (intent != null){
