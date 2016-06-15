@@ -13,4 +13,8 @@
             android:id="@+id/cookbook"
             android:title="Cookbook"
             android:orderInCategory="3"/>
+        <item
+            android:id="@+id/conversioncalc"
+            android:title="Conversion Calc"
+            android:orderInCategory="3"/>
 </menu>

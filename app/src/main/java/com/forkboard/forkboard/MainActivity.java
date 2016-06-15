@@ -19,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar tb = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
 
-        //stuff janine added
         if(!getIntent().getBooleanExtra("hasLogged", false)) {
             Intent intent = new Intent(this, LoginActivity.class);
             startActivity(intent);
@@ -34,34 +33,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected (MenuItem item){
-        System.out.println(item.getTitle());
-        Intent intent = null;
-        if(item.getTitle().equals("Main Menu")){
-            intent = new Intent(this,MainActivity.class);
-        }
-        if(item.getTitle().equals("Calendar")){
-            intent = new Intent(this,Calendar_View.class);
-        }
-        if(item.getTitle().equals("Cookbook")){
-            intent = new Intent(this,Cookbook.class);
-        }
-        if (intent != null){
-            intent.putExtra("hasLogged", true);
-            startActivity(intent);
-        }
-
+        new ActivityChanger().changeActivity(item, this);
         return true;
     }
 
     public void changeActivity(View v){
+        // for MainActivity buttons
         Intent intent = null;
         if(v.getId() == R.id.buttonToInfo){
         }
         if(v.getId() == R.id.buttonToCalendar){
-            intent = new Intent(this,Calendar_View.class);
+            intent = new Intent(this, Calendar_View.class);
         }
         if(v.getId() == R.id.buttonToCookbook){
-            intent = new Intent(this,Cookbook.class);
+            intent = new Intent(this, Cookbook.class);
         }
         if(v.getId() == R.id.buttonToShopping){
         }
