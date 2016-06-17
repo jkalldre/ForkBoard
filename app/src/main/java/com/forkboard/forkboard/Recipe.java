@@ -13,7 +13,7 @@ public class Recipe {
     String        _name;           // title of the recipe
     int           _cookTime;       // how long it takes to prepare (in minutes)
     int           _serveCount;     // how many it feeds
-    int           _ID;
+    String        _ID;
 
     //---------------------------------------------------------------
     // Constructors
@@ -52,7 +52,7 @@ public class Recipe {
     public void ingredients(FoodInventory ingredients) { _ingredients  = ingredients;  }
     public void cookTime(int cookTime)                 { _cookTime     = cookTime;     }
     public void serveCount(int serveCount)             { _serveCount   = serveCount;   }
-    public void ID(int ID)                             { _ID = ID;                     }
+    public void ID(String ID)                          { _ID = ID;                     }
 
     //---------------------------------------------------------------
     // Accessors
@@ -63,7 +63,7 @@ public class Recipe {
     public FoodInventory ingredients() { return _ingredients;  }
     public int cookTime()              { return _cookTime;     }
     public int serveCount()            { return _serveCount;   }
-    public int ID()                    { return _ID;           }
+    public String ID()                 { return _ID;           }
 
     //---------------------------------------------------------------
     // Object Class overrides

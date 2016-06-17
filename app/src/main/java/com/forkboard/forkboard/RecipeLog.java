@@ -37,14 +37,14 @@ public class RecipeLog {
         return null;
     }
 
-    public Recipe get(int ID) {
-        for (Recipe rec : cookbook) {
-            if (rec.ID() == ID) {
-                return rec;
-            }
-        }
-        return null;
-    }
+//    public Recipe get(int ID) {
+//       for (Recipe rec : cookbook) {
+//          if (rec.ID() == ID) {
+//             return rec;
+//          }
+//       }
+//       return null;
+//    }
 
     public Recipe get(Recipe r) {
         for (Recipe rec : cookbook) {
@@ -63,5 +63,9 @@ public class RecipeLog {
         }
 
         return ret.toArray(new String[ret.size()]);
+    }
+
+    public Recipe[] getRecipes() {
+        return cookbook.toArray(new Recipe[cookbook.size()]);
     }
 }
