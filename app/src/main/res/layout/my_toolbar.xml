@@ -4,7 +4,7 @@
     android:background="@color/jet"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    app:titleTextColor="@color/primary_accent"
+    app:titleTextColor="@color/secondary_accent"
     android:subtitleTextColor="@color/secondary_accent"
     android:titleTextAppearance="@style/Toolbar.TitleText"
     android:id="@+id/my_toolbar">
