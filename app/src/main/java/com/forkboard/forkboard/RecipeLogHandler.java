@@ -33,7 +33,6 @@ public class RecipeLogHandler implements DataHandler {
         for (Recipe recipe : cookbook.getRecipes()) {
             FileOutputStream outputStream;
             try {
-
                 outputStream = context.openFileOutput("RecipeBook/" + recipe.ID() + ".recipe",
                         Context.MODE_PRIVATE);
                 if (recipe.ID().equals("00000001")){
@@ -58,6 +57,31 @@ public class RecipeLogHandler implements DataHandler {
                         "Put in a bowl and try to enjoy being poor.\n" +
                         "@INSE\n" +
                         "@END! 00000001\n";
+                    outputStream.write(prnt.getBytes());
+                    outputStream.close();
+                }
+                if (recipe.ID().equals("00000002")){
+                    String prnt =
+                            "@@@ID 00000001\n" +
+                                    "@NAME Ramen Noodle\n" +
+                                    "@INGS\n" +
+                                    "@INGR Top Ramen packet\n" +
+                                    "@ICNT 1\n" +
+                                    "@IUNT item\n" +
+                                    "@INGR water\n" +
+                                    "@ICNT 3\n" +
+                                    "@IUNT cup\n" +
+                                    "@INGR flavor packet\n" +
+                                    "@ICNT 1\n" +
+                                    "@IUNT item\n" +
+                                    "@INGE\n" +
+                                    "@INSS\n" +
+                                    "First, Boil the water in a pot.\n" +
+                                    "Next, throw that noodle crap in with the water for 3 min.\n" +
+                                    "Then, poor the salt paket in.\n" +
+                                    "Put in a bowl and try to enjoy being poor.\n" +
+                                    "@INSE\n" +
+                                    "@END! 00000001\n";
                     outputStream.write(prnt.getBytes());
                     outputStream.close();
                 }
@@ -142,7 +166,7 @@ public class RecipeLogHandler implements DataHandler {
             return false;
     }
 
-    private void mock() {
+    public void mock() {
         FoodInventory ingr = new FoodInventory();
         ingr.add(new Food("Honey Nut O's", 3, Units.cup));
         ingr.add(new Food("milk", 2, Units.cup));
@@ -155,6 +179,7 @@ public class RecipeLogHandler implements DataHandler {
                         "Lastly, once the bowl is full of cereal, fill in the remaining " +
                         "space with milk.\nStir with spoon and enjoy!";
         Recipe C = new Recipe("World's Famous Cereal!", ingr, inst, 3, 1);
+        C.ID("00000001");
 
         FoodInventory ingr1 = new FoodInventory();
         ingr1.add(new Food("Top Ramen packet", 1, Units.item));
@@ -166,6 +191,7 @@ public class RecipeLogHandler implements DataHandler {
                         "Then, poor the salt paket in.\n" +
                         "Put in a bowl and try to enjoy being poor.";
         Recipe R = new Recipe("Ramen Noodle", ingr1, inst1, 7, 1);
+        R.ID("00000002");
         cookbook.add(C);
         cookbook.add(R);
     }
