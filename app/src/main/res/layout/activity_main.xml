@@ -34,13 +34,15 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="GetStarted"
+        android:text="Get Started"
         android:id="@+id/buttonToInfo"
         android:layout_centerVertical="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:onClick="changeActivity" />
 
     <Button
@@ -53,6 +55,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:onClick="changeActivity" />
 
     <Button
@@ -65,6 +69,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:onClick="changeActivity" />
 
     <Button
@@ -77,6 +83,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:onClick="changeActivity" />
 
     <Button
@@ -89,6 +97,8 @@
         android:layout_alignParentLeft="true"
         android:layout_alignRight="@+id/imageView"
         android:layout_alignEnd="@+id/imageView"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:onClick="changeActivity" />
 
 </RelativeLayout>

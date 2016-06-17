@@ -23,6 +23,8 @@
     <include layout="@layout/custom_listview"
         android:layout_below="@id/textView5"
         android:layout_width="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_height="wrap_content"/>
 
 
