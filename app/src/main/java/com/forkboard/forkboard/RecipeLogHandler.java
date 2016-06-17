@@ -34,8 +34,6 @@ public class RecipeLogHandler implements DataHandler {
                         "Then, poor the salt paket in.\n" +
                         "Put in a bowl and try to enjoy being poor.";
         Recipe R = new Recipe("Ramen Noodle", ingr1, inst1, 7, 1);
-
-        RecipeLog cookbook = new RecipeLog();
         cookbook.add(C);
         cookbook.add(R);
     }

@@ -7,6 +7,8 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class Cookbook extends AppCompatActivity {
 
@@ -17,7 +19,12 @@ public class Cookbook extends AppCompatActivity {
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
         tb.setTitle("Cookbook");
+        ListView list = (ListView) findViewById(R.id.listView);
+        RecipeLogHandler handler = new RecipeLogHandler();
+        handler.load();
+        RecipeLog cookbook = handler.cookbook;
 
+        list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList()));
     }
 
     @Override
