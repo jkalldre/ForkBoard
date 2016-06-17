@@ -79,5 +79,16 @@
         android:layout_alignEnd="@+id/imageView"
         android:onClick="changeActivity" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Conversion Calculator"
+        android:id="@+id/buttonToCalc"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/buttonToCookbook"
+        android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/imageView"
+        android:layout_alignEnd="@+id/imageView"
+        android:onClick="changeActivity" />
 
 </RelativeLayout>
