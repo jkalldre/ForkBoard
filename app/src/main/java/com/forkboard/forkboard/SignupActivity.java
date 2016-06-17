@@ -12,7 +12,7 @@ import android.widget.Toast;
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
-public class SignupActivity extends AppCompatActivity {
+ public class SignupActivity extends AppCompatActivity {
     private static final String TAG = "SignupActivity";
 
     @Bind(R.id.input_name) EditText _nameText;
