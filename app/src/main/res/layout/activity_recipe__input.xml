@@ -17,7 +17,8 @@
         android:layout_marginRight="16dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="155dp" />
+        android:layout_marginBottom="155dp"
+        android:onClick="onAddIngredient" />
 
     <EditText
         android:layout_width="fill_parent"
