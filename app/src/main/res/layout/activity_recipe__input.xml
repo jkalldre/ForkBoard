@@ -30,11 +30,24 @@
         android:layout_centerHorizontal="true"
         android:background="@color/white"/>
 
+    <EditText
+        android:layout_width="fill_parent"
+        android:layout_height="30dp"
+        android:id="@+id/editText3"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_centerHorizontal="true"
+        android:background="@color/white"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"/>
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/listView3"
-        android:layout_below="@+id/my_toolbar"
-        android:layout_alignEnd="@+id/button3"
-        android:layout_above="@+id/button3" />
+        android:layout_below="@+id/editText3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:layout_alignBottom="@id/button3"
+        android:layout_marginBottom="37dp"/>
+
 </RelativeLayout>

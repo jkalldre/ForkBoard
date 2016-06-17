@@ -38,22 +38,7 @@ public class Calendar_View extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected (MenuItem item){
-        System.out.println(item.getTitle());
-        Intent intent = null;
-        if(item.getTitle().equals("Main Menu")){
-            intent = new Intent(this,MainActivity.class);
-        }
-        if(item.getTitle().equals("Calendar")){
-            intent = new Intent(this,Calendar_View.class);
-        }
-        if(item.getTitle().equals("Cookbook")){
-            intent = new Intent(this,Cookbook.class);
-        }
-        if (intent != null){
-            intent.putExtra("hasLogged", true);
-            startActivity(intent);
-        }
-
+        new ActivityChanger().changeActivity(item, this);
         return true;
     }
 }
