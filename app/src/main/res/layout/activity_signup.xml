@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="@color/primary_dark">
+
 
     <LinearLayout
         android:orientation="vertical"
@@ -63,6 +65,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginBottom="24dp"
             android:padding="12dp"
+            android:background="@color/secondary"
             android:text="Create Account"/>
 
         <TextView android:id="@+id/link_login"
