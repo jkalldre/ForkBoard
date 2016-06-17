@@ -7,6 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -25,6 +26,17 @@ public class Cookbook extends AppCompatActivity {
         RecipeLog cookbook = handler.cookbook;
 
         list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList()));
+
+        list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent recip_intent = new Intent(getApplicationContext(), Recipe_Input.class);
+                String name = (String)parent.getAdapter().getItem(position);
+
+                recip_intent.putExtra("selected", name);
+                startActivity(recip_intent);
+            }
+        });
     }
 
     @Override
