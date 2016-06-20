@@ -7,8 +7,7 @@
     android:layout_height="match_parent"
     android:layout_weight="2"
     tools:context="com.forkboard.forkboard.MainActivity"
-    android:background="@color/primary_dark"
-    android:id="@+id/background">
+    android:background="@color/primary_dark">
 
     <include layout="@layout/my_toolbar"
         android:id="@+id/my_toolbar" />

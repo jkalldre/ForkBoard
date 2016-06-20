@@ -20,9 +20,11 @@ public class RecipeLogHandler implements DataHandler {
     public void load() {
         String dir = "RecipeBook/";
         File[] files = new File(dir).listFiles();
-        for (File f : files) {
-            if (f.getName().substring(8).equals(".recipe"))
-                doFile(f.getName());
+        if (new File(dir).exists()) {
+            for (File f : files) {
+                if (f.getName().substring(8).equals(".recipe"))
+                    doFile(f.getName());
+            }
         }
     }
 

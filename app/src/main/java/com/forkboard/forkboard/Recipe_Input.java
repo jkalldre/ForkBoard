@@ -22,7 +22,7 @@ public class Recipe_Input extends AppCompatActivity {
     private String _type = "";
     private FoodInventory ingredients = new FoodInventory();
     private Food   foodItem    = new Food();
-
+    String spinnerSelected = "";
     private String[] _units = {
             Units.teaspoon.toString(), Units.tablespoon.toString(), Units.fluid_ounce.toString(),
             Units.cup.toString(), Units.pint.toString(), Units.quart.toString(), Units.gallon.toString(),
@@ -74,12 +74,10 @@ public class Recipe_Input extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, _units);
         // Set up the inputs
         final EditText quantity = new EditText(this);
-        //final EditText units    = new EditText(this);
         final Spinner unitsDropdown = new Spinner(this);
         final EditText name     = new EditText(this);
         // add tooltips
         quantity.setHint("quantity");
-        //units   .setHint("units");
         name    .setHint("name");
         // add inputs to new layout
         layout.addView(quantity);
@@ -88,7 +86,6 @@ public class Recipe_Input extends AppCompatActivity {
         unitsDropdown.setAdapter(adapter);
         // Specify the type of input expected
         quantity.setInputType(InputType.TYPE_CLASS_TEXT);
-        //units   .setInputType(InputType.TYPE_CLASS_TEXT);
         name    .setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(layout);
         // run if ok is clicked
@@ -97,7 +94,7 @@ public class Recipe_Input extends AppCompatActivity {
 
             public void onClick(DialogInterface dialog, int which) {
                 foodItem.quantity(Integer.parseInt(quantity.getText().toString()));
-                foodItem.units(Units.cup);//units.getText().toString();
+                foodItem.units(Units.cup);
                 foodItem.type(name.getText().toString());
                 ingredients.add(foodItem);
                 //ingredients.
