@@ -56,6 +56,8 @@ public enum Units {
             case "mg.":       return milligram;
             case "g":         return gram;
             case "kg":        return kilogram;
+            
+            case "":          return item;
         }
         return cup;
     }
