@@ -22,7 +22,7 @@
         android:layout_below="@+id/my_toolbar"/>
 
     <Spinner
-        android:id="@+id/from_spinner"
+        android:id="@+id/spinner2"
         android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/from_Unit"
@@ -37,7 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_alignLeft="@+id/unit_value"
-        android:layout_below="@+id/from_spinner"
+        android:layout_below="@+id/spinner2"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Enter Value:"
         android:textStyle="bold"/>
@@ -75,7 +75,7 @@
         android:spinnerMode="dropdown"
         android:background="@color/white"
         />
-
+<!--
     <TextView
         android:id="@+id/results_convert"
         android:layout_width="wrap_content"
@@ -97,7 +97,50 @@
         android:textSize="40dp"
         android:padding="8dp"
         android:layout_below="@id/results_convert"/>
-        <!--android:layout_marginBottom="85dp"
+        <android:layout_marginBottom="85dp"
         android:layout_alignParentBottom="true"-->
+
+    <Button
+        android:id="@+id/calculation_button"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@color/black"
+        android:text="Calculate"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:layout_marginTop="24dp"
+        android:padding="8dp"
+        android:layout_below="@+id/spinner"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/white"/>
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/calculation_button"
+        android:layout_marginTop="24dp"
+        android:layout_centerHorizontal="true"
+        android:stretchColumns="1">
+        <TableRow>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="Results:"
+                android:textSize="20sp"
+                android:padding="16dp"
+                android:textColor="@color/white"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/convert_result"
+                android:layout_height="match_parent"
+                android:layout_width="0dp"
+                android:layout_marginRight="10dp"
+                android:textColor="@color/black"
+                android:text=""
+                android:padding="16dp"
+                android:layout_weight="1"
+                android:background="@color/white"/>
+        </TableRow>
+    </TableLayout>
 
 </RelativeLayout>
