@@ -14,11 +14,14 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.Spinner;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Recipe_Input extends AppCompatActivity {
     private String _quantity = "";
-    //private String _units = "";
     private String _type = "";
     private FoodInventory ingredients = new FoodInventory();
     private Food   foodItem    = new Food();
@@ -29,8 +32,9 @@ public class Recipe_Input extends AppCompatActivity {
             Units.pound.toString(), Units.ounce.toString(),
             Units.milliliter.toString(), Units.liter.toString(),
             Units.milligram.toString(), Units.gram.toString(), Units.kilogram.toString()};
+    ArrayList<String> foodList = new ArrayList<String>();
+    ArrayAdapter<String> adapter;
 
-   // unitsDropdown.setAdapter(adapter);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +54,12 @@ public class Recipe_Input extends AppCompatActivity {
             EditText box = (EditText) findViewById(R.id.editText2);
             box.setText(it.toString());
         }
+        ListView listView = (ListView)findViewById(R.id.listView3);
+        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,foodList);//FoodAdapter(this, foodList.toArray());
+        listView.setAdapter(adapter);
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -65,12 +74,12 @@ public class Recipe_Input extends AppCompatActivity {
     }
 
     public void onAddIngredient(View v){
-
+        ListView listView1 = (ListView)findViewById(R.id.listView3);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Enter the Quantity, Units, and Name");
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, _units);
         // Set up the inputs
         final EditText quantity = new EditText(this);
@@ -94,12 +103,17 @@ public class Recipe_Input extends AppCompatActivity {
 
             public void onClick(DialogInterface dialog, int which) {
                 foodItem.quantity(Integer.parseInt(quantity.getText().toString()));
-                foodItem.units(Units.cup);
+                foodItem.units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
                 foodItem.type(name.getText().toString());
                 ingredients.add(foodItem);
                 //ingredients.
+                String ingredient = foodItem.quantity() + " " + foodItem.units() + " " + foodItem.type();
                 EditText tx = (EditText)findViewById(R.id.editText3);
                 tx.setText(foodItem.quantity() + " " + foodItem.units() + " " + foodItem.type());
+                foodList.add(ingredient);
+               // adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodList);
+              //  listView1.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
             }
         });
         // run if cancel is clicked
@@ -109,7 +123,7 @@ public class Recipe_Input extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-
+        adapter.notifyDataSetChanged();
         builder.show();
     }
 }

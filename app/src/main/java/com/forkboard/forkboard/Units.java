@@ -35,4 +35,28 @@ public enum Units {
             default: return "";
         }
     }
+
+    public static Units fromString(String s){
+        switch (s) {
+            case "tsp.":      return teaspoon;
+            case "tbsp.":     return tablespoon;
+            case "fl. ox.":   return fluid_ounce;
+
+            case "c.":        return cup;
+            case "pt.":       return pint;
+            case "qt.":       return quart;
+            case "gal.":      return gallon;
+
+            case "lb.":       return pound;
+            case "oz.":       return ounce;
+
+            case "ml.":       return milliliter;
+            case "l":         return liter;
+
+            case "mg.":       return milligram;
+            case "g":         return gram;
+            case "kg":        return kilogram;
+        }
+        return cup;
+    }
 }

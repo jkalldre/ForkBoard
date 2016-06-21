@@ -134,4 +134,9 @@ public class LoginActivity extends AppCompatActivity {
 
         return valid;
     }
+
+    public void tmp(View v){
+        Intent intent = new Intent(this,Cookbook.class);
+        startActivity(intent);
+    }
 }

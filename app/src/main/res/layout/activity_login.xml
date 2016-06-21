@@ -63,5 +63,14 @@
             android:gravity="center"
             android:textSize="16dip"/>
 
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="troubleshoot"
+            android:id="@+id/button4"
+            android:layout_gravity="right"
+            android:onClick="tmp" />
+
     </LinearLayout>
 </ScrollView>
