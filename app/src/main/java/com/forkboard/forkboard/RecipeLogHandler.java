@@ -18,29 +18,29 @@ public class RecipeLogHandler implements DataHandler {
     }
 
     public void load() {
-        String dir = "RecipeBook/";
+        String dir = System.getProperty("user.dir") + "/";
+        System.out.println("Working in: " + dir);
         File[] files = new File(dir).listFiles();
-        if (new File(dir).exists()) {
-            for (File f : files) {
-                if (f.getName().substring(8).equals(".recipe"))
-                    doFile(f.getName());
+        for (File f : files) {
+            if (f.getName().substring(f.getName().length() - 7).equals(".recipe")) {
+                System.out.println("Reading: " + f.getName());
+                doFile(dir + f.getName());
             }
+
         }
-        else mock();
     }
 
     public void save(Context context) {
-        File file = new File("RecipeBook/");
-        if (!file.exists()) { file.mkdir(); }
-
         for (Recipe recipe : cookbook.getRecipes()) {
             FileOutputStream outputStream;
             try {
-                outputStream = context.openFileOutput("RecipeBook/" + recipe.ID() + ".recipe",
+                outputStream = context.openFileOutput(recipe.ID() + ".recipe",
                         Context.MODE_PRIVATE);
-                    String prnt = recipe.toFileString();
-                    outputStream.write(prnt.getBytes());
-                    outputStream.close();
+
+                System.out.println("Writing: " + recipe.ID() + ".recipe");
+                String prnt = recipe.toFileString();
+                outputStream.write(prnt.getBytes());
+                outputStream.close();
             }
             catch (Exception e) {
                 e.printStackTrace();
