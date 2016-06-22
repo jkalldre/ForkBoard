@@ -21,7 +21,7 @@ public class Cookbook extends AppCompatActivity {
         setSupportActionBar(tb);
         tb.setTitle("Cookbook");
         ListView list = (ListView) findViewById(R.id.listView);
-        RecipeLogHandler handler = new RecipeLogHandler(this);
+        RecipeLogHandler handler = new RecipeLogHandler(this); // updated constructor
         handler.load();
         RecipeLog cookbook = handler.cookbook;
 

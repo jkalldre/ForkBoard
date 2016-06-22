@@ -12,7 +12,7 @@ import java.util.*; // for List, and ArrayList
 
 public class RecipeLogHandler implements DataHandler {
     public RecipeLog cookbook;
-    private Context context;
+    private Context context; // new
 
     public RecipeLogHandler(Context con) {
         context = con;

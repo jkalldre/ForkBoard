@@ -129,7 +129,9 @@ public class Recipe_Input extends AppCompatActivity {
         Recipe recipe = new Recipe(rName.getText().toString(), ingredients,
                 rInstruc.getText().toString(), Integer.parseInt(rCookTime.getText().toString()),
                 Integer.parseInt(rServings.getText().toString()));
+
         String id = "00000001";
+
         recipe.ID(id);
         System.out.print(recipe.toString());
         RecipeLogHandler handler = new RecipeLogHandler(this);
