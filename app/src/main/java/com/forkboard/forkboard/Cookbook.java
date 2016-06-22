@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -24,7 +25,9 @@ public class Cookbook extends AppCompatActivity {
         RecipeLogHandler handler = new RecipeLogHandler(this); // updated constructor
         handler.load();
         RecipeLog cookbook = handler.cookbook;
-
+        if (cookbook.recipeList().length == 0){
+            Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
+        }
         list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList()));
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

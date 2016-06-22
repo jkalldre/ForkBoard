@@ -9,6 +9,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.InputType;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -89,7 +90,7 @@ public class Recipe_Input extends AppCompatActivity {
         unitsDropdown.setAdapter(adapter);
 
         // Specify the type of input expected
-        quantity.setInputType(InputType.TYPE_CLASS_TEXT);
+        quantity.setInputType(InputType.TYPE_CLASS_NUMBER);
         name    .setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(layout);
 
@@ -98,15 +99,16 @@ public class Recipe_Input extends AppCompatActivity {
             @Override
 
             public void onClick(DialogInterface dialog, int which) {
+
                 Food newFood = new Food();
-                newFood.quantity(Integer.parseInt(quantity.getText().toString()));
-                newFood.units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
-                newFood.type(name.getText().toString());
+                newFood    .quantity(Integer.parseInt(quantity.getText().toString()));
+                newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
+                newFood    .type(name.getText().toString());
                 ingredients.add(newFood);
 
                 foodList.add(newFood.quantity() + " " + newFood.units() + " " + newFood.type());
                 adapter1.notifyDataSetChanged();
-                lv.setAdapter(adapter1);
+                lv      .setAdapter(adapter1);
             }
         });
         // run if cancel is clicked
@@ -121,13 +123,18 @@ public class Recipe_Input extends AppCompatActivity {
     }
 
     public void onSubmit(View v){
-        EditText rName = (EditText)findViewById(R.id.recipeName);
-        EditText rInstruc = (EditText)findViewById(R.id.directions);
+        EditText rName     = (EditText)findViewById(R.id.recipeName);
+        EditText rInstruc  = (EditText)findViewById(R.id.directions);
         EditText rCookTime = (EditText)findViewById(R.id.cookTime);
         EditText rServings = (EditText)findViewById(R.id.servingSize);
 
+        if (Float.parseFloat(rCookTime.getText().toString()) % 1 < 1) {
+            Log.w(Warnings.POTENTIAL_DATA_LOSS, "Cook Times should be rounded to the nearest whole!");
+        }
+        float fcooktime = Float.parseFloat(rCookTime.getText().toString());
+        int cooktime = (int)fcooktime;
         Recipe recipe = new Recipe(rName.getText().toString(), ingredients,
-                rInstruc.getText().toString(), Integer.parseInt(rCookTime.getText().toString()),
+                rInstruc.getText().toString(), cooktime,//Integer.parseInt(rCookTime.getText().toString()),
                 Integer.parseInt(rServings.getText().toString()));
 
         String id = "00000001";
