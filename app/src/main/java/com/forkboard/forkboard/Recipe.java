@@ -80,4 +80,24 @@ public class Recipe {
         str += "==============================================\n";
         return str;
     }
+
+    public String toFileString() {
+        String print = "";
+        print = "@@@ID " + _ID + "\n" +
+                "@NAME " + _name + "\n" +
+                "@PREP " + _cookTime + "\n" +
+                "@SERV " + _serveCount + "\n" +
+                "@INGS\n";
+        for (Food ingr : _ingredients.toArray()) {
+            print += "@INGR " + ingr.type() + "\n" +
+                     "@ICNT " + ingr.quantity() + "\n" +
+                     "@IUNT " + ingr.units() + "\n";
+        }
+        print += "@INGE\n" +
+                 "@INSS\n" +
+                 _instructions + "\n" +
+                 "@INSE\n" +
+                 "@END! "  + _ID + "\n";
+        return print;
+    }
 }

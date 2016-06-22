@@ -26,6 +26,7 @@ public class RecipeLogHandler implements DataHandler {
                     doFile(f.getName());
             }
         }
+        else mock();
     }
 
     public void save(Context context) {
@@ -37,57 +38,11 @@ public class RecipeLogHandler implements DataHandler {
             try {
                 outputStream = context.openFileOutput("RecipeBook/" + recipe.ID() + ".recipe",
                         Context.MODE_PRIVATE);
-                if (recipe.ID().equals("00000001")){
-                    String prnt =
-                        "@@@ID 00000001\n" +
-                        "@NAME Ramen Noodle\n" +
-                        "@INGS\n" +
-                        "@INGR Top Ramen packet\n" +
-                        "@ICNT 1\n" +
-                        "@IUNT item\n" +
-                        "@INGR water\n" +
-                        "@ICNT 3\n" +
-                        "@IUNT cup\n" +
-                        "@INGR flavor packet\n" +
-                        "@ICNT 1\n" +
-                        "@IUNT item\n" +
-                        "@INGE\n" +
-                        "@INSS\n" +
-                        "First, Boil the water in a pot.\n" +
-                        "Next, throw that noodle crap in with the water for 3 min.\n" +
-                        "Then, poor the salt paket in.\n" +
-                        "Put in a bowl and try to enjoy being poor.\n" +
-                        "@INSE\n" +
-                        "@END! 00000001\n";
+                    String prnt = recipe.toFileString();
                     outputStream.write(prnt.getBytes());
                     outputStream.close();
-                }
-                if (recipe.ID().equals("00000002")){
-                    String prnt =
-                            "@@@ID 00000001\n" +
-                                    "@NAME Ramen Noodle\n" +
-                                    "@INGS\n" +
-                                    "@INGR Top Ramen packet\n" +
-                                    "@ICNT 1\n" +
-                                    "@IUNT item\n" +
-                                    "@INGR water\n" +
-                                    "@ICNT 3\n" +
-                                    "@IUNT cup\n" +
-                                    "@INGR flavor packet\n" +
-                                    "@ICNT 1\n" +
-                                    "@IUNT item\n" +
-                                    "@INGE\n" +
-                                    "@INSS\n" +
-                                    "First, Boil the water in a pot.\n" +
-                                    "Next, throw that noodle crap in with the water for 3 min.\n" +
-                                    "Then, poor the salt paket in.\n" +
-                                    "Put in a bowl and try to enjoy being poor.\n" +
-                                    "@INSE\n" +
-                                    "@END! 00000001\n";
-                    outputStream.write(prnt.getBytes());
-                    outputStream.close();
-                }
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -105,14 +60,29 @@ public class RecipeLogHandler implements DataHandler {
                 String NAME = "";
                 FoodInventory INGREDIENTS = new FoodInventory();
                 String INSTRUCTIONS = "";
+                int PREP = 0;
+                int SERV = 0;
                 String line = "";
+                String units = "";
+
                 if ( (line = buffer.readLine()) != null
                         && line.substring(0,5).equals("@@@ID")) {
                     ID = line.substring(6);
                 }
+
                 if ( (line = buffer.readLine()) != null
                         && line.substring(0,5).equals("@NAME")) {
                     NAME = line.substring(6);
+                }
+
+                if ( (line = buffer.readLine()) != null
+                        && line.substring(0,5).equals("@PREP")) {
+                    PREP = Integer.parseInt(line.substring(6));
+                }
+
+                if ( (line = buffer.readLine()) != null
+                        && line.substring(0,5).equals("@SERV")) {
+                    SERV = Integer.parseInt(line.substring(6));
                 }
 
                 if ( (line = buffer.readLine()) != null
@@ -122,12 +92,18 @@ public class RecipeLogHandler implements DataHandler {
                                 && line.substring(0,5).equals("@INGR")) {
                             String foodName = line.substring(6);
                             int amount = 0;
-                            // TODO: String units = "";
                             if ( (line = buffer.readLine()) != null
                                     && line.substring(0,5).equals("@ICNT")) {
                                 amount = Integer.parseInt(line.substring(6));
                             }
-                            INGREDIENTS.add(new Food(foodName, amount));
+                            if ( (line = buffer.readLine()) != null
+                                    && line.substring(0,5).equals("@IUNT")) {
+                                if (line.length() < 6)
+                                    units = "";
+                                else
+                                    units = line.substring(6);
+                            }
+                            INGREDIENTS.add(new Food(foodName, amount, Units.fromString(units)));
                         }
                     }
                 }
@@ -144,13 +120,14 @@ public class RecipeLogHandler implements DataHandler {
 
                 if ( (line = buffer.readLine()) != null
                         && line.substring(0,5).equals("@END!")) {
-                    Recipe item = new Recipe(NAME, INGREDIENTS, INSTRUCTIONS);
+                    Recipe item = new Recipe(NAME, INGREDIENTS, INSTRUCTIONS, PREP, SERV);
                     item.ID(ID);
                     cookbook.add(item);
                 }
             }
             catch(Exception ex) {
                 System.out.println("Error with '" + filename + "'");
+                System.out.println(ex.getMessage());
                 System.exit(-98);
             }
         }
