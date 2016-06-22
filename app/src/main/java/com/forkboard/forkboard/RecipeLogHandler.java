@@ -6,6 +6,7 @@ package com.forkboard.forkboard;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 
 import java.io.*;   // for File, FileReader, BufferedReader, and exceptions
 import java.util.*; // for List, and ArrayList
@@ -14,13 +15,27 @@ public class RecipeLogHandler implements DataHandler {
     public RecipeLog cookbook;
     private Context context; // new
 
+    public static final String TAG = "~> RECIPE_LOG_HANDLER";
+
     public RecipeLogHandler(Context con) {
         context = con;
         cookbook = new RecipeLog();
     }
 
     public void load() {
-        String dir = System.getProperty("user.dir") + "/";
+        FileOutputStream outputStream;
+        try {
+            outputStream = context.openFileOutput("INITIALIZE_DIR.txt", Context.MODE_PRIVATE);
+            String prnt = "DIRECTORY NOW CREATED";
+            outputStream.write(prnt.getBytes());
+            outputStream.close();
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        String dir = "/data/data/com.forkboard.forkboard/files/";//System.getProperty("user.dir") + "/"; //context.getFilesDir().getAbsolutePath();
+        Log.i(TAG, "Working in: " + dir);
         System.out.println("Working in: " + dir);
         File[] files = new File(dir).listFiles();
         for (File f : files) {
@@ -39,10 +54,12 @@ public class RecipeLogHandler implements DataHandler {
                 outputStream = context.openFileOutput(recipe.ID() + ".recipe",
                         Context.MODE_PRIVATE);
 
-                System.out.println("Writing: " + recipe.ID() + ".recipe");
+                Log.i(TAG,"Writing: " + recipe.ID() + ".recipe");
                 String prnt = recipe.toFileString();
                 outputStream.write(prnt.getBytes());
                 outputStream.close();
+                File file = new File(context.getFilesDir(), recipe.ID() + ".recipe");
+                Log.i(TAG, "Wrote: " + file);
             }
             catch (Exception e) {
                 e.printStackTrace();
