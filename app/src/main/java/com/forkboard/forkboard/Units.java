@@ -59,6 +59,6 @@ public enum Units {
             
             case "":          return item;
         }
-        return cup;
+        return item;
     }
 }

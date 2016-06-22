@@ -21,19 +21,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe_Input extends AppCompatActivity {
-    private String _quantity = "";
-    private String _type = "";
-    private FoodInventory ingredients = new FoodInventory();
-    private Food   foodItem    = new Food();
-    String spinnerSelected = "";
+
     private String[] _units = {
+            "(no units)",
             Units.teaspoon.toString(), Units.tablespoon.toString(), Units.fluid_ounce.toString(),
             Units.cup.toString(), Units.pint.toString(), Units.quart.toString(), Units.gallon.toString(),
             Units.pound.toString(), Units.ounce.toString(),
             Units.milliliter.toString(), Units.liter.toString(),
             Units.milligram.toString(), Units.gram.toString(), Units.kilogram.toString()};
-    ArrayList<String> foodList = new ArrayList<String>();
-    ArrayAdapter<String> adapter;
+    private FoodInventory ingredients = new FoodInventory();
+    private Food foodItem             = new Food();
+    ArrayList<String> foodList        = new ArrayList<String>();
+    ArrayAdapter<String> adapter1;
+    ListView lv;
 
 
     @Override
@@ -45,18 +45,15 @@ public class Recipe_Input extends AppCompatActivity {
 
         String recip = getIntent().getStringExtra("selected");
 
-        RecipeLogHandler handler = new RecipeLogHandler();
-        handler.load();
-        RecipeLog cookbook = handler.cookbook;
-        Recipe it = cookbook.get(recip);
+        //RecipeLogHandler handler = new RecipeLogHandler();
+        //handler.load();
+        //RecipeLog cookbook = handler.cookbook;
+        //Recipe it = cookbook.get(recip);
 
-        if (recip != null) {
-            EditText box = (EditText) findViewById(R.id.editText2);
-            box.setText(it.toString());
-        }
-        ListView listView = (ListView)findViewById(R.id.listView3);
-        adapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,foodList);//FoodAdapter(this, foodList.toArray());
-        listView.setAdapter(adapter);
+        // set up adapter to save ingredients
+        lv = (ListView)findViewById(R.id.ingredients);
+        adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, foodList);
+        lv.setAdapter(adapter1);
 
     }
 
@@ -74,46 +71,47 @@ public class Recipe_Input extends AppCompatActivity {
     }
 
     public void onAddIngredient(View v){
-        ListView listView1 = (ListView)findViewById(R.id.listView3);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("Enter the Quantity, Units, and Name");
         LinearLayout layout = new LinearLayout(this);
         layout.setOrientation(LinearLayout.VERTICAL);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, _units);
+
         // Set up the inputs
         final EditText quantity = new EditText(this);
         final Spinner unitsDropdown = new Spinner(this);
         final EditText name     = new EditText(this);
+
         // add tooltips
         quantity.setHint("quantity");
         name    .setHint("name");
+
         // add inputs to new layout
         layout.addView(quantity);
         layout.addView(unitsDropdown);
         layout.addView(name);
         unitsDropdown.setAdapter(adapter);
+
         // Specify the type of input expected
         quantity.setInputType(InputType.TYPE_CLASS_TEXT);
         name    .setInputType(InputType.TYPE_CLASS_TEXT);
         builder.setView(layout);
+
         // run if ok is clicked
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
 
             public void onClick(DialogInterface dialog, int which) {
-                foodItem.quantity(Integer.parseInt(quantity.getText().toString()));
-                foodItem.units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
-                foodItem.type(name.getText().toString());
-                ingredients.add(foodItem);
-                //ingredients.
-                String ingredient = foodItem.quantity() + " " + foodItem.units() + " " + foodItem.type();
-                EditText tx = (EditText)findViewById(R.id.editText3);
-                tx.setText(foodItem.quantity() + " " + foodItem.units() + " " + foodItem.type());
-                foodList.add(ingredient);
-               // adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodList);
-              //  listView1.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+                Food newFood = new Food();
+                newFood.quantity(Integer.parseInt(quantity.getText().toString()));
+                newFood.units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
+                newFood.type(name.getText().toString());
+                ingredients.add(newFood);
+
+                foodList.add(newFood.quantity() + " " + newFood.units() + " " + newFood.type());
+                adapter1.notifyDataSetChanged();
+                lv.setAdapter(adapter1);
             }
         });
         // run if cancel is clicked
@@ -125,5 +123,18 @@ public class Recipe_Input extends AppCompatActivity {
         });
         adapter.notifyDataSetChanged();
         builder.show();
+    }
+
+    public void onSubmit(View v){
+        EditText rName = (EditText)findViewById(R.id.recipeName);
+        EditText rInstruc = (EditText)findViewById(R.id.directions);
+        EditText rCookTime = (EditText)findViewById(R.id.cookTime);
+        EditText rServings = (EditText)findViewById(R.id.servingSize);
+
+        Recipe recipe = new Recipe(rName.getText().toString(), ingredients,
+                rInstruc.getText().toString(), Integer.parseInt(rCookTime.getText().toString()),
+                Integer.parseInt(rServings.getText().toString()));
+        System.out.print(recipe.toString());
+
     }
 }
