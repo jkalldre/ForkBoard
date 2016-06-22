@@ -12,8 +12,10 @@ import java.util.*; // for List, and ArrayList
 
 public class RecipeLogHandler implements DataHandler {
     public RecipeLog cookbook;
+    private Context context;
 
-    public RecipeLogHandler() {
+    public RecipeLogHandler(Context con) {
+        context = con;
         cookbook = new RecipeLog();
     }
 
@@ -30,7 +32,7 @@ public class RecipeLogHandler implements DataHandler {
         }
     }
 
-    public void save(Context context) {
+    public void save() {
         for (Recipe recipe : cookbook.getRecipes()) {
             FileOutputStream outputStream;
             try {

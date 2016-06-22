@@ -132,9 +132,9 @@ public class Recipe_Input extends AppCompatActivity {
         String id = "00000001";
         recipe.ID(id);
         System.out.print(recipe.toString());
-        RecipeLogHandler stash = new RecipeLogHandler();
-        stash.cookbook.add(recipe);
-        stash.save(this);
+        RecipeLogHandler handler = new RecipeLogHandler(this);
+        handler.cookbook.add(recipe);
+        handler.save();
         Intent intent = new Intent(this, Cookbook.class);
         startActivity(intent);
     }

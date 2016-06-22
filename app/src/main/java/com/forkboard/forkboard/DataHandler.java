@@ -7,6 +7,6 @@ import android.content.Context;
  */
 public interface DataHandler {
     public void load();
-    public void save(Context context);
+    public void save();
     public void update(Object... params);
 }
