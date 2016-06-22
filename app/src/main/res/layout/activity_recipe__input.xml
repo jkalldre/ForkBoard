@@ -28,7 +28,8 @@
         android:layout_below="@+id/recipeName"
         android:layout_alignStart="@+id/recipeName"
         android:background="@color/white"
-        android:hint="Cook Time (min)" />
+        android:hint="Cook Time (min)"
+        android:inputType="number" />
 
     <EditText
         android:id="@+id/servingSize"
@@ -38,7 +39,8 @@
         android:layout_below="@+id/recipeName"
         android:layout_alignEnd="@+id/recipeName"
         android:hint="Serving Size"
-        android:background="@color/white" />
+        android:background="@color/white"
+        android:inputType="number" />
 
     <Button
         android:id="@+id/addIngredient"
