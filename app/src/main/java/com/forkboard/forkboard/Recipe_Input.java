@@ -145,6 +145,8 @@ public class Recipe_Input extends AppCompatActivity {
         handler.cookbook.add(recipe);
         handler.save();
         Intent intent = new Intent(this, Cookbook.class);
-        startActivity(intent);
+        intent.putExtra("Recipe Name", recipe.name());
+        setResult(002, intent);
+        finish();
     }
 }

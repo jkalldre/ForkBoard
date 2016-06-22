@@ -12,8 +12,11 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-public class Cookbook extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class Cookbook extends AppCompatActivity {
+    ArrayList<String> tempCookbook = new ArrayList<String>();
+    ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,8 +31,9 @@ public class Cookbook extends AppCompatActivity {
         if (cookbook.recipeList().length == 0){
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
         }
-        list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList()));
-
+        //list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList()));
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempCookbook);
+        list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -56,7 +60,13 @@ public class Cookbook extends AppCompatActivity {
 
     public void toRecipeInput(View v){
         Intent intent = new Intent(this,Recipe_Input.class);
-        startActivity(intent);
+        startActivityForResult(intent, 002);
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        tempCookbook.add(data.getStringExtra("Recipe Name"));
+        adapter.notifyDataSetChanged();
     }
 
 }

@@ -12,6 +12,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Calendar;
+
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
@@ -136,7 +138,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void tmp(View v){
-        Intent intent = new Intent(this,Cookbook.class);
+        Intent intent = new Intent(this,Calendar_View.class);
         startActivity(intent);
     }
 }

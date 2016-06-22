@@ -9,8 +9,14 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-public class Day_View extends AppCompatActivity {
+import butterknife.Bind;
 
+public class Day_View extends AppCompatActivity {
+    @Bind(R.id.breakfast) TextView breakfast;
+    @Bind(R.id.lunch)     TextView lunck;
+    @Bind(R.id.dinner)    TextView dinner;
+
+    TextView lastPressed = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,27 +37,28 @@ public class Day_View extends AppCompatActivity {
     }
 
     public boolean onOptionsItemSelected (MenuItem item){
-        System.out.println(item.getTitle());
-        Intent intent = null;
-        if(item.getTitle().equals("Main Menu")){
-            intent = new Intent(this,MainActivity.class);
-        }
-        if(item.getTitle().equals("Calendar")){
-            intent = new Intent(this,Calendar_View.class);
-        }
-        if(item.getTitle().equals("Cookbook")){
-            intent = new Intent(this,Cookbook.class);
-        }
-        if (intent != null){
-            intent.putExtra("hasLogged", true);
-            startActivity(intent);
-        }
-
+        new ActivityChanger().changeActivity(item, this);
         return true;
     }
 
     public void goToCookbook(View v){
-        Intent intent = new Intent(this,Cookbook.class);
-        startActivity(intent);
+        lastPressed = (TextView)v;
+        Intent intent = new Intent(this,Cookbook_Selecter.class);
+        startActivityForResult(intent, 001);
+       // startActivity(intent);
     }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (lastPressed != null){
+            lastPressed.setText(data.getStringExtra("Recipe Name"));
+        }
+    }
+    /*
+    public void onResume(){
+        super.onResume();
+        if(lastPressed != null) {
+            lastPressed.setText(getIntent().getStringExtra("Recipe Name"));
+        }
+    }*/
 }
