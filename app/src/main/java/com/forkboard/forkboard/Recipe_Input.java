@@ -2,6 +2,7 @@ package com.forkboard.forkboard;
 
 import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.support.v7.app.AlertDialog;
@@ -21,7 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Recipe_Input extends AppCompatActivity {
-
+    // string array for spinner
     private String[] _units = {
             "(no units)",
             Units.teaspoon.toString(), Units.tablespoon.toString(), Units.fluid_ounce.toString(),
@@ -29,11 +30,12 @@ public class Recipe_Input extends AppCompatActivity {
             Units.pound.toString(), Units.ounce.toString(),
             Units.milliliter.toString(), Units.liter.toString(),
             Units.milligram.toString(), Units.gram.toString(), Units.kilogram.toString()};
+
+    //
     private FoodInventory ingredients = new FoodInventory();
-    private Food foodItem             = new Food();
-    ArrayList<String> foodList        = new ArrayList<String>();
-    ArrayAdapter<String> adapter1;
-    ListView lv;
+    ArrayList<String>     foodList    = new ArrayList<String>();
+    ArrayAdapter<String>  adapter1;
+    ListView              lv;
 
 
     @Override
@@ -43,15 +45,8 @@ public class Recipe_Input extends AppCompatActivity {
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
 
-        String recip = getIntent().getStringExtra("selected");
-
-        //RecipeLogHandler handler = new RecipeLogHandler();
-        //handler.load();
-        //RecipeLog cookbook = handler.cookbook;
-        //Recipe it = cookbook.get(recip);
-
         // set up adapter to save ingredients
-        lv = (ListView)findViewById(R.id.ingredients);
+        lv       = (ListView)findViewById(R.id.ingredients);
         adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, foodList);
         lv.setAdapter(adapter1);
 
@@ -79,18 +74,18 @@ public class Recipe_Input extends AppCompatActivity {
                 android.R.layout.simple_spinner_item, _units);
 
         // Set up the inputs
-        final EditText quantity = new EditText(this);
+        final EditText quantity     = new EditText(this);
         final Spinner unitsDropdown = new Spinner(this);
-        final EditText name     = new EditText(this);
+        final EditText name         = new EditText(this);
 
         // add tooltips
         quantity.setHint("quantity");
         name    .setHint("name");
 
         // add inputs to new layout
-        layout.addView(quantity);
-        layout.addView(unitsDropdown);
-        layout.addView(name);
+        layout       .addView(quantity);
+        layout       .addView(unitsDropdown);
+        layout       .addView(name);
         unitsDropdown.setAdapter(adapter);
 
         // Specify the type of input expected
@@ -134,7 +129,13 @@ public class Recipe_Input extends AppCompatActivity {
         Recipe recipe = new Recipe(rName.getText().toString(), ingredients,
                 rInstruc.getText().toString(), Integer.parseInt(rCookTime.getText().toString()),
                 Integer.parseInt(rServings.getText().toString()));
+        String id = "00000001";
+        recipe.ID(id);
         System.out.print(recipe.toString());
-
+        RecipeLogHandler stash = new RecipeLogHandler();
+        stash.cookbook.add(recipe);
+        stash.save(this);
+        Intent intent = new Intent(this, Cookbook.class);
+        startActivity(intent);
     }
 }

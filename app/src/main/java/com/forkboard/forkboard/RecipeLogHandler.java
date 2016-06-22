@@ -22,7 +22,7 @@ public class RecipeLogHandler implements DataHandler {
         System.out.println("Working in: " + dir);
         File[] files = new File(dir).listFiles();
         for (File f : files) {
-            if (f.getName().substring(f.getName().length() - 7).equals(".recipe")) {
+            if (f.getName().length() > 8 && f.getName().substring(f.getName().length() - 7).equals(".recipe")) {
                 System.out.println("Reading: " + f.getName());
                 doFile(dir + f.getName());
             }
