@@ -2,23 +2,28 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/custom_listview">
+    android:id="@+id/custom_listview"
+    android:background="@color/primary"
+    android:onClick="goToCookbook">
 
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
-        android:id="@+id/textView2"
+        android:text="Meal"
+        android:id="@+id/meal"
         android:layout_gravity="center_horizontal"
-        android:textSize="40dp" />
+        android:textSize="40dp"
+        android:textColor="@color/oil"
+        android:tag="meal"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
-        android:id="@+id/textView3"
+        android:text="(No Meal Selected)"
+        android:id="@+id/mealchoice"
+        android:tag="mealchoice"
         android:layout_gravity="center_horizontal" />
 </LinearLayout>
