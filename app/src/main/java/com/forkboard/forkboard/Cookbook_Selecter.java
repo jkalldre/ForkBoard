@@ -19,14 +19,13 @@ public class Cookbook_Selecter extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cookbook__selecter);
-        Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
+        Toolbar tb =  (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
 
-        ListView list = (ListView) findViewById(R.id.listView3);
+        ListView list            = (ListView) findViewById(R.id.listView3);
         RecipeLogHandler handler = new RecipeLogHandler(this); // updated constructor
         handler.mock();
         final RecipeLog cookbook = handler.cookbook;
-        //ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList());
         if (cookbook.recipeList().length == 0){
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
         }
@@ -43,8 +42,7 @@ public class Cookbook_Selecter extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     String recName = (String)parent.getItemAtPosition(position);
                     System.out.print(cookbook.get(recName).toString());
-          //          Recipe rec = cookbook.get(recName);
-                    Intent intent = new Intent(getApplicationContext(),Day_View.class);
+                    Intent intent  = new Intent(getApplicationContext(),Day_View.class);
                     intent.putExtra("Recipe Name", recName);
                     setResult(001, intent);
                     finish();

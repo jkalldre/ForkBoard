@@ -18,18 +18,18 @@ public class Conversion_Calculator extends AppCompatActivity {
         setContentView(R.layout.activity_conversion__calculator);
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
+
         String[] arraySpinner = {"tsp", "cup", "oz"};
-        Spinner s = (Spinner) findViewById(R.id.spinner);
+        Spinner s  = (Spinner) findViewById(R.id.spinner );
         Spinner s2 = (Spinner) findViewById(R.id.spinner2);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, arraySpinner);
-        s.setAdapter(adapter);
+        s .setAdapter(adapter);
         s2.setAdapter(adapter);
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.mainmenu, menu);
         return true;
     }

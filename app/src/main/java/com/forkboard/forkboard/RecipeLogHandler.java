@@ -12,13 +12,13 @@ import java.io.*;   // for File, FileReader, BufferedReader, and exceptions
 import java.util.*; // for List, and ArrayList
 
 public class RecipeLogHandler implements DataHandler {
-    public RecipeLog cookbook;
-    private Context context; // new
+    public  RecipeLog cookbook;
+    private Context   context; // new
 
     public static final String TAG = "~> RECIPE_LOG_HANDLER";
 
     public RecipeLogHandler(Context con) {
-        context = con;
+        context  = con;
         cookbook = new RecipeLog();
     }
 
@@ -26,7 +26,7 @@ public class RecipeLogHandler implements DataHandler {
         FileOutputStream outputStream;
         try {
             outputStream = context.openFileOutput("INITIALIZE_DIR.txt", Context.MODE_PRIVATE);
-            String prnt = "DIRECTORY NOW CREATED";
+            String prnt  = "DIRECTORY NOW CREATED";
             outputStream.write(prnt.getBytes());
             outputStream.close();
         }
@@ -75,13 +75,13 @@ public class RecipeLogHandler implements DataHandler {
     public void doFile(String filename) {
         if (okFile(filename)) {
             try(BufferedReader buffer = new BufferedReader(new FileReader(filename))) {
-                String ID = "";
-                String NAME = "";
-                FoodInventory INGREDIENTS = new FoodInventory();
-                String INSTRUCTIONS = "";
-                int PREP = 0;
-                int SERV = 0;
-                String line = "";
+                String ID           = "";
+                String NAME         = "";
+                FoodInventory INGREDIENTS  = new FoodInventory();
+                String        INSTRUCTIONS = "";
+                int PREP     = 0;
+                int SERV     = 0;
+                String line  = "";
                 String units = "";
 
                 if ( (line = buffer.readLine()) != null

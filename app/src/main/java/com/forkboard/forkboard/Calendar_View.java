@@ -13,8 +13,8 @@ public class Calendar_View extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_calendar_view);
-        Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
+        setContentView(R.layout.activity_calendar_view     );
+        Toolbar tb =  (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
 
         CalendarView calendar = (CalendarView) findViewById(R.id.cv);
@@ -23,8 +23,8 @@ public class Calendar_View extends AppCompatActivity {
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 Intent intent = new Intent(Calendar_View.this,Day_View.class);
                 intent.putExtra("Day", dayOfMonth);
-                intent.putExtra("Month", month);
-                intent.putExtra("Year", year);
+                intent.putExtra("Month", month   );
+                intent.putExtra("Year", year     );
                 startActivity(intent);
 
             }

@@ -27,8 +27,10 @@ public class Day_View extends AppCompatActivity {
         setSupportActionBar(tb);
         String date = "";
         TextView d = (TextView) findViewById(R.id.textView);
-        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
-        date += months[getIntent().getIntExtra("Month", 0)] + " " + getIntent().getIntExtra("Day",0) + ", " + getIntent().getIntExtra("Year",0);
+        String[] months = {"January", "February", "March", "April", "May", "June", "July", "August",
+                "September", "October", "November", "December"};
+        date += months[getIntent().getIntExtra("Month", 0)] + " " + getIntent().getIntExtra("Day",0)
+                + ", " + getIntent().getIntExtra("Year",0);
         d.setText(date);
         // set up custom layouts
         LinearLayout breakf = (LinearLayout)findViewById(R.id.breakfast);

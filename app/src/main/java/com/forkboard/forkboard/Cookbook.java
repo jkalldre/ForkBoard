@@ -15,23 +15,23 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class Cookbook extends AppCompatActivity {
-    ArrayList<String> tempCookbook = new ArrayList<String>();
-    ArrayAdapter<String> adapter;
+    private ArrayList<String>    tempCookbook = new ArrayList<String>();
+    private ArrayAdapter<String> adapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cook__book);
-        Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
+        setContentView(R.layout.activity_cook__book        );
+        Toolbar tb =  (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
         tb.setTitle("Cookbook");
-        ListView list = (ListView) findViewById(R.id.listView);
+
+        ListView list            = (ListView) findViewById(R.id.listView);
         RecipeLogHandler handler = new RecipeLogHandler(this); // updated constructor
         handler.load();
-        RecipeLog cookbook = handler.cookbook;
-        if (cookbook.recipeList().length == 0){
+        RecipeLog cookbook       = handler.cookbook;
+        if (cookbook.recipeList().length == 0) {
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
         }
-        //list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList()));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempCookbook);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -39,7 +39,6 @@ public class Cookbook extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent recip_intent = new Intent(getApplicationContext(), Recipe_Input.class);
                 String name = (String)parent.getAdapter().getItem(position);
-
                 recip_intent.putExtra("selected", name);
                 startActivity(recip_intent);
             }
@@ -48,7 +47,6 @@ public class Cookbook extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.mainmenu, menu);
         return true;
     }
@@ -64,9 +62,9 @@ public class Cookbook extends AppCompatActivity {
     }
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
+        super       .onActivityResult(requestCode, resultCode, data);
         tempCookbook.add(data.getStringExtra("Recipe Name"));
-        adapter.notifyDataSetChanged();
+        adapter     .notifyDataSetChanged();
     }
 
 }

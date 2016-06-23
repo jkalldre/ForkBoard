@@ -14,7 +14,7 @@ import java.util.Comparator;
  */
 public class FoodAdapter extends ArrayAdapter<Food> {
     private final Context context;
-    private final Food[] values;
+    private final Food[]  values;
 
     public FoodAdapter(Context context, Food[] values) {
         super(context, R.layout.food_adapter_layout, values);
@@ -33,11 +33,11 @@ public class FoodAdapter extends ArrayAdapter<Food> {
         LayoutInflater inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        View rowView = inflater.inflate(R.layout.food_adapter_layout, parent, false);
-        TextView $type = (TextView) rowView.findViewById(R.id.type);
+        View     rowView = inflater.inflate(R.layout.food_adapter_layout, parent, false);
+        TextView $type   = (TextView) rowView.findViewById(R.id.type);
         TextView $amount = (TextView) rowView.findViewById(R.id.amount);
-        $amount.setText(values[position].quantity() + " " + values[position].units());
-        $type.setText(values[position].type());
+        $amount  .setText(values[position].quantity() + " " + values[position].units());
+        $type    .setText(values[position].type());
 
         return rowView;
     }
