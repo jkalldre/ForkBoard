@@ -24,7 +24,7 @@
     <Spinner
         android:id="@+id/spinner2"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_alignLeft="@+id/from_Unit"
         android:layout_below="@+id/from_Unit"
         android:spinnerMode="dropdown"
@@ -50,7 +50,7 @@
         android:layout_marginTop="4dp"
         android:layout_below="@+id/enter_Value"
         android:background="@color/white"
-        android:textSize="40dp"
+        android:textSize="20dp"
         android:inputType="numberDecimal"
         android:padding="8dp"/>
 
@@ -68,7 +68,7 @@
     <Spinner
         android:id="@+id/spinner"
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:layout_marginTop="4dp"
         android:layout_below="@+id/convert_to"
         android:layout_alignLeft="@+id/convert_to"
