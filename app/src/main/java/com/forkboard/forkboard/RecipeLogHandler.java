@@ -34,7 +34,7 @@ public class RecipeLogHandler implements DataHandler {
             e.printStackTrace();
         }
 
-        String dir = "/data/data/com.forkboard.forkboard/files/";//System.getProperty("user.dir") + "/"; //context.getFilesDir().getAbsolutePath();
+        String dir = "/data/data/com.forkboard.forkboard/files/"; //System.getProperty("user.dir") + "/"; //context.getFilesDir().getAbsolutePath();
         Log.i(TAG, "Working in: " + dir);
         System.out.println("Working in: " + dir);
         File[] files = new File(dir).listFiles();
