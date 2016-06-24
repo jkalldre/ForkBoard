@@ -1,8 +1,10 @@
 package com.forkboard.forkboard;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.support.v7.app.AlertDialog;
@@ -136,9 +138,15 @@ public class Recipe_Input extends AppCompatActivity {
                 rInstruc.getText().toString(), cooktime,//Integer.parseInt(rCookTime.getText().toString()),
                 Integer.parseInt(rServings.getText().toString()));
 
-        String id = "00000001";
+        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        int id = pref.getInt("recipe_id_counter", 1);
 
-        recipe .ID(id);
+        pref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+        recipe.ID(Misc.generateIDfromInt(id));
+        edit.putInt("recipe_id_counter", ++id);
+        edit.commit();
+
         System .out.print(recipe.toString());
         RecipeLogHandler handler = new RecipeLogHandler(this);
         handler.cookbook.add(recipe);
