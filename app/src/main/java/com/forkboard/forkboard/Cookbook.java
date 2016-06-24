@@ -17,6 +17,7 @@ import java.util.ArrayList;
 public class Cookbook extends AppCompatActivity {
     private ArrayList<String>    tempCookbook = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
+    private RecipeLogHandler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,13 +27,13 @@ public class Cookbook extends AppCompatActivity {
         tb.setTitle("Cookbook");
 
         ListView list            = (ListView) findViewById(R.id.listView);
-        RecipeLogHandler handler = new RecipeLogHandler(this); // updated constructor
+        handler = new RecipeLogHandler(this); // updated constructor
         handler.load();
         RecipeLog cookbook       = handler.cookbook;
         if (cookbook.recipeList().length == 0) {
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
         }
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, tempCookbook);
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList());//tempCookbook);
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -67,4 +68,9 @@ public class Cookbook extends AppCompatActivity {
         adapter     .notifyDataSetChanged();
     }
 
+    public void onResume() {
+        super.onResume();
+        //handler.load();
+        //adapter.notifyDataSetChanged();
+    }
 }
