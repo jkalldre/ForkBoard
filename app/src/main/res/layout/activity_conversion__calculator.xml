@@ -50,7 +50,7 @@
         android:layout_marginTop="4dp"
         android:layout_below="@+id/enter_Value"
         android:background="@color/white"
-        android:textSize="40dp"
+        android:textSize="20dp"
         android:inputType="numberDecimal"
         android:padding="8dp"/>
 
