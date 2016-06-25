@@ -4,51 +4,6 @@ package com.forkboard.forkboard;
  * Created by Kyle on 6/25/2016.
  */
 public class Format {
-
-    /*******************************************************
-     * Takes a string of text and right justifies it.
-     *******************************************************/
-    public static String rightJustifyOnLine(String text, int width) {
-        if (text.length() > width) return text;
-        StringBuilder centered = new StringBuilder("");
-        int num_spaces = (width - text.length());
-        for (int i = 0; i < num_spaces; i++) centered.append(" ");
-        //if (text.length() % 2 != 0 && width % 2 == 0) centered.append(" ");
-        centered.append(text);
-        return centered.toString();
-    }
-
-    /*******************************************************
-     * Takes a string of text and centers it.
-     *******************************************************/
-    public static String centerOnLine(String text, int width) {
-        if (text.length() > width) return text;
-        StringBuilder centered = new StringBuilder("");
-        int num_spaces = (width - text.length()) / 2;
-        for (int i = 0; i < num_spaces; i++) centered.append(" ");
-        if (text.length() % 2 != 0 && width % 2 == 0) centered.append(" ");
-        centered.append(text);
-        return centered.toString();
-    }
-
-    /*******************************************************
-     * Wraps text within a margin
-     *******************************************************/
-    public static String marginize(String text, int width) {
-        StringBuilder marginized = new StringBuilder("");
-        String[] words = text.split("\\s+");
-        int lineCount = 0;
-        for (String word : words) {
-            if (lineCount + word.length() >= width) {
-                marginized.append("\n");
-                lineCount = 0;
-            }
-            marginized.append(word + " ");
-            lineCount += word.length() + 1;
-        }
-        return marginized.toString();
-    }
-
     /*******************************************************
      * Take a double and converts it to the nearest fraction.
      * supports: halves, thirds, fourths, eigths, sixteenths
@@ -130,4 +85,49 @@ public class Format {
         }
         return sid;
     }
+
+    /*******************************************************
+     * Takes a string of text and right justifies it.
+     *******************************************************/
+    public static String rightJustifyOnLine(String text, int width) {
+        if (text.length() > width) return text;
+        StringBuilder centered = new StringBuilder("");
+        int num_spaces = (width - text.length());
+        for (int i = 0; i < num_spaces; i++) centered.append(" ");
+        //if (text.length() % 2 != 0 && width % 2 == 0) centered.append(" ");
+        centered.append(text);
+        return centered.toString();
+    }
+
+    /*******************************************************
+     * Takes a string of text and centers it.
+     *******************************************************/
+    public static String centerOnLine(String text, int width) {
+        if (text.length() > width) return text;
+        StringBuilder centered = new StringBuilder("");
+        int num_spaces = (width - text.length()) / 2;
+        for (int i = 0; i < num_spaces; i++) centered.append(" ");
+        if (text.length() % 2 != 0 && width % 2 == 0) centered.append(" ");
+        centered.append(text);
+        return centered.toString();
+    }
+
+    /*******************************************************
+     * Wraps text block within a margin
+     *******************************************************/
+    public static String marginize(String text, int width) {
+        StringBuilder marginized = new StringBuilder("");
+        String[] words = text.split("\\s+");
+        int lineCount = 0;
+        for (String word : words) {
+            if (lineCount + word.length() >= width) {
+                marginized.append("\n");
+                lineCount = 0;
+            }
+            marginized.append(word + " ");
+            lineCount += word.length() + 1;
+        }
+        return marginized.toString();
+    }
+
 }
