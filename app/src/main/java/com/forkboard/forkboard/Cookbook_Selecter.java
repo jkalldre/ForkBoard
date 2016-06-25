@@ -24,7 +24,7 @@ public class Cookbook_Selecter extends AppCompatActivity {
 
         ListView list            = (ListView) findViewById(R.id.listView3);
         RecipeLogHandler handler = new RecipeLogHandler(this); // updated constructor
-        handler.mock();
+        handler.load();
         final RecipeLog cookbook = handler.cookbook;
         if (cookbook.recipeList().length == 0){
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");

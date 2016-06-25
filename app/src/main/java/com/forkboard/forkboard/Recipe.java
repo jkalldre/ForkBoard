@@ -70,15 +70,33 @@ public class Recipe {
     //---------------------------------------------------------------
 
     public String toString() {
-        String str = "==============================================\n";
-        str += _name + "\t\tPrep: " + _cookTime + " minutes\n";
-        str += "Serves: " + _serveCount + "\n";
-        str += "----------------------------------------------\n";
-        str += _ingredients.toString() + "\n";
-        str += "----------------------------------------------\n";
-        str += _instructions + "\n";
-        str += "==============================================\n";
-        return str;
+        return getScaledOutputString(50);
+    }
+
+    public String getScaledOutputString(int width) {
+        StringBuilder output = new StringBuilder("");
+        for (int i = 0; i < width; i++) output.append("=");
+        output.append("\n");
+        output.append(Format.centerOnLine(_name, width) + "\n");
+        for (int i = 0; i < width; i++) output.append("-");
+        output.append("\n");
+        String prep = "Prep: " + _cookTime +" min.  ";
+        String serv = "Serves: " + _serveCount;
+        output.append(prep);
+        if (serv.length() <= width - prep.length())
+            output.append(Format.rightJustifyOnLine(serv, width - prep.length()));
+        else {
+            output.append("\n" + serv);
+        }
+        output.append("\n");
+        for (int i = 0; i < width; i++) output.append("-");
+        output.append("\n");
+        output.append(_ingredients.toString());
+        for (int i = 0; i < width; i++) output.append("-");
+        output.append("\n");
+        output.append(Format.marginize(_instructions, width) + "\n");
+        for (int i = 0; i < width; i++) output.append("=");
+        return output.toString();
     }
 
     public String toFileString() {
