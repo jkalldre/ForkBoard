@@ -10,7 +10,7 @@ public class Food {
 
     protected String  _type;
     protected Units   _units;
-    private   int     _quantity;
+    private   double     _quantity;
     private   boolean _deficitAllowed;
 
     //---------------------------------------------------------------
@@ -18,7 +18,7 @@ public class Food {
     //---------------------------------------------------------------
 
     public Food() {
-        _type           = "(undifined food type)";
+        _type           = "(undefined food type)";
         _quantity       = 0;
         _units          = Units.item;
         _deficitAllowed = false;
@@ -31,14 +31,14 @@ public class Food {
         _deficitAllowed = false;
     }
 
-    public Food(String type, int amount) {
+    public Food(String type, double amount) {
         _type           = type;
         _quantity       = amount;
         _units          = Units.item;
         _deficitAllowed = false;
     }
 
-    public Food(String type, int count, Units units) {
+    public Food(String type, double count, Units units) {
         _type           = type;
         _quantity       = count;
         _units          = units;
@@ -50,14 +50,14 @@ public class Food {
     //---------------------------------------------------------------
 
     public void allowDeficit()          { _deficitAllowed = true; }
-    public void allowDeficit(Boolean q) {
+    public void allowDeficit(boolean q) {
         _deficitAllowed = q;
         if (_quantity < 0) _quantity = 0;
     }
 
     public void type(String type)    { _type = type;           }
     public void units(Units units)   { _units = units;         }
-    public void quantity(int amount) {
+    public void quantity(double amount) {
         if (amount >= 0)
             _quantity = amount;
         else
@@ -87,9 +87,9 @@ public class Food {
     // Accessors
     //---------------------------------------------------------------
 
-    public String type()  { return _type;     }
-    public Units  units() { return _units;    }
-    public int quantity() { return _quantity; }
+    public String type()     { return _type;     }
+    public Units  units()    { return _units;    }
+    public double quantity() { return _quantity; }
 
     public boolean isSameFoodType(Food comp)   { return _type.equals(comp._type); }
     public boolean isSameFoodType(String comp) { return _type.equals(comp);       }
@@ -108,14 +108,11 @@ public class Food {
 
     public String toString() {
         String printout = "";
-        printout += quantity();
+        printout += Format.fractionize(quantity());
 
         if (_units != Units.item) printout += " " + units();
 
         printout += " " + type();
-
-        if (quantity() != 1 && _units == Units.item)
-            printout += "s";
 
         if (canDeficit()) printout += " *";
 
