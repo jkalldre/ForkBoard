@@ -35,7 +35,8 @@
             android:theme="@style/AppTheme.Dark" />
         <activity android:name=".Conversion_Calculator" />
         <activity android:name=".Recipe_Input" />
-        <activity android:name=".Cookbook_Selecter"></activity>
+        <activity android:name=".Cookbook_Selecter" />
+        <activity android:name=".ShoppingListWeek"></activity>
     </application>
 
 </manifest>
