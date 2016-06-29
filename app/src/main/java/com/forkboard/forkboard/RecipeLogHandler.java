@@ -11,6 +11,11 @@ import android.util.Log;
 import java.io.*;   // for File, FileReader, BufferedReader, and exceptions
 import java.util.*; // for List, and ArrayList
 
+/**
+ * RecipeLogHandler is our datahandler for our recipes. It has
+ * functions that allow us to save to custom .recipe files and read
+ * and load files into Recipe objects and add them to our RecipeLog(Cookbook)
+ */
 public class RecipeLogHandler implements DataHandler {
     public  RecipeLog cookbook;
     private Context   context; // new
@@ -22,6 +27,11 @@ public class RecipeLogHandler implements DataHandler {
         cookbook = new RecipeLog();
     }
 
+    /**
+     * Load reads all files saved in the android directory and loads them
+     * into the cookbook to be used by the different activities. Providing
+     * a universal cookbook.
+     */
     public void load() {
         FileOutputStream outputStream;
         try {
@@ -47,6 +57,10 @@ public class RecipeLogHandler implements DataHandler {
         }
     }
 
+    /**
+     * Save saves all the files to a directory in internal memory in the format of our .recipe
+     * files. This allows them to be read back in later with Load
+     */
     public void save() {
         for (Recipe recipe : cookbook.getRecipes()) {
             FileOutputStream outputStream;
