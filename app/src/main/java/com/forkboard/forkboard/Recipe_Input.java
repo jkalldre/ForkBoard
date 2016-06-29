@@ -74,6 +74,7 @@ public class Recipe_Input extends AppCompatActivity {
             cookTime   .setText("" + recipe.cookTime());
             servingSize.setText("" + recipe.serveCount());
             directions .setText(recipe.instructions());
+            ingredients = recipe.ingredients();
         }
 
         // set up adapter to save ingredients

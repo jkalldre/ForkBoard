@@ -9,5 +9,5 @@ public interface DataHandler {
     // modified
     public void load();
     public void save();
-    public void update(Object... params);
+
 }

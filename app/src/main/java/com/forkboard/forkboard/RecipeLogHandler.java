@@ -81,8 +81,9 @@ public class RecipeLogHandler implements DataHandler {
         }
     }
 
-    public void update(Object... params){
-        for (Recipe recipe : (Recipe[]) params) {
+    public void update(Recipe... params){
+        for (Recipe recipe : params) {
+
             FileOutputStream outputStream;
             try {
                 outputStream = context.openFileOutput(recipe.ID() + ".recipe",
