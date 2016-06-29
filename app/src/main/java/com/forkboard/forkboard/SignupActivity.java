@@ -43,7 +43,12 @@ import butterknife.Bind;
         });
     }
 
-    // committing
+     /**
+      * Method creates a sign up for users
+      * No parameters are passed and function is void
+      * Creates dialog for creating an Account
+      * Calls success or failure for signup
+      */
     public void signup() {
         Log.d(TAG, "Signup");
 
@@ -79,18 +84,31 @@ import butterknife.Bind;
     }
 
 
+     /**
+      * Method shows whether the sign up was successful
+      * No parameters or return values
+      */
     public void onSignupSuccess() {
         _signupButton.setEnabled(true);
         setResult(RESULT_OK, null);
         finish();
     }
 
+     /**
+      * Method shows whether the sign up failed
+      * No parameters or return values
+      */
     public void onSignupFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
         _signupButton.setEnabled(true);
     }
 
+     /**
+      * Method validates the user input
+      * Verifies name, email and password
+      * Specific requirements have been set for each variable.
+      */
     public boolean validate() {
         boolean valid = true;
 

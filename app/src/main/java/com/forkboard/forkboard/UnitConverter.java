@@ -20,6 +20,14 @@ public class UnitConverter {
         return idx;
     }
 
+    /**
+     * Method converts units of weight measurement
+     *
+     * @param quantity
+     * @param from
+     * @param to
+     * @return The results are converted units. If not valid returns -1
+     */
     public static double convertEnglish_weight(double quantity, Units from, Units to) {
         if (from == Units.ounce && to == Units.pound) return quantity / 16;
         else
@@ -27,7 +35,14 @@ public class UnitConverter {
         else
             return -1;
     }
-
+    /**
+     * Method converts units of volume measurement
+     *
+     * @param quantity
+     * @param from
+     * @param to
+     * @return The results are converted units. If not valid returns -1
+     */
     public static double convertEnglish_volume(double quantity, Units from, Units to) {
         double [][] volume_index = {
                 {1,0.33333333333333333333333333333333,

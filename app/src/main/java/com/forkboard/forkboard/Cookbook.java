@@ -58,6 +58,11 @@ public class Cookbook extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Method calls recipe input method
+     *
+     * @param v The v is a view object
+     */
     public void toRecipeInput(View v){
         Intent intent = new Intent(this,Recipe_Input.class);
         intent.putExtra("selected", "");

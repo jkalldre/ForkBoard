@@ -17,6 +17,13 @@ import java.util.Calendar;
 import butterknife.ButterKnife;
 import butterknife.Bind;
 
+/**
+ * Activity for loading the Login
+ *
+ * This activity is used to enable the user to login to the app.
+ *
+ * @author Janine
+ */
 public class LoginActivity extends AppCompatActivity {
     private static final String TAG = "LoginActivity";
     private static final int REQUEST_SIGNUP = 0;
@@ -59,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
-    // Commiting
+
     public void login() {
         Log.d(TAG, "Login");
 

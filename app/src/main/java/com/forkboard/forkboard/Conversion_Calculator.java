@@ -29,6 +29,13 @@ public class Conversion_Calculator extends AppCompatActivity {
         s2.setAdapter(adapter);
     }
 
+    /**
+     * Methods are used to call the toolbar
+     *
+     * @param menu The Menu creates a menu object
+     * @return The resulting is a boolean
+     */
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mainmenu, menu);

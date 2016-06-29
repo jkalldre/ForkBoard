@@ -12,6 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+/**
+ * Activity for creating a shopping list
+ *
+ * This activity is used to display the shopping list and add items to the shopping list.
+ *
+ * @author Janine
+ */
+
 public class ShoppingListWeek extends AppCompatActivity {
 
     private ListView mShoppingList;
