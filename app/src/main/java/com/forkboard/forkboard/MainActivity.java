@@ -51,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             intent = new Intent(this, Conversion_Calculator.class);
         }
         if(v.getId() == R.id.buttonToShopping){
+            intent = new Intent(this, ShoppingListWeek.class);
         }
         if (intent != null){
             startActivity(intent);

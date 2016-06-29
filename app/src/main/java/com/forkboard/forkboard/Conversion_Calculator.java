@@ -19,6 +19,7 @@ public class Conversion_Calculator extends AppCompatActivity {
         setContentView(R.layout.activity_conversion__calculator);
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
+
         String[] arraySpinner = {"tsp","tbsp","cup","pt","oz","g","ml","l"};
         Spinner s = (Spinner) findViewById(R.id.spinner);
         Spinner s2 = (Spinner) findViewById(R.id.spinner2);
