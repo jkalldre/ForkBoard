@@ -25,6 +25,7 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
+    @Bind(R.id.button4) Button troubleshoot;
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,13 @@ public class LoginActivity extends AppCompatActivity {
                 // Start the Signup activity
                 Intent intent = new Intent(getApplicationContext(), com.forkboard.forkboard.SignupActivity.class);
                 startActivityForResult(intent, REQUEST_SIGNUP);
+            }
+        });
+        troubleshoot.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -138,7 +146,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void tmp(View v){
-        Intent intent = new Intent(this,Calendar_View.class);
+        Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
 }

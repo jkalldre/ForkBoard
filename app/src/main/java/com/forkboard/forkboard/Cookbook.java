@@ -64,13 +64,16 @@ public class Cookbook extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super       .onActivityResult(requestCode, resultCode, data);
-        tempCookbook.add(data.getStringExtra("Recipe Name"));
+     //   handler     .load();
         adapter     .notifyDataSetChanged();
+        //Intent refresh = new Intent(this, Cookbook.class);
+        //startActivity(refresh);
+       // this.finish();
     }
 
-    public void onResume() {
-        super.onResume();
-        //handler.load();
-        //adapter.notifyDataSetChanged();
-    }
+   // public void onResume() {
+      //  super.onResume();
+     ///   handler.load();
+     //   adapter.notifyDataSetChanged();
+  //  }
 }

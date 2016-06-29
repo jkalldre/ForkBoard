@@ -2,12 +2,59 @@ package com.forkboard.forkboard;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ListView;
 
-public class ShoppingListWeek extends Activity {
+public class ShoppingListWeek extends AppCompatActivity {
+
+    private ListView mShoppingList;
+    private EditText mItemEdit;
+    private Button mAddButton;
+    private ArrayAdapter<String> mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_week);
+        Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
+        setSupportActionBar(tb);
+
+        mShoppingList = (ListView) findViewById(R.id.shopping_listView);
+        mItemEdit = (EditText) findViewById(R.id.item_editText);
+        mAddButton = (Button) findViewById(R.id.add_button);
+
+        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        mShoppingList.setAdapter(mAdapter);
+
+        mAddButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String item = mItemEdit.getText().toString();
+                mAdapter.add(item);
+                mAdapter.notifyDataSetChanged();
+                mItemEdit.setText("");
+            }
+        });
+
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected (MenuItem item){
+        new ActivityChanger().changeActivity(item, this);
+        return true;
     }
 }

@@ -91,9 +91,9 @@ public class Recipe_Input extends AppCompatActivity {
         unitsDropdown.setAdapter(adapter   );
 
         // Specify the type of input expected
-        quantity.setInputType(InputType.TYPE_CLASS_NUMBER);
-        name    .setInputType(InputType.TYPE_CLASS_TEXT  );
-        builder .setView(layout                          );
+        quantity.setInputType(InputType.TYPE_CLASS_TEXT);
+        name    .setInputType(InputType.TYPE_CLASS_TEXT);
+        builder .setView(layout                        );
 
         // run if ok is clicked
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
@@ -102,12 +102,12 @@ public class Recipe_Input extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 Food newFood = new Food();
-                newFood    .quantity(Integer.parseInt(quantity.getText().toString()));
+                newFood    .quantity(Misc.processUserQuantityInput(quantity.getText().toString()));
                 newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
                 newFood    .type(name.getText().toString());
                 ingredients.add(newFood);
 
-                foodList.add(newFood.quantity() + " " + newFood.units() + " " + newFood.type());
+                foodList.add(newFood.toString());
                 adapter1.notifyDataSetChanged();
                 lv      .setAdapter(adapter1  );
             }
@@ -134,6 +134,7 @@ public class Recipe_Input extends AppCompatActivity {
         }
         float fcooktime = Float.parseFloat(rCookTime.getText().toString());
         int cooktime  = (int)fcooktime;
+
         Recipe recipe = new Recipe(rName.getText().toString(), ingredients,
                 rInstruc.getText().toString(), cooktime,//Integer.parseInt(rCookTime.getText().toString()),
                 Integer.parseInt(rServings.getText().toString()));

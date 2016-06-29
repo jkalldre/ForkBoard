@@ -19,6 +19,9 @@ public class ActivityChanger {
         if(item.getTitle().equals("Calendar")){
             intent = new Intent(context,Calendar_View.class);
         }
+        if(item.getTitle().equals("Shopping List")){
+            intent = new Intent(context,ShoppingListWeek.class);
+        }
         if(item.getTitle().equals("Cookbook")){
             intent = new Intent(context,Cookbook.class);
         }
