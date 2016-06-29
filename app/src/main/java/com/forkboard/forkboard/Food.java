@@ -10,7 +10,7 @@ public class Food {
 
     protected String  _type;
     protected Units   _units;
-    private   double     _quantity;
+    private   double  _quantity;
     private   boolean _deficitAllowed;
 
     //---------------------------------------------------------------
