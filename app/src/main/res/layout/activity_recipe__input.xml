@@ -72,7 +72,8 @@
         android:layout_centerHorizontal="true"
         android:layout_weight="1"
         android:hint="Directions to Prepare Meal"
-        android:textAlignment="viewStart" />
+        android:textAlignment="viewStart"
+        android:background="@color/white" />
 
     <Button
         android:id="@+id/submit"

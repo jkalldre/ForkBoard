@@ -63,13 +63,7 @@
             android:gravity="center"
             android:textSize="16dip"/>
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cheat"
-            android:id="@+id/button4"
-            android:layout_gravity="right"
-            android:onClick="cheat" />
-
+        <include layout="@layout/my_toolbar"
+            android:id="@+id/my_toolbar"/>
     </LinearLayout>
 </ScrollView>

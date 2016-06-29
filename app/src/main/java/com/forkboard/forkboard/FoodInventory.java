@@ -38,18 +38,26 @@ public class FoodInventory {
     public void add(Food more) {
         Food located = find(more.type());
         if (located != null) {
-            located.add(more);
+            //located.add(more);
+            store.remove(located);
+            store.add(more);
         }
         else store.add(more);
     }
 
-    public void subtract (Food less) {
+    public void subtract(Food less) {
         Food located = find(less.type());
         if (located != null) {
             located.subtract(less);
         }
         else
             throw new NullPointerException("Requested item: " + less.type() + " DNE!");
+    }
+
+    public void remove(Food toDelete) {
+        Food located = find(toDelete.type());
+        if (located != null)
+           store.remove(located);
     }
 
     //---------------------------------------------------------------
@@ -93,6 +101,14 @@ public class FoodInventory {
             if (!existsInCollection(spot)) different.add(spot);
         }
         return different.toArray(new Food[different.size()]);
+    }
+
+    public Food get(String name) {
+        for (Food food : store) {
+            if (food.toString().equals(name))
+                return food;
+        }
+        return null;
     }
 
     //---------------------------------------------------------------

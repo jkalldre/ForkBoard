@@ -53,7 +53,13 @@ public class Display_Recipe_Item extends AppCompatActivity {
     public void toEdit(View v) {
         Intent intent = new Intent(getApplicationContext(), Recipe_Input.class);
         intent.putExtra("selected", recipe.name());
-        startActivity(intent);
+        startActivityForResult(intent, 003);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        setResult(003,data);
         finish();
     }
 }

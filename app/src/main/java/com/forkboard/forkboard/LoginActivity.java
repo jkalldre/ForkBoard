@@ -3,9 +3,12 @@ package com.forkboard.forkboard;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import android.content.Intent;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,13 +35,17 @@ public class LoginActivity extends AppCompatActivity {
     @Bind(R.id.input_password) EditText _passwordText;
     @Bind(R.id.btn_login) Button _loginButton;
     @Bind(R.id.link_signup) TextView _signupLink;
-    @Bind(R.id.button4) Button troubleshoot;
+
     
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+        // TEMP //
+        Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
+        setSupportActionBar(tb);
+        // TEMP //
         
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -57,15 +64,20 @@ public class LoginActivity extends AppCompatActivity {
                 startActivityForResult(intent, REQUEST_SIGNUP);
             }
         });
-        troubleshoot.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                startActivity(intent);
-            }
-        });
+
+    }
+    // TEMP //
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
     }
 
+    public boolean onOptionsItemSelected(MenuItem item){
+        new ActivityChanger().changeActivity(item, this);
+        return true;
+    }
+    // TEMP //
 
     public void login() {
         Log.d(TAG, "Login");

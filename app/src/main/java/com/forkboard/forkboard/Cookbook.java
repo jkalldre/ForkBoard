@@ -42,7 +42,7 @@ public class Cookbook extends AppCompatActivity {
                 String name = (String)parent.getAdapter().getItem(position);
               //  System.out.println(name + "from cookbook");
                 intent.putExtra("selected", name);
-                startActivity(intent);
+                startActivityForResult(intent, 003);
             }
         });
     }
@@ -76,6 +76,13 @@ public class Cookbook extends AppCompatActivity {
         Intent refresh = new Intent(this, Cookbook.class);
         startActivity(refresh);
         this.finish();
+    }
+
+    public void onResume(){
+        super.onResume();
+        handler.load();
+        adapter.notifyDataSetChanged();
+
     }
 
 }

@@ -15,7 +15,9 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
@@ -77,10 +79,18 @@ public class Recipe_Input extends AppCompatActivity {
             ingredients = recipe.ingredients();
         }
 
+        foodList = (ArrayList<String>)ingredients.ingredientList();
         // set up adapter to save ingredients
         lv       = (ListView)findViewById(R.id.ingredients);
         adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, foodList);
         lv.setAdapter(adapter1);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                System.out.println((String)parent.getItemAtPosition(position));
+                onAddIngredient(view, "edit", (String)parent.getItemAtPosition(position));
+            }
+        });
     }
 
 
@@ -95,12 +105,99 @@ public class Recipe_Input extends AppCompatActivity {
         return true;
     }
 
+    int getIndex(Spinner spinner, String myString){
+
+        int index = 0;
+
+        for (int i=0; i < spinner.getCount(); i++){
+            if (spinner.getItemAtPosition(i).equals(myString)){
+                index = i;
+            }
+        }
+        return index;
+    }
     /**
      * onAddIngredient receives user input to generate the new recipe
      * providing views and AlertDialogs to ask for user input.
      *
      * @param v receives a view
      */
+    public void onAddIngredient(View v, final String edit, final String food){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder    .setTitle("Enter the Quantity, Units, and Name");
+        LinearLayout layout = new LinearLayout(this);
+        layout     .setOrientation(LinearLayout.VERTICAL);
+        final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+                android.R.layout.simple_spinner_item, Misc._units);
+
+        // Set up the inputs
+        final EditText quantity     = new EditText(this);
+        final Spinner unitsDropdown = new Spinner (this);
+        final EditText name         = new EditText(this);
+
+        // add tooltips
+        quantity.setHint("quantity");
+        name    .setHint("name"    );
+
+        // add inputs to new layout
+        layout       .addView(quantity     );
+        layout       .addView(unitsDropdown);
+        layout       .addView(name         );
+        unitsDropdown.setAdapter(adapter   );
+
+        // Specify the type of input expected
+        quantity.setInputType(InputType.TYPE_CLASS_TEXT);
+        name    .setInputType(InputType.TYPE_CLASS_TEXT);
+        builder .setView(layout                        );
+
+        if (edit.equals("edit")) {
+            Food editFood = ingredients.get(food);
+            if (editFood != null) {
+                quantity.setText("" + editFood.quantity());
+                name.setText(editFood.type());
+                unitsDropdown.setSelection(getIndex(unitsDropdown, editFood.units().toString()));
+
+            }
+            else
+                System.out.println("editFood is null");
+        }
+
+        // run if ok is clicked
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+
+            public void onClick(DialogInterface dialog, int which) {
+                ListView lv1 = (ListView)findViewById(R.id.ingredients);
+                Food newFood = new Food();
+                if (edit.equals("edit"))
+                    newFood = ingredients.get(food);
+
+                foodList.remove(newFood.toString());
+                newFood    .quantity(Misc.processUserQuantityInput(quantity.getText().toString()));
+                newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
+                newFood    .type(name.getText().toString());
+
+                ingredients.add(newFood);
+                foodList.add(newFood.toString());
+                //BaseAdapter)lv1.getAdapter()).notifyDataSetChanged();
+                adapter1.notifyDataSetChanged();
+            }
+        });
+        // run if cancel is clicked
+        builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Food newFood = ingredients.get(food);
+                ingredients.remove(newFood);
+                foodList.remove(newFood.toString());
+                adapter1.notifyDataSetChanged();
+                dialog.cancel();
+            }
+        });
+        //adapter1.notifyDataSetChanged();
+        builder.show();
+    }
+
     public void onAddIngredient(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder    .setTitle("Enter the Quantity, Units, and Name");
@@ -139,11 +236,13 @@ public class Recipe_Input extends AppCompatActivity {
                 newFood    .quantity(Misc.processUserQuantityInput(quantity.getText().toString()));
                 newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
                 newFood    .type(name.getText().toString());
+
                 ingredients.add(newFood);
 
                 foodList.add(newFood.toString());
                 adapter1.notifyDataSetChanged( );
                 lv1     .setAdapter(adapter1   );
+
             }
         });
         // run if cancel is clicked
@@ -195,13 +294,13 @@ public class Recipe_Input extends AppCompatActivity {
             handler.cookbook.add(recipe1);
             handler.save();
             intent .putExtra("Recipe Name", recipe1.name());
+            setResult(002, intent);
         }
         if (recipe != null) {
             recipe1.ID(recipe.ID());
             handler.update(recipe1);
+            setResult(003, intent);
         }
-
-        setResult(002, intent);
         finish();
     }
 }
