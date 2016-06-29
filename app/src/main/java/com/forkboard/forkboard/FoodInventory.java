@@ -106,4 +106,14 @@ public class FoodInventory {
         }
         return printout;
     }
+
+    public List<String> ingredientList() {
+        List<String> ret = new ArrayList<>();
+
+        for (Food food : store) {
+            ret.add(food.toString());
+        }
+
+        return ret;//.toArray(new String[ret.size()]);
+    }
 }

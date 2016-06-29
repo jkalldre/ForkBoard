@@ -38,10 +38,11 @@ public class Cookbook extends AppCompatActivity {
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent recip_intent = new Intent(getApplicationContext(), Recipe_Input.class);
+                Intent intent = new Intent(getApplicationContext(), Display_Recipe_Item.class);
                 String name = (String)parent.getAdapter().getItem(position);
-                recip_intent.putExtra("selected", name);
-                startActivity(recip_intent);
+                System.out.println(name + "from cookbook");
+                intent.putExtra("selected", name);
+                startActivity(intent);
             }
         });
     }
@@ -59,6 +60,7 @@ public class Cookbook extends AppCompatActivity {
 
     public void toRecipeInput(View v){
         Intent intent = new Intent(this,Recipe_Input.class);
+        intent.putExtra("selected", "");
         startActivityForResult(intent, 002);
     }
 
@@ -71,9 +73,4 @@ public class Cookbook extends AppCompatActivity {
         this.finish();
     }
 
-   // public void onResume() {
-      //  super.onResume();
-     ///   handler.load();
-     //   adapter.notifyDataSetChanged();
-  //  }
 }

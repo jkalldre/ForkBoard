@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.forkboard.forkboard.Recipe_Input"
+    android:background="@color/primary_dark">
+
+    <include layout="@layout/my_toolbar"
+        android:id="@+id/my_toolbar"/>
+
+    <TextView
+        android:id="@+id/recipeName"
+        android:layout_width="fill_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/my_toolbar"
+        android:layout_weight="1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:textSize="30dp"
+        android:hint="Recipe&apos;s Name" />
+
+    <TextView
+        android:id="@+id/cookTime"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/recipeName"
+        android:layout_alignStart="@+id/recipeName"
+        android:layout_weight="1"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        android:hint="Cook Time (min)"
+        android:inputType="number" />
+
+    <TextView
+        android:id="@+id/servingSize"
+        android:layout_width="170dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/recipeName"
+        android:layout_alignEnd="@+id/recipeName"
+        android:hint="Serving Size"
+        android:layout_weight="1"
+        android:textSize="20dp"
+        android:gravity="center_vertical"
+        android:inputType="number" />
+
+    <ListView
+        android:id="@+id/ingredients"
+        android:layout_width="wrap_content"
+        android:layout_height="210dp"
+        android:layout_marginTop="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/directions"
+        android:layout_below="@id/cookTime" />
+
+    <TextView
+        android:id="@+id/directions"
+        android:layout_width="fill_parent"
+        android:layout_height="100dp"
+        android:layout_above="@+id/edit"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="1"
+        android:textSize="20dp"
+        android:hint="Directions to Prepare Meal"
+        android:textAlignment="viewStart" />
+
+    <Button
+        android:id="@+id/edit"
+        android:layout_width="fill_parent"
+        android:layout_height="50dp"
+        android:text="Edit"
+        android:layout_marginRight="16dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:onClick="toEdit" />
+
+</RelativeLayout>

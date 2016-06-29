@@ -6,6 +6,15 @@ import android.util.Log;
  * Created by Kyle on 6/23/2016.
  */
 public class Misc {
+
+    public static String[] _units = {
+            "(no units)",
+            Units.teaspoon.toString(), Units.tablespoon.toString(), Units.fluid_ounce.toString(),
+            Units.cup.toString(), Units.pint.toString(), Units.quart.toString(), Units.gallon.toString(),
+            Units.pound.toString(), Units.ounce.toString(),
+            Units.milliliter.toString(), Units.liter.toString(),
+            Units.milligram.toString(), Units.gram.toString(), Units.kilogram.toString()};
+
     public static String generateIDfromInt(int id){
         return Format.eight_place_ID(id);
     }

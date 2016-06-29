@@ -25,12 +25,12 @@ public enum Units {
             case pound:       return "lb.";
             case ounce:       return "oz.";
 
-            case milliliter:  return "ml";
-            case liter:       return "l";
+            case milliliter:  return "ml.";
+            case liter:       return "l.";
 
-            case milligram:   return "mg";
-            case gram:        return "g";
-            case kilogram:    return "kg";
+            case milligram:   return "mg.";
+            case gram:        return "g.";
+            case kilogram:    return "kg.";
 
             default: return "";
         }
@@ -51,11 +51,11 @@ public enum Units {
             case "oz.":       return ounce;
 
             case "ml.":       return milliliter;
-            case "l":         return liter;
+            case "l.":         return liter;
 
             case "mg.":       return milligram;
-            case "g":         return gram;
-            case "kg":        return kilogram;
+            case "g.":         return gram;
+            case "kg.":        return kilogram;
             
             case "":          return item;
         }

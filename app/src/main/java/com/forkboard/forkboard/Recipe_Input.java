@@ -20,25 +20,26 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class Recipe_Input extends AppCompatActivity {
-    // string array for spinner
-    private String[] _units = {
-            "(no units)",
-            Units.teaspoon.toString(), Units.tablespoon.toString(), Units.fluid_ounce.toString(),
-            Units.cup.toString(), Units.pint.toString(), Units.quart.toString(), Units.gallon.toString(),
-            Units.pound.toString(), Units.ounce.toString(),
-            Units.milliliter.toString(), Units.liter.toString(),
-            Units.milligram.toString(), Units.gram.toString(), Units.kilogram.toString()};
+import butterknife.Bind;
 
-    //
+public class Recipe_Input extends AppCompatActivity {
+    @Bind(R.id.recipeName)  EditText recipeName;
+    @Bind(R.id.cookTime)    EditText cookTime;
+    @Bind(R.id.servingSize) EditText servingSize;
+    @Bind(R.id.directions)  EditText directions;
+    @Bind(R.id.ingredients) ListView lv;
+
     private FoodInventory        ingredients = new FoodInventory();
     private ArrayList<String>    foodList    = new ArrayList<String>();
     private ArrayAdapter<String> adapter1;
-    private ListView             lv;
+    //private ListView             lv;
+    private Recipe               recipe;
+    private RecipeLogHandler     handler;
 
 
     @Override
@@ -47,12 +48,27 @@ public class Recipe_Input extends AppCompatActivity {
         setContentView(R.layout.activity_recipe__input);
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
+        TextView recipeName  = (TextView)findViewById(R.id.recipeName );
+        TextView cookTime    = (TextView)findViewById(R.id.cookTime   );
+        TextView servingSize = (TextView)findViewById(R.id.servingSize);
+        TextView directions  = (TextView)findViewById(R.id.directions );
+        ListView lv          = (ListView)findViewById(R.id.ingredients);
+
+        if (!getIntent().getStringExtra("selected").equals("")) {
+            handler = new RecipeLogHandler(this);
+            handler.load();
+            recipe = handler.cookbook.get(getIntent().getStringExtra("selected"));
+            foodList = (ArrayList<String>)recipe.ingredients().ingredientList();
+            recipeName.setText(recipe.name());
+            cookTime.setText("" + recipe.cookTime());
+            servingSize.setText("" + recipe.serveCount());
+            directions.setText(recipe.instructions());
+        }
 
         // set up adapter to save ingredients
         lv       = (ListView)findViewById(R.id.ingredients);
         adapter1 = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1, foodList);
         lv.setAdapter(adapter1);
-
     }
 
 
@@ -73,7 +89,7 @@ public class Recipe_Input extends AppCompatActivity {
         LinearLayout layout = new LinearLayout(this);
         layout     .setOrientation(LinearLayout.VERTICAL);
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-                android.R.layout.simple_spinner_item, _units);
+                android.R.layout.simple_spinner_item, Misc._units);
 
         // Set up the inputs
         final EditText quantity     = new EditText(this);
@@ -100,7 +116,7 @@ public class Recipe_Input extends AppCompatActivity {
             @Override
 
             public void onClick(DialogInterface dialog, int which) {
-
+                ListView lv1 = (ListView)findViewById(R.id.ingredients);
                 Food newFood = new Food();
                 newFood    .quantity(Misc.processUserQuantityInput(quantity.getText().toString()));
                 newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
@@ -108,8 +124,8 @@ public class Recipe_Input extends AppCompatActivity {
                 ingredients.add(newFood);
 
                 foodList.add(newFood.toString());
-                adapter1.notifyDataSetChanged();
-                lv      .setAdapter(adapter1  );
+                adapter1.notifyDataSetChanged( );
+                lv1     .setAdapter(adapter1   );
             }
         });
         // run if cancel is clicked
