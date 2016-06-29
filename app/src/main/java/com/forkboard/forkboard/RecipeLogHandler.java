@@ -110,10 +110,10 @@ public class RecipeLogHandler implements DataHandler {
                         if ( (line = buffer.readLine()) != null
                                 && line.substring(0,5).equals("@INGR")) {
                             String foodName = line.substring(6);
-                            int amount = 0;
+                            double amount = 0;
                             if ( (line = buffer.readLine()) != null
                                     && line.substring(0,5).equals("@ICNT")) {
-                                amount = Integer.parseInt(line.substring(6));
+                                amount = Double.parseDouble(line.substring(6));
                             }
                             if ( (line = buffer.readLine()) != null
                                     && line.substring(0,5).equals("@IUNT")) {
@@ -145,14 +145,14 @@ public class RecipeLogHandler implements DataHandler {
                 }
             }
             catch(Exception ex) {
-                System.out.println("Error with '" + filename + "'");
-                System.out.println(ex.getMessage());
-                System.exit(-98);
+                Log.e(TAG,"Error with '" + filename + "'");
+                Log.e(TAG,ex.getMessage());
+                //System.exit(-98);
             }
         }
         else {
-            System.out.println("Incorrect location for '" + filename + "'");
-            System.exit(-99);
+            Log.e(TAG,"Incorrect location for '" + filename + "'");
+            //System.exit(-99);
         }
     }
 
