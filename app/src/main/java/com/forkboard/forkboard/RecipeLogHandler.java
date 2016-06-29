@@ -68,7 +68,23 @@ public class RecipeLogHandler implements DataHandler {
     }
 
     public void update(Object... params){
+        for (Recipe recipe : (Recipe[]) params) {
+            FileOutputStream outputStream;
+            try {
+                outputStream = context.openFileOutput(recipe.ID() + ".recipe",
+                        Context.MODE_PRIVATE);
 
+                Log.i(TAG,"Writing: " + recipe.ID() + ".recipe");
+                String prnt = recipe.toFileString();
+                outputStream.write(prnt.getBytes());
+                outputStream.close();
+                File file = new File(context.getFilesDir(), recipe.ID() + ".recipe");
+                Log.i(TAG, "Wrote: " + file);
+            }
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)

@@ -17,6 +17,9 @@ public class Food {
     // Constructors
     //---------------------------------------------------------------
 
+    /**
+     * DEFAULT CONSTRUCTOR
+     */
     public Food() {
         _type           = "(undefined food type)";
         _quantity       = 0;
@@ -24,6 +27,10 @@ public class Food {
         _deficitAllowed = false;
     }
 
+    /**
+     * Type CONSTRUCTOR
+     * @param type String specifying name of food
+     */
     public Food(String type) {
         _type           = type;
         _quantity       = 0;
@@ -31,6 +38,11 @@ public class Food {
         _deficitAllowed = false;
     }
 
+    /**
+     * Partial CONSTRUCTOR
+     * @param type String specifying name of food
+     * @param amount double specifying how much of the food we have
+     */
     public Food(String type, double amount) {
         _type           = type;
         _quantity       = amount;
@@ -38,6 +50,12 @@ public class Food {
         _deficitAllowed = false;
     }
 
+    /**
+     * Full CONSTRUCTOR
+     * @param type String specifying name of food
+     * @param count double specifying how much of the food we have
+     * @param units what units the food is in
+     */
     public Food(String type, double count, Units units) {
         _type           = type;
         _quantity       = count;
