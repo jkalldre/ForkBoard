@@ -86,6 +86,7 @@ public class Recipe_Input extends AppCompatActivity {
         lv.setAdapter(adapter1);
         lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
+            //this will be executed when user selects an item from listview to be edited/delted
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 System.out.println((String)parent.getItemAtPosition(position));
                 onAddIngredient(view, "edit", (String)parent.getItemAtPosition(position));
@@ -95,6 +96,7 @@ public class Recipe_Input extends AppCompatActivity {
 
 
     @Override
+    // Set up menu
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mainmenu, menu);
         return true;
@@ -105,7 +107,15 @@ public class Recipe_Input extends AppCompatActivity {
         return true;
     }
 
-    int getIndex(Spinner spinner, String myString){
+    /**
+     * Simple function to grab the index of the selectable
+     * item.
+     *
+     * @param spinner spinner object you want the index from
+     * @param myString name of selection you want index for
+     * @return
+     */
+    private int getIndex(Spinner spinner, String myString){
 
         int index = 0;
 
@@ -116,11 +126,14 @@ public class Recipe_Input extends AppCompatActivity {
         }
         return index;
     }
+
     /**
-     * onAddIngredient receives user input to generate the new recipe
-     * providing views and AlertDialogs to ask for user input.
+     * This is a overload of onAddIngredient used to update and edit existing
+     * recipes.
      *
-     * @param v receives a view
+     * @param v the listview being edited
+     * @param edit if the function will be editing
+     * @param food the name of the recipe to be edited
      */
     public void onAddIngredient(View v, final String edit, final String food){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -198,6 +211,11 @@ public class Recipe_Input extends AppCompatActivity {
         builder.show();
     }
 
+    /**
+     * onAddIngredient is used to add an ingredient to a new or existing recipe
+     *
+     * @param v
+     */
     public void onAddIngredient(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder    .setTitle("Enter the Quantity, Units, and Name");
@@ -268,14 +286,33 @@ public class Recipe_Input extends AppCompatActivity {
         EditText rInstruc  = (EditText)findViewById(R.id.directions );
         EditText rCookTime = (EditText)findViewById(R.id.cookTime   );
         EditText rServings = (EditText)findViewById(R.id.servingSize);
-
-        if (Float.parseFloat(rCookTime.getText().toString()) % 1 < 1) {
-            Log.w(Warnings.POTENTIAL_DATA_LOSS, "Cook Times should be rounded to the nearest whole!");
+        int cooktime = 0;
+        Recipe recipe1 = null;
+        if (!rCookTime.getText().toString().trim().equals("")) {
+            if (Float.parseFloat(rCookTime.getText().toString()) % 1 < 1) {
+                Log.w(Warnings.POTENTIAL_DATA_LOSS, "Cook Times should be rounded to the nearest whole!");
+            }
+            float fcooktime = Float.parseFloat(rCookTime.getText().toString());
+            cooktime = (int) fcooktime;
         }
-        float fcooktime = Float.parseFloat(rCookTime.getText().toString());
-        int cooktime  = (int)fcooktime;
 
-        Recipe recipe1 = new Recipe(rName.getText().toString(), ingredients,
+
+        if (rName.getText().toString().trim().equals("")
+                || rCookTime.getText().toString().trim().equals("")
+                || rServings.getText().toString().trim().equals("")
+                || rInstruc.getText().toString().trim().equals("")) {
+
+            if (rName.getText().toString().trim().equals(""))
+                rName.setError("Recipe Name is Required!");
+            if (rCookTime.getText().toString().trim().equals(""))
+                rCookTime.setError("Cook Time is Required!");
+            if (rServings.getText().toString().trim().equals(""))
+                rServings.setError("Serving Size is Required!");
+            if (rInstruc.getText().toString().trim().equals(""))
+                rInstruc.setError("Directions are Required!");
+        }
+        else {
+        recipe1 = new Recipe(rName.getText().toString(), ingredients,
                 rInstruc.getText().toString(), cooktime,//Integer.parseInt(rCookTime.getText().toString()),
                 Integer.parseInt(rServings.getText().toString()));
 
@@ -289,18 +326,22 @@ public class Recipe_Input extends AppCompatActivity {
         edit.commit();
 
         System .out.print(recipe1.toString());
-        Intent intent = new Intent(this, Cookbook.class);
-        if (recipe == null) {
-            handler.cookbook.add(recipe1);
-            handler.save();
-            intent .putExtra("Recipe Name", recipe1.name());
-            setResult(002, intent);
+
+
+
+            Intent intent = new Intent(this, Cookbook.class);
+            if (recipe == null) {
+                handler.cookbook.add(recipe1);
+                handler.save();
+                intent.putExtra("Recipe Name", recipe1.name());
+                setResult(002, intent);
+            }
+            if (recipe != null) {
+                recipe1.ID(recipe.ID());
+                handler.update(recipe1);
+                setResult(003, intent);
+            }
+            finish();
         }
-        if (recipe != null) {
-            recipe1.ID(recipe.ID());
-            handler.update(recipe1);
-            setResult(003, intent);
-        }
-        finish();
     }
 }

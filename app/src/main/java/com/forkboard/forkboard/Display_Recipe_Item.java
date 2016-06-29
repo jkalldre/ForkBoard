@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -48,6 +50,17 @@ public class Display_Recipe_Item extends AppCompatActivity {
         servingSize.setText("" + recipe.serveCount() + " servings");
         directions .setText(recipe.instructions());
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.mainmenu, menu);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected (MenuItem item){
+        new ActivityChanger().changeActivity(item,this);
+        return true;
     }
 
     public void toEdit(View v) {
