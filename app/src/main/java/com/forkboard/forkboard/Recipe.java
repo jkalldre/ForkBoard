@@ -2,6 +2,9 @@ package com.forkboard.forkboard;
 
 /**
  * Created by Kyle on 6/8/2016.
+ * Recipe class is used to store all of the properties of a recipe. It holds
+ * all of the ingredients, instructions, its name, cooktime, servecount, and
+ * a unique ID that is used to create its .recipe filename.
  */
 public class Recipe {
     //---------------------------------------------------------------

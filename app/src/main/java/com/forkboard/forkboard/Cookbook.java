@@ -40,7 +40,7 @@ public class Cookbook extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), Display_Recipe_Item.class);
                 String name = (String)parent.getAdapter().getItem(position);
-                System.out.println(name + "from cookbook");
+              //  System.out.println(name + "from cookbook");
                 intent.putExtra("selected", name);
                 startActivity(intent);
             }
