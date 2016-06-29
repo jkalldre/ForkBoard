@@ -64,11 +64,11 @@ public class Cookbook extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super       .onActivityResult(requestCode, resultCode, data);
-     //   handler     .load();
+        handler     .load();
         adapter     .notifyDataSetChanged();
-        //Intent refresh = new Intent(this, Cookbook.class);
-        //startActivity(refresh);
-       // this.finish();
+        Intent refresh = new Intent(this, Cookbook.class);
+        startActivity(refresh);
+        this.finish();
     }
 
    // public void onResume() {

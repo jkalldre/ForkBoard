@@ -70,8 +70,15 @@ public class Day_View extends AppCompatActivity {
 
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        String tmp = null;
         if (lastPressed != null){
-            lastPressed.setText(data.getStringExtra("Recipe Name"));
+            System.out.println("NULLLLLL");
+            if (data.getStringExtra("Recipe Name") != null)
+              tmp = data.getStringExtra("Recipe Name");
+            if(tmp != null)
+                lastPressed.setText(data.getStringExtra("Recipe Name"));
+            else
+                lastPressed.setText("(No Meal Selected)");
         }
     }
     /*

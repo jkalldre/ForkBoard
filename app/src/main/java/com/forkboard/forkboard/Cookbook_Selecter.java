@@ -43,7 +43,10 @@ public class Cookbook_Selecter extends AppCompatActivity {
                     String recName = (String)parent.getItemAtPosition(position);
                     System.out.print(cookbook.get(recName).toString());
                     Intent intent  = new Intent(getApplicationContext(),Day_View.class);
+                    if (recName == null)
+                        recName = "(No Meal Selected)";
                     intent.putExtra("Recipe Name", recName);
+
                     setResult(001, intent);
                     finish();
                 }

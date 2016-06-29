@@ -145,8 +145,8 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
-    public void tmp(View v){
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
-    }
+  public void cheat(View v) {
+      Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+      startActivity(intent);
+  }
 }
