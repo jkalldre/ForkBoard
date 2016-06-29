@@ -22,9 +22,9 @@ public class Calendar_View extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
                 Intent intent = new Intent(Calendar_View.this,Day_View.class);
-                intent.putExtra("Day", dayOfMonth);
-                intent.putExtra("Month", month   );
-                intent.putExtra("Year", year     );
+                intent.putExtra("Day"  , dayOfMonth);
+                intent.putExtra("Month", month     );
+                intent.putExtra("Year" , year      );
                 startActivity(intent);
 
             }

@@ -19,6 +19,10 @@ public class Day_View extends AppCompatActivity {
     @Bind(R.id.lunch)     LinearLayout meal2;
     @Bind(R.id.dinner)    LinearLayout meal3;
     TextView lastPressed = null;
+    int month;// = getIntent().getIntExtra("Month", 0);
+    int day;//   = getIntent().getIntExtra("Day"  , 0);
+    int year;//  = getIntent().getIntExtra("Year" , 0);
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +33,10 @@ public class Day_View extends AppCompatActivity {
         TextView d = (TextView) findViewById(R.id.textView);
         String[] months = {"January", "February", "March", "April", "May", "June", "July", "August",
                 "September", "October", "November", "December"};
-        date += months[getIntent().getIntExtra("Month", 0)] + " " + getIntent().getIntExtra("Day",0)
-                + ", " + getIntent().getIntExtra("Year",0);
+        month = getIntent().getIntExtra("Month", 0);
+        day   = getIntent().getIntExtra("Day"  , 0);
+        year  = getIntent().getIntExtra("Year" , 0);
+        date += months[month] + " " + day + ", " + year;
         d.setText(date);
         // set up custom layouts
         LinearLayout breakf = (LinearLayout)findViewById(R.id.breakfast);
@@ -75,4 +81,13 @@ public class Day_View extends AppCompatActivity {
             lastPressed.setText(getIntent().getStringExtra("Recipe Name"));
         }
     }*/
+    public void nextDay(View v) {
+        Intent intent = new Intent(this, Day_View.class);
+        //intent.putExtra()
+        startActivity(intent);
+    }
+
+    public void prevDay(View v) {
+
+    }
 }
