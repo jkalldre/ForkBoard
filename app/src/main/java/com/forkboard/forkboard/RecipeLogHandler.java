@@ -129,11 +129,11 @@ public class RecipeLogHandler implements DataHandler {
 
                 if ( (line = buffer.readLine()) != null
                         && line.substring(0,5).equals("@INSS")) {
-                    while (!line.substring(0,5).equals("@INSE")) {
+                    while (true) {
                         if ( (line = buffer.readLine()) != null
-                                && !line.substring(0,5).equals("@INSE")) {
+                                && !line.substring(0,1).equals("@")) {
                             INSTRUCTIONS += line;
-                        }
+                        } else break;
                     }
                 }
 
