@@ -27,6 +27,11 @@ import java.util.List;
 
 import butterknife.Bind;
 
+/**
+ * This class is used to add a new recipe to the RecipeLog(Cookbook)
+ * Collecting user input for a new recipe or collecting the info from
+ * an old recipe to provide the means to edit it.
+ */
 public class Recipe_Input extends AppCompatActivity {
     @Bind(R.id.recipeName)  EditText recipeName;
     @Bind(R.id.cookTime)    EditText cookTime;
@@ -37,12 +42,17 @@ public class Recipe_Input extends AppCompatActivity {
     private FoodInventory        ingredients = new FoodInventory();
     private ArrayList<String>    foodList    = new ArrayList<String>();
     private ArrayAdapter<String> adapter1;
-    //private ListView             lv;
-    private Recipe               recipe;
+    private Recipe               recipe      = null;
     private RecipeLogHandler     handler;
 
 
     @Override
+    /**
+     * onCreate here will fill out all the fields if an existing recipe
+     * is given otherwise it will only setup the layout for the activity.
+     *
+     * @param Bundle savedInstanceState to recover old activity
+     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipe__input);
@@ -53,16 +63,17 @@ public class Recipe_Input extends AppCompatActivity {
         TextView servingSize = (TextView)findViewById(R.id.servingSize);
         TextView directions  = (TextView)findViewById(R.id.directions );
         ListView lv          = (ListView)findViewById(R.id.ingredients);
+        handler = new RecipeLogHandler(this);
+        handler.load();
 
         if (!getIntent().getStringExtra("selected").equals("")) {
-            handler = new RecipeLogHandler(this);
-            handler.load();
+
             recipe = handler.cookbook.get(getIntent().getStringExtra("selected"));
             foodList = (ArrayList<String>)recipe.ingredients().ingredientList();
-            recipeName.setText(recipe.name());
-            cookTime.setText("" + recipe.cookTime());
+            recipeName .setText(recipe.name());
+            cookTime   .setText("" + recipe.cookTime());
             servingSize.setText("" + recipe.serveCount());
-            directions.setText(recipe.instructions());
+            directions .setText(recipe.instructions());
         }
 
         // set up adapter to save ingredients
@@ -83,6 +94,12 @@ public class Recipe_Input extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * onAddIngredient receives user input to generate the new recipe
+     * providing views and AlertDialogs to ask for user input.
+     *
+     * @param v receives a view
+     */
     public void onAddIngredient(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder    .setTitle("Enter the Quantity, Units, and Name");
@@ -139,6 +156,13 @@ public class Recipe_Input extends AppCompatActivity {
         builder.show();
     }
 
+    /**
+     * onSubmit collects all given user info and inserts it into a recipe
+     * object then saves it to the RecipeLog(Cookbook). Also used to update
+     * pre-existing recipes.
+     *
+     * @param v receives a view
+     */
     public void onSubmit(View v){
         EditText rName     = (EditText)findViewById(R.id.recipeName );
         EditText rInstruc  = (EditText)findViewById(R.id.directions );
@@ -151,7 +175,7 @@ public class Recipe_Input extends AppCompatActivity {
         float fcooktime = Float.parseFloat(rCookTime.getText().toString());
         int cooktime  = (int)fcooktime;
 
-        Recipe recipe = new Recipe(rName.getText().toString(), ingredients,
+        Recipe recipe1 = new Recipe(rName.getText().toString(), ingredients,
                 rInstruc.getText().toString(), cooktime,//Integer.parseInt(rCookTime.getText().toString()),
                 Integer.parseInt(rServings.getText().toString()));
 
@@ -160,16 +184,22 @@ public class Recipe_Input extends AppCompatActivity {
 
         pref = this.getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = pref.edit();
-        recipe.ID(Misc.generateIDfromInt(id));
+        recipe1.ID(Misc.generateIDfromInt(id));
         edit.putInt("recipe_id_counter", ++id);
         edit.commit();
 
-        System .out.print(recipe.toString());
-        RecipeLogHandler handler = new RecipeLogHandler(this);
-        handler.cookbook.add(recipe);
-        handler.save();
+        System .out.print(recipe1.toString());
         Intent intent = new Intent(this, Cookbook.class);
-        intent .putExtra("Recipe Name", recipe.name());
+        if (recipe == null) {
+            handler.cookbook.add(recipe1);
+            handler.save();
+            intent .putExtra("Recipe Name", recipe1.name());
+        }
+        if (recipe != null) {
+            recipe1.ID(recipe.ID());
+            handler.update(recipe1);
+        }
+
         setResult(002, intent);
         finish();
     }
