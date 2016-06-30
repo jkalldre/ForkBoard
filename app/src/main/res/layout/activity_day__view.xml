@@ -50,7 +50,8 @@
         android:text="&lt;"
         android:id="@+id/button2"
         android:layout_below="@+id/my_toolbar"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:onClick="prevDay" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
@@ -59,6 +60,7 @@
         android:text=">"
         android:id="@+id/button3"
         android:layout_below="@+id/my_toolbar"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:onClick="nextDay" />
 
 </RelativeLayout>
