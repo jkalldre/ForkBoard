@@ -63,4 +63,16 @@
         android:layout_alignParentEnd="true"
         android:onClick="nextDay" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Recipes to Your Cookbook First!"
+        android:id="@+id/warning"
+        android:layout_below="@+id/dinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:textSize="22dp"
+        android:textColor="@color/secondary_dark"
+        android:visibility="invisible" />
+
 </RelativeLayout>

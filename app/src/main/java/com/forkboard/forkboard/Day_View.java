@@ -29,6 +29,8 @@ public class Day_View extends AppCompatActivity {
 
     TextView lastPressed = null;
     Calendar calendar;
+    RecipeLogHandler handler = new RecipeLogHandler(this);
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +40,7 @@ public class Day_View extends AppCompatActivity {
         setSupportActionBar(tb);
         String date = "";
         TextView d = (TextView) findViewById(R.id.textView);
+        handler.load();
 
         int month = getIntent().getIntExtra("Month", 0);
         int day   = getIntent().getIntExtra("Day"  , 0);
@@ -78,8 +81,18 @@ public class Day_View extends AppCompatActivity {
      */
     public void goToCookbook(View v){
         lastPressed = (TextView)v.findViewById(R.id.mealchoice);
-        Intent intent = new Intent(this,Cookbook_Selecter.class);
-        startActivityForResult(intent, 001);
+        TextView warning = (TextView)findViewById(R.id.warning);
+        if (handler.cookbook.recipeList().length <= 0) {
+            warning.setError("");
+            warning.setVisibility(View.VISIBLE);
+            lastPressed.setError("Add a Recipe to Cookbook First!");
+        }
+        else {
+            warning.setVisibility(View.INVISIBLE);
+            Intent intent = new Intent(this, Cookbook_Selecter.class);
+            intent.putExtra("Current Meal", lastPressed.getText());
+            startActivityForResult(intent, 001);
+        }
     }
 
     /**
@@ -94,7 +107,6 @@ public class Day_View extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         String tmp = null;
         if (lastPressed != null){
-            if (data.getStringExtra("Recipe Name") != null)
               tmp = data.getStringExtra("Recipe Name");
             if(tmp != null)
                 lastPressed.setText(data.getStringExtra("Recipe Name"));

@@ -9,6 +9,7 @@
         <item name="colorAccent">@color/primary_accent</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:actionOverflowButtonStyle">@style/MyOverflow</item>
+        <item name="android:actionBarStyle">@style/MyActionBarTheme</item>
     </style>
 
     <style name="MyOverflow">
@@ -28,6 +29,10 @@
 
         <item name="colorButtonNormal">@color/primary_dark</item>
 
+    </style>
+
+    <style name="MyActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:textColor">@color/primary_accent</item>
     </style>
 
     <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">

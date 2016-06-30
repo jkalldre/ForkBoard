@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class Cookbook_Selecter extends AppCompatActivity {
+    private String curMeal = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,15 +26,16 @@ public class Cookbook_Selecter extends AppCompatActivity {
         RecipeLogHandler handler = new RecipeLogHandler(this);
         handler.load();
         final RecipeLog cookbook = handler.cookbook;
-        if (cookbook.recipeList().length == 0){
+        curMeal = getIntent().getStringExtra("Current Meal");
+
+        if (cookbook.recipeList().length == 0)
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
-        }
-        else if (cookbook == null || cookbook.recipeList() == null || cookbook.recipeList().length == 0){
+
+        else if (cookbook == null || cookbook.recipeList() == null || cookbook.recipeList().length == 0)
             Log.w("NULL", "You have a null object");
-        }
-        else {
+
+        else
             list.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList()));
-        }
 
         if (list != null) {
             list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -63,5 +65,13 @@ public class Cookbook_Selecter extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         new ActivityChanger().changeActivity(item, this);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent intent = new Intent(getApplicationContext(), Day_View.class);
+        intent.putExtra("Recipe Name", curMeal);
+        setResult(001, intent);
+        finish();
     }
 }
