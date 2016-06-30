@@ -2,6 +2,7 @@ package com.forkboard.forkboard;
 
 /**
  * Created by Kyle on 6/8/2016.
+ * Food holds the notion of what a food item is in a recipe
  */
 public class Food {
     //---------------------------------------------------------------

@@ -11,13 +11,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
 import java.util.ArrayList;
 
 public class Cookbook extends AppCompatActivity {
-    private ArrayList<String>    tempCookbook = new ArrayList<String>();
     private ArrayAdapter<String> adapter;
     private RecipeLogHandler handler;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,21 +25,22 @@ public class Cookbook extends AppCompatActivity {
         setSupportActionBar(tb);
         tb.setTitle("Cookbook");
 
-        ListView list            = (ListView) findViewById(R.id.listView);
-        handler = new RecipeLogHandler(this); // updated constructor
+        ListView list = (ListView) findViewById(R.id.listView);
+        handler       = new RecipeLogHandler(this);
         handler.load();
-        RecipeLog cookbook       = handler.cookbook;
+        RecipeLog cookbook = handler.cookbook;
+
         if (cookbook.recipeList().length == 0) {
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
         }
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList());//tempCookbook);
+
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList());
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getApplicationContext(), Display_Recipe_Item.class);
                 String name = (String)parent.getAdapter().getItem(position);
-              //  System.out.println(name + "from cookbook");
                 intent.putExtra("selected", name);
                 startActivityForResult(intent, 003);
             }
@@ -69,6 +69,13 @@ public class Cookbook extends AppCompatActivity {
         startActivityForResult(intent, 002);
     }
 
+    /**
+     * onActivityResult update the adapter and refresh the activity
+     *
+     * @param requestCode
+     * @param resultCode
+     * @param data
+     */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super       .onActivityResult(requestCode, resultCode, data);
         handler     .load();
@@ -78,11 +85,13 @@ public class Cookbook extends AppCompatActivity {
         this.finish();
     }
 
+    /**
+     * assists in refreshing
+     */
     public void onResume(){
         super.onResume();
         handler.load();
         adapter.notifyDataSetChanged();
-
     }
 
 }

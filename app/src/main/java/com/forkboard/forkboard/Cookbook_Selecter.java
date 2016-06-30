@@ -1,6 +1,5 @@
 package com.forkboard.forkboard;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -23,7 +22,7 @@ public class Cookbook_Selecter extends AppCompatActivity {
         setSupportActionBar(tb);
 
         ListView list            = (ListView) findViewById(R.id.listView3);
-        RecipeLogHandler handler = new RecipeLogHandler(this); // updated constructor
+        RecipeLogHandler handler = new RecipeLogHandler(this);
         handler.load();
         final RecipeLog cookbook = handler.cookbook;
         if (cookbook.recipeList().length == 0){
@@ -43,10 +42,11 @@ public class Cookbook_Selecter extends AppCompatActivity {
                     String recName = (String)parent.getItemAtPosition(position);
                     System.out.print(cookbook.get(recName).toString());
                     Intent intent  = new Intent(getApplicationContext(),Day_View.class);
+
                     if (recName == null)
                         recName = "(No Meal Selected)";
-                    intent.putExtra("Recipe Name", recName);
 
+                    intent.putExtra("Recipe Name", recName);
                     setResult(001, intent);
                     finish();
                 }
@@ -63,9 +63,5 @@ public class Cookbook_Selecter extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item){
         new ActivityChanger().changeActivity(item, this);
         return true;
-    }
-
-    public void printRecipe(View v){
-
     }
 }

@@ -9,12 +9,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-
 import butterknife.Bind;
 
 /**
@@ -35,11 +31,6 @@ public class Day_View extends AppCompatActivity {
     Calendar calendar;
 
     @Override
-    /**
-     * onCreate will hold the date of the calendar in a
-     * GregorianCalendar object to assist in advancing
-     * days to plan for the week.
-     */
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_day__view);
@@ -89,7 +80,6 @@ public class Day_View extends AppCompatActivity {
         lastPressed = (TextView)v.findViewById(R.id.mealchoice);
         Intent intent = new Intent(this,Cookbook_Selecter.class);
         startActivityForResult(intent, 001);
-       // startActivity(intent);
     }
 
     /**
@@ -104,7 +94,6 @@ public class Day_View extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         String tmp = null;
         if (lastPressed != null){
-            //System.out.println("NULLLLLL");
             if (data.getStringExtra("Recipe Name") != null)
               tmp = data.getStringExtra("Recipe Name");
             if(tmp != null)

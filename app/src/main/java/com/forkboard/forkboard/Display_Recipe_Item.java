@@ -1,6 +1,5 @@
 package com.forkboard.forkboard;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,11 +10,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
-
-import java.util.List;
-
 import butterknife.Bind;
 
 public class Display_Recipe_Item extends AppCompatActivity {
@@ -39,6 +33,7 @@ public class Display_Recipe_Item extends AppCompatActivity {
         TextView directions  = (TextView)findViewById(R.id.directions );
         ListView lv          = (ListView)findViewById(R.id.ingredients);
         setSupportActionBar(tb);
+
         handler = new RecipeLogHandler(this);
         handler.load();
         recipe = handler.cookbook.get(getIntent().getStringExtra("selected"));
@@ -64,6 +59,10 @@ public class Display_Recipe_Item extends AppCompatActivity {
     }
 
 
+    /**
+     * Switch to Recipe_Input to edit selected recipe
+     * @param v
+     */
     public void toEdit(View v) {
         Intent intent = new Intent(getApplicationContext(), Recipe_Input.class);
         intent.putExtra("selected", recipe.name());
