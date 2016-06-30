@@ -81,6 +81,12 @@ public class RecipeLogHandler implements DataHandler {
         }
     }
 
+    public void remove(Recipe... params){
+        for (Recipe recipe : params) {
+            context.deleteFile(recipe.ID() + ".recipe");
+        }
+    }
+
     public void update(Recipe... params){
         for (Recipe recipe : params) {
 
