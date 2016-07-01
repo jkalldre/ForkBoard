@@ -9,7 +9,8 @@
         <item name="colorAccent">@color/primary_accent</item>
         <item name="android:windowActionBar">false</item>
         <item name="android:actionOverflowButtonStyle">@style/MyOverflow</item>
-        <item name="android:actionBarStyle">@style/MyActionBarTheme</item>
+        <item name="android:alertDialogStyle">@style/AlertDialogCustom</item>
+
     </style>
 
     <style name="MyOverflow">
@@ -31,8 +32,9 @@
 
     </style>
 
-    <style name="MyActionBarTheme" parent="@android:style/Widget.Holo.Light.ActionBar">
-        <item name="android:textColor">@color/primary_accent</item>
+    <style name="AlertDialogCustom" parent="AlertDialog.AppCompat">
+        <item name="android:textAlignment">center</item>
+        <item name="android:textColor">@color/primary</item>
     </style>
 
     <style name="AppTheme.Dark.Dialog" parent="Theme.AppCompat.Dialog">

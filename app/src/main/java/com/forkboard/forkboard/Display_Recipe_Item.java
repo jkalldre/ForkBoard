@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.ScrollingMovementMethod;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -32,6 +33,7 @@ public class Display_Recipe_Item extends AppCompatActivity {
         TextView servingSize = (TextView)findViewById(R.id.servingSize);
         TextView directions  = (TextView)findViewById(R.id.directions );
         ListView lv          = (ListView)findViewById(R.id.ingredients);
+        directions.setMovementMethod(new ScrollingMovementMethod());
         setSupportActionBar(tb);
 
         handler = new RecipeLogHandler(this);

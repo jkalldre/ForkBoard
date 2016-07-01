@@ -42,6 +42,15 @@
         android:text="Enter Value:"
         android:textStyle="bold"/>
 
+    <Spinner
+        android:id="@+id/spinner3"
+        android:layout_width="200dp"
+        android:layout_height="40dp"
+        android:spinnerMode="dropdown"
+        android:background="@android:drawable/btn_dropdown"
+        android:layout_alignBottom="@+id/from_Unit"
+        android:layout_toEndOf="@+id/from_Unit" />
+
     <EditText
         android:id="@+id/unit_value"
         android:layout_width="200dp"
@@ -112,7 +121,8 @@
         android:padding="8dp"
         android:layout_below="@+id/spinner"
         android:layout_centerHorizontal="true"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:onClick="calc" />
     <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

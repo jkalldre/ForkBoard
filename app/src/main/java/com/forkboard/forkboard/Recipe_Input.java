@@ -192,7 +192,7 @@ public class Recipe_Input extends AppCompatActivity {
 
                 ingredients.add(newFood);
                 foodList.add(newFood.toString());
-                //BaseAdapter)lv1.getAdapter()).notifyDataSetChanged();
+
                 adapter1.notifyDataSetChanged();
             }
         });
@@ -260,7 +260,6 @@ public class Recipe_Input extends AppCompatActivity {
                 foodList.add(newFood.toString());
                 adapter1.notifyDataSetChanged( );
                 lv1     .setAdapter(adapter1   );
-
             }
         });
         // run if cancel is clicked

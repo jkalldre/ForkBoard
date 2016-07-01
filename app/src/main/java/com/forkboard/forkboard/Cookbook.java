@@ -1,7 +1,9 @@
 package com.forkboard.forkboard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -16,6 +18,7 @@ import java.util.ArrayList;
 public class Cookbook extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private RecipeLogHandler handler;
+    private RecipeLog cookbook = new RecipeLog();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,21 +31,41 @@ public class Cookbook extends AppCompatActivity {
         ListView list = (ListView) findViewById(R.id.listView);
         handler       = new RecipeLogHandler(this);
         handler.load();
-        RecipeLog cookbook = handler.cookbook;
 
         if (cookbook.recipeList().length == 0) {
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
         }
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, cookbook.recipeList());
+        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, handler.cookbook.recipeList());
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Intent intent = new Intent(getApplicationContext(), Display_Recipe_Item.class);
-                String name = (String)parent.getAdapter().getItem(position);
-                intent.putExtra("selected", name);
-                startActivityForResult(intent, 003);
+                AlertDialog.Builder builder = new AlertDialog.Builder(Cookbook.this);
+                final String name = (String)parent.getAdapter().getItem(position);
+                builder.setTitle("Options");
+                //builder.setMessage("Select one");
+
+                builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(getApplicationContext(), Display_Recipe_Item.class);
+                        intent.putExtra("selected", name);
+                        startActivityForResult(intent, 003);
+                    }
+                });
+                builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        handler.remove(handler.cookbook.get(name));
+                        handler.load();
+                        adapter.notifyDataSetChanged();
+                        refresh();
+
+                    }
+                });
+                builder.show();
+
             }
         });
     }
@@ -92,6 +115,12 @@ public class Cookbook extends AppCompatActivity {
         super.onResume();
         handler.load();
         adapter.notifyDataSetChanged();
+    }
+
+    private void refresh(){
+        Intent refresh = new Intent(this, Cookbook.class);
+        startActivity(refresh);
+        this.finish();
     }
 
 }
