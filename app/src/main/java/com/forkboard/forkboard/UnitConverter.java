@@ -23,9 +23,9 @@ public class UnitConverter {
     /**
      * Method converts units of weight measurement
      *
-     * @param quantity
-     * @param from
-     * @param to
+     * @param quantity the current value we want to convert
+     * @param from the Units the Food is currently in
+     * @param to the Units we want to change to
      * @return The results are converted units. If not valid returns -1
      */
     public static double convertEnglish_weight(double quantity, Units from, Units to) {
@@ -35,12 +35,13 @@ public class UnitConverter {
         else
             return -1;
     }
+
     /**
      * Method converts units of volume measurement
      *
-     * @param quantity
-     * @param from
-     * @param to
+     * @param quantity the current value we want to convert
+     * @param from the Units the Food is currently in
+     * @param to the Units we want to change to
      * @return The results are converted units. If not valid returns -1
      */
     public static double convertEnglish_volume(double quantity, Units from, Units to) {

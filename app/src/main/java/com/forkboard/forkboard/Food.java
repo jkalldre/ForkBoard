@@ -166,15 +166,55 @@ public class Food {
     // Accessors
     //---------------------------------------------------------------
 
+    /**
+     * GET the Food type
+     * @return String of the Food type
+     */
     public String type()     { return _type;     }
+
+    /**
+     * GET the Food Units
+     * @return Units of the Food units
+     */
     public Units  units()    { return _units;    }
+
+    /**
+     * GET the Food amount
+     * @return double of the Food amount
+     */
     public double quantity() { return _quantity; }
 
+
+    /**
+     * COMPARE if two foods are the same
+     * @param comp the Food you are comparing
+     * @return TRUE if comp is same food type
+     */
     public boolean isSameFoodType(Food comp)   { return _type.equals(comp._type); }
+
+    /**
+     * COMPARE if two foods are the same
+     * @param comp the type of the Food you are comparing
+     * @return TRUE if comp is same food type
+     */
     public boolean isSameFoodType(String comp) { return _type.equals(comp);       }
+
+    /**
+     * CHECK if Food amount is empty
+     * @return TRUE if amount == 0
+     */
     public boolean ranOut()                    { return (_quantity <= 0);         }
+
+    /**
+     * CHECK if the Food is allowed to be less than zero
+     * @return TRUE if Food amount can be < 0
+     */
     public boolean canDeficit()                { return _deficitAllowed;          }
 
+    /**
+     * Deep CLONE a Food item.
+     * @return Food copy
+     */
     public Food copy() {
         Food tmp = new Food (_type, _quantity, _units);
         tmp.allowDeficit(_deficitAllowed);
@@ -185,6 +225,10 @@ public class Food {
     // Object class overrides
     //---------------------------------------------------------------
 
+    /**
+     * toString() override
+     * @return String in the Form : [amount] [Units] [type]
+     */
     public String toString() {
         String printout = "";
         printout += Format.fractionize(quantity());
