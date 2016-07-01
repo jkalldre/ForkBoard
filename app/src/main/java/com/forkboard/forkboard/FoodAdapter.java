@@ -16,6 +16,12 @@ public class FoodAdapter extends ArrayAdapter<Food> {
     private final Context context;
     private final Food[]  values;
 
+
+    /**
+     * CONSTRUCTOR for FoodAdapter
+     * @param context our scope
+     * @param values the Food array to display
+     */
     public FoodAdapter(Context context, Food[] values) {
         super(context, R.layout.food_adapter_layout, values);
         this.context = context;
