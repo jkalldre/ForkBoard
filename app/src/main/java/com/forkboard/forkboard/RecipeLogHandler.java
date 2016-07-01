@@ -81,12 +81,20 @@ public class RecipeLogHandler implements DataHandler {
         }
     }
 
+    /**
+     * Remove any number of items from the filesystem
+     * @param params the Recipes to remove
+     */
     public void remove(Recipe... params){
         for (Recipe recipe : params) {
             context.deleteFile(recipe.ID() + ".recipe");
         }
     }
 
+    /**
+     * Re-save any number of items to the filesystem
+     * @param params the Recipes to update
+     */
     public void update(Recipe... params){
         for (Recipe recipe : params) {
 
@@ -109,7 +117,7 @@ public class RecipeLogHandler implements DataHandler {
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    public void doFile(String filename) {
+    protected void doFile(String filename) {
         if (okFile(filename)) {
             try(BufferedReader buffer = new BufferedReader(new FileReader(filename))) {
                 String ID           = "";
@@ -202,6 +210,9 @@ public class RecipeLogHandler implements DataHandler {
             return false;
     }
 
+    /**
+     * Insert arbitrary items into the cookbook (for testing)
+     */
     public void mock() {
         FoodInventory ingr = new FoodInventory();
         ingr.add(new Food("Honey Nut O's", 3, Units.cup));

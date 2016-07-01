@@ -33,18 +33,28 @@ public class FoodInventory {
     // Modifiers
     //---------------------------------------------------------------
 
+    /**
+     * Clear the Inventory
+     */
     public void clear() { store.clear(); }
 
-    public void replace(Food more) {
-        Food located = find(more.type());
+    /**
+     * replace a food item stored
+     * @param repl the item to replace
+     */
+    public void replace(Food repl) {
+        Food located = find(repl.type());
         if (located != null) {
-            //located.add(more);
             store.remove(located);
-            store.add(more);
+            store.add(repl);
         }
-        else store.add(more);
+        else store.add(repl);
     }
 
+    /**
+     * Add an item to the inventory, if already exits, add foods together
+     * @param more the food we are adding
+     */
     public void add(Food more){
         Food located = find(more.type());
         if(located != null)
@@ -53,6 +63,10 @@ public class FoodInventory {
             store.add(more);
     }
 
+    /**
+     * Subtract an item to the inventory
+     * @param less food to take away
+     */
     public void subtract(Food less) {
         Food located = find(less.type());
         if (located != null) {
@@ -62,6 +76,10 @@ public class FoodInventory {
             throw new NullPointerException("Requested item: " + less.type() + " DNE!");
     }
 
+    /**
+     * remove an item all together from the inventory
+     * @param toDelete the Food marked for removal
+     */
     public void remove(Food toDelete) {
         Food located = find(toDelete.type());
         if (located != null)
@@ -72,8 +90,17 @@ public class FoodInventory {
     // Accessors
     //---------------------------------------------------------------
 
+    /**
+     * CHECK if the inventory is empty
+     * @return true if empty
+     */
     public boolean empty() { return store.isEmpty(); }
 
+    /**
+     * Find a foo item
+     * @param type the type if the food we are looking up
+     * @return the found food, if DNE - return null
+     */
     public Food find(String type) {
         for (Food spot : store) {
             if (spot.isSameFoodType(type)) return spot;
@@ -133,11 +160,9 @@ public class FoodInventory {
 
     public List<String> ingredientList() {
         List<String> ret = new ArrayList<>();
-
         for (Food food : store) {
             ret.add(food.toString());
         }
-
-        return ret;//.toArray(new String[ret.size()]);
+        return ret;
     }
 }

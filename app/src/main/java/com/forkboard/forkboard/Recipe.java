@@ -50,32 +50,99 @@ public class Recipe {
     // Modifiers
     //---------------------------------------------------------------
 
+    /**
+     * SET the name
+     * @param name sting we set the name too
+     */
     public void name(String name)                      { _name         = name;         }
+
+    /**
+     * SET the instructions
+     * @param instructions the string containing our instructions
+     */
     public void instructions(String instructions)      { _instructions = instructions; }
+
+    /**
+     * SET the ingredients
+     * @param ingredients FoodInventory holding the ingredients
+     */
     public void ingredients(FoodInventory ingredients) { _ingredients  = ingredients;  }
+
+    /**
+     * SET the cook time (in minutes)
+     * @param cookTime the new cooktime
+     */
     public void cookTime(int cookTime)                 { _cookTime     = cookTime;     }
+
+    /**
+     * SET the count for number of people Recipe serves
+     * @param serveCount how many people
+     */
     public void serveCount(int serveCount)             { _serveCount   = serveCount;   }
+
+    /**
+     * SET the ID string (form: XXXXXXXX)
+     * @param ID the new ID
+     */
     public void ID(String ID)                          { _ID = ID;                     }
 
     //---------------------------------------------------------------
     // Accessors
     //---------------------------------------------------------------
 
+    /**
+     * GET the name
+     * @return the name string
+     */
     public String name()               { return _name;         }
+
+    /**
+     * GET the instructions
+     * @return instructions string
+     */
     public String instructions()       { return _instructions; }
+
+    /**
+     * GET the Ingredients
+     * @return ingredients FoodInventory
+     */
     public FoodInventory ingredients() { return _ingredients;  }
+
+    /**
+     * GET the cook time (in minutes)
+     * @return the time in minutes
+     */
     public int cookTime()              { return _cookTime;     }
+
+    /**
+     * GET the count for how many people Recipe serves
+     * @return the serve count
+     */
     public int serveCount()            { return _serveCount;   }
+
+    /**
+     * GET the ID
+     * @return the ID string
+     */
     public String ID()                 { return _ID;           }
 
     //---------------------------------------------------------------
     // Object Class overrides
     //---------------------------------------------------------------
 
+    /**
+     * the classic toString() override
+     * @return a nicely formatted string
+     */
     public String toString() {
         return getScaledOutputString(50);
     }
 
+    /**
+     * Format the recipe to print out nicely
+     * @param width how wide we want the string to print out (in chars)
+     * @return the nicely formatted string
+     */
     public String getScaledOutputString(int width) {
         StringBuilder output = new StringBuilder("");
         for (int i = 0; i < width; i++) output.append("=");
@@ -102,6 +169,10 @@ public class Recipe {
         return output.toString();
     }
 
+    /**
+     * Format the recipe into a string to print to a file
+     * @return the file formatted string
+     */
     public String toFileString() {
         String print = "";
         print = "@@@ID " + _ID + "\n" +
