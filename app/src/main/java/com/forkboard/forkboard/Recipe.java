@@ -16,7 +16,7 @@ public class Recipe {
     String        _name;           // title of the recipe
     int           _cookTime;       // how long it takes to prepare (in minutes)
     int           _serveCount;     // how many it feeds
-    String        _ID = null;
+    String        _ID;
 
     //---------------------------------------------------------------
     // Constructors
@@ -28,6 +28,7 @@ public class Recipe {
         _name         = "ForkBoard Recipe";
         _cookTime     = 15;
         _serveCount   = 1;
+        _ID = "EMPTY_ID"; // purposely 8 chars long
     }
 
     public Recipe(String name, FoodInventory ingr, String inst) {
@@ -36,6 +37,7 @@ public class Recipe {
         _name         = name;
         _cookTime     = 15;
         _serveCount   = 1;
+        _ID = "EMPTY_ID"; // purposely 8 chars long
     }
 
     public Recipe(String name, FoodInventory ingr, String inst, int cook, int serv) {
@@ -44,6 +46,7 @@ public class Recipe {
         _name         = name;
         _cookTime     = cook;
         _serveCount   = serv;
+        _ID = "EMPTY_ID"; // purposely 8 chars long
     }
 
     //---------------------------------------------------------------

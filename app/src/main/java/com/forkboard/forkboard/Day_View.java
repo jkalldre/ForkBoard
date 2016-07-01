@@ -30,7 +30,7 @@ public class Day_View extends AppCompatActivity {
     TextView lastPressed = null;
     Calendar calendar;
     RecipeLogHandler handler = new RecipeLogHandler(this);
-    Day dayObject = new Day(this);
+    Day dayObject;
     String file;
 
     TextView mealchoice1;
@@ -52,6 +52,7 @@ public class Day_View extends AppCompatActivity {
         int day   = getIntent().getIntExtra("Day"  , 0);
         int year  = getIntent().getIntExtra("Year" , 0);
         file = "" + year + month + day;
+        dayObject = new Day(this);
         dayObject.load(file);
 
         calendar = new GregorianCalendar(year, month, day);

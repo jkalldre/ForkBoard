@@ -27,14 +27,15 @@ package com.forkboard.forkboard;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.os.Build;
+import android.util.Log;
 
 import java.io.*;   // for File, FileReader, BufferedReader, and exceptions
 
 public class Day {
     private final String ext;
-    public Recipe breakfast = new Recipe();
-    public Recipe lunch = new Recipe();
-    public Recipe dinner = new Recipe();
+    public Recipe breakfast;
+    public Recipe lunch;
+    public Recipe dinner;
 
 
     private Context context;
@@ -45,19 +46,19 @@ public class Day {
         String n = "(No Meal Selected)";
         breakfast = new Recipe();
         breakfast.name(n);
+        breakfast.ID("EMPTY_ID");
         lunch = new Recipe();
         lunch.name(n);
+        lunch.ID("EMPTY_ID");
         dinner = new Recipe();
         dinner.name(n);
+        dinner.ID("EMPTY_ID");
     }
 
     public void load(String date) {
         System.out.println("READING: " + date + ext);
         String dir = context.getFilesDir().getPath() + "/";
         File day = new File(dir + date + ext);
-
-
-
         if(day.exists() && day.canRead()) {
             readDay(dir + date + ext);
         }
@@ -72,8 +73,7 @@ public class Day {
                 outputStream.write(print.getBytes());
                 outputStream.close();
                 System.out.println("WROTE: " + date + ext);
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -119,12 +119,13 @@ public class Day {
 
     private String generatePrintString() {
         String print = "";
-        if (!breakfast.name().equals("(No Meal Selected)"))
+        if (breakfast != null)
             print += "@BREAK " + breakfast.ID() + "\n";
-        if (!lunch.name().equals("(No Meal Selected)"))
+        if (lunch != null)
             print += "@LUNCH " + lunch.ID() + "\n";
-        if (!breakfast.name().equals("(No Meal Selected)"))
+        if (dinner != null)
             print += "@DINNR " + dinner.ID();
+        Log.i("GEN_PRINT_STR ",print);
         return print;
     }
 }
