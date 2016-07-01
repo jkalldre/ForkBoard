@@ -7,7 +7,7 @@ package com.forkboard.forkboard;
  */
 import java.util.List;
 import java.util.ArrayList;
-import java.lang.NullPointerException;
+
 
 public class Meal {
     //---------------------------------------------------------------
@@ -50,11 +50,19 @@ public class Meal {
     // Modifiers
     //---------------------------------------------------------------
 
+    /**
+     * Add recipe to meal
+     * @param recp item to be added
+     */
     public void add(Recipe recp) {
         _cookTime += recp.cookTime();
         _courses.add(recp);
     }
 
+    /**
+     * Remove recipe from meal
+     * @param recp Item to be removed
+     */
     public void remove(Recipe recp) {
         for (Recipe r : _courses) {
             if (r.name().equals(recp.name())) {
@@ -68,6 +76,10 @@ public class Meal {
     // Accessors
     //---------------------------------------------------------------
 
+    /**
+     * Retrieves Courses in form of a FoodInventory
+     * @return FoodInventory
+     */
     public FoodInventory totalIngredients() {
         FoodInventory total = new FoodInventory();
         Food[] ingredients;
@@ -80,6 +92,10 @@ public class Meal {
         return total;
     }
 
+    /**
+     * Returns Instructions as String array
+     * @return String Array
+     */
     public String[] instructions() {
         String[] inst = new String[_courses.size()];
         int i = 0;
@@ -90,6 +106,10 @@ public class Meal {
         return inst;
     }
 
+    /**
+     * Returns all the recipe names as a String array
+     * @return String array
+     */
     public String[] recipeNames() {
         String[] names = new String[_courses.size()];
         int i = 0;

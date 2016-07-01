@@ -63,7 +63,7 @@ public class Display_Recipe_Item extends AppCompatActivity {
 
     /**
      * Switch to Recipe_Input to edit selected recipe
-     * @param v
+     * @param v button clicked
      */
     public void toEdit(View v) {
         Intent intent = new Intent(getApplicationContext(), Recipe_Input.class);

@@ -30,6 +30,12 @@ public class Day_View extends AppCompatActivity {
     TextView lastPressed = null;
     Calendar calendar;
     RecipeLogHandler handler = new RecipeLogHandler(this);
+    Day dayObject = new Day(this);
+    String file;
+
+    TextView mealchoice1;
+    TextView mealchoice2;
+    TextView mealchoice3;
 
 
     @Override
@@ -45,6 +51,9 @@ public class Day_View extends AppCompatActivity {
         int month = getIntent().getIntExtra("Month", 0);
         int day   = getIntent().getIntExtra("Day"  , 0);
         int year  = getIntent().getIntExtra("Year" , 0);
+        file = "" + year + month + day;
+        dayObject.load(file);
+
         calendar = new GregorianCalendar(year, month, day);
         date += months[month] + " " + day + ", " + year;
         d.setText(date);
@@ -56,9 +65,15 @@ public class Day_View extends AppCompatActivity {
         TextView meal1 = (TextView)breakf.findViewById(R.id.meal);
         TextView meal2 = (TextView)lunch .findViewById(R.id.meal);
         TextView meal3 = (TextView)dinner.findViewById(R.id.meal);
+        mealchoice1 = (TextView)breakf.findViewById(R.id.mealchoice);
+        mealchoice2 = (TextView)lunch.findViewById(R.id.mealchoice);
+        mealchoice3 = (TextView)dinner.findViewById(R.id.mealchoice);
         meal1.setText("Breakfast");
         meal2.setText("Lunch");
         meal3.setText("Dinner");
+        mealchoice1.setText(dayObject.breakfast.name());
+        mealchoice2.setText(dayObject.lunch.name());
+        mealchoice3.setText(dayObject.dinner.name());
     }
 
     @Override
@@ -77,7 +92,7 @@ public class Day_View extends AppCompatActivity {
      * a class that is uneditable where they can select their
      * desired recipes.
      *
-     * @param v
+     * @param v button clicked
      */
     public void goToCookbook(View v){
         lastPressed = (TextView)v.findViewById(R.id.mealchoice);
@@ -99,8 +114,8 @@ public class Day_View extends AppCompatActivity {
      * onActivityResult will change the selected meal to the one of the
      * users choice, which will be saved to a SQLite table.
      *
-     * @param requestCode
-     * @param resultCode
+     * @param requestCode sent code
+     * @param resultCode returned code
      * @param data holds the data retrieved from child activity
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -118,7 +133,7 @@ public class Day_View extends AppCompatActivity {
     /**
      * Advance to next day
      *
-     * @param v
+     * @param v button clicked
      */
     public void nextDay(View v) {
         Intent intent = new Intent(getApplicationContext(), Day_View.class);
@@ -127,13 +142,14 @@ public class Day_View extends AppCompatActivity {
         intent.putExtra("Year", calendar.get(Calendar.YEAR));
         intent.putExtra("Day", calendar.get(Calendar.DAY_OF_MONTH));
         startActivity(intent);
+
         finish();
     }
 
     /**
      * Return to previous day
      *
-     * @param v
+     * @param v button clicked
      */
     public void prevDay(View v) {
         Intent intent = new Intent(getApplicationContext(), Day_View.class);
@@ -142,6 +158,21 @@ public class Day_View extends AppCompatActivity {
         intent.putExtra("Year", calendar.get(Calendar.YEAR));
         intent.putExtra("Day", calendar.get(Calendar.DAY_OF_MONTH));
         startActivity(intent);
+
         finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+    }
+
+    public void setChanges(View v) {
+        dayObject.breakfast = handler.cookbook.get(mealchoice1.getText().toString());
+        dayObject.lunch     = handler.cookbook.get(mealchoice2.getText().toString());
+        dayObject.dinner    = handler.cookbook.get(mealchoice3.getText().toString());
+        dayObject.save(file);
+       // Misc.generateDateList(new GregorianCalendar(), new GregorianCalendar());
     }
 }

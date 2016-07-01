@@ -108,6 +108,8 @@ import butterknife.Bind;
       * Method validates the user input
       * Verifies name, email and password
       * Specific requirements have been set for each variable.
+      *
+      * @return if login was valid
       */
     public boolean validate() {
         boolean valid = true;

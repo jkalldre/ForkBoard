@@ -2,6 +2,11 @@ package com.forkboard.forkboard;
 
 import android.util.Log;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 /**
  * Created by Kyle on 6/23/2016.
  */
@@ -25,6 +30,27 @@ public class Misc {
             Units.cup.toString(), Units.pint.toString(), Units.quart.toString(), Units.gallon.toString(),
             Units.milliliter.toString(), Units.liter.toString()
     };
+
+    public static ArrayList<String> generateDateList(GregorianCalendar startDate, GregorianCalendar endDate) {
+        ArrayList<String> dateList = new ArrayList<>();
+
+        Calendar sDate = startDate;//new GregorianCalendar(2016,0,1);//startDate;
+        Calendar eDate = endDate;//new GregorianCalendar(2016,0,11);//endDate;
+        int totalDays = daysBetween(sDate.getTime(), eDate.getTime());
+
+        for (int i = 0; i < totalDays; i++) {
+            String date = "" + sDate.YEAR + sDate.MONTH + sDate.DAY_OF_MONTH;
+            dateList.add(date);
+            sDate.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        return dateList;
+    }
+
+    public static int daysBetween(Date d1, Date d2){
+        return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
+    }
+
+
 
 
     /**

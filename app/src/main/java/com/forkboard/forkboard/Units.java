@@ -11,6 +11,10 @@ public enum Units {
     milligram, gram, kilogram,
     item;
 
+    /**
+     * Turn Units into a String
+     * @return String
+     */
     public String toString() {
         switch (this) {
             case teaspoon:    return "tsp.";
@@ -36,6 +40,11 @@ public enum Units {
         }
     }
 
+    /**
+     * Turn a string into a Unit
+     * @param s string name of unit
+     * @return Unit
+     */
     public static Units fromString(String s){
         switch (s) {
             case "tsp.":      return teaspoon;

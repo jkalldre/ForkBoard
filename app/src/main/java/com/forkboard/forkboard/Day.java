@@ -32,22 +32,16 @@ import java.io.*;   // for File, FileReader, BufferedReader, and exceptions
 
 public class Day {
     private final String ext;
-    public Recipe breakfast;
-    public Recipe lunch;
-    public Recipe dinner;
+    public Recipe breakfast = new Recipe();
+    public Recipe lunch = new Recipe();
+    public Recipe dinner = new Recipe();
+
 
     private Context context;
 
     public Day(Context con) {
         context = con;
         ext = ".day";
-    }
-
-    public void load(String date) {
-        System.out.println("READING: " + date + ext);
-        String dir = context.getFilesDir().getPath() + "/";
-        File day = new File(dir + date + ext);
-
         String n = "(No Meal Selected)";
         breakfast = new Recipe();
         breakfast.name(n);
@@ -55,6 +49,14 @@ public class Day {
         lunch.name(n);
         dinner = new Recipe();
         dinner.name(n);
+    }
+
+    public void load(String date) {
+        System.out.println("READING: " + date + ext);
+        String dir = context.getFilesDir().getPath() + "/";
+        File day = new File(dir + date + ext);
+
+
 
         if(day.exists() && day.canRead()) {
             readDay(dir + date + ext);
@@ -117,11 +119,11 @@ public class Day {
 
     private String generatePrintString() {
         String print = "";
-        if (breakfast.ID() != null)
+        if (!breakfast.name().equals("(No Meal Selected)"))
             print += "@BREAK " + breakfast.ID() + "\n";
-        if (lunch.ID() != null)
+        if (!lunch.name().equals("(No Meal Selected)"))
             print += "@LUNCH " + lunch.ID() + "\n";
-        if (dinner.ID() != null)
+        if (!breakfast.name().equals("(No Meal Selected)"))
             print += "@DINNR " + dinner.ID();
         return print;
     }

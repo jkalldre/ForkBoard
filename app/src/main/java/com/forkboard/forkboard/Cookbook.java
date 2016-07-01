@@ -110,17 +110,15 @@ public class Cookbook extends AppCompatActivity {
     /**
      * onActivityResult update the adapter and refresh the activity
      *
-     * @param requestCode
-     * @param resultCode
-     * @param data
+     * @param requestCode code sent
+     * @param resultCode code returned
+     * @param data intent that holds data from child activity
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super       .onActivityResult(requestCode, resultCode, data);
         handler     .load();
         adapter     .notifyDataSetChanged();
-        Intent refresh = new Intent(this, Cookbook.class);
-        startActivity(refresh);
-        this.finish();
+        refresh();
     }
 
     /**
@@ -132,6 +130,9 @@ public class Cookbook extends AppCompatActivity {
         adapter.notifyDataSetChanged();
     }
 
+    /**
+     * refresh the current activity
+     */
     private void refresh(){
         Intent refresh = new Intent(this, Cookbook.class);
         startActivity(refresh);
