@@ -190,7 +190,7 @@ public class Recipe_Input extends AppCompatActivity {
                 newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
                 newFood    .type(name.getText().toString());
 
-                ingredients.add(newFood);
+                ingredients.replace(newFood);
                 foodList.add(newFood.toString());
 
                 adapter1.notifyDataSetChanged();
@@ -255,7 +255,7 @@ public class Recipe_Input extends AppCompatActivity {
                 newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
                 newFood    .type(name.getText().toString());
 
-                ingredients.add(newFood);
+                ingredients.replace(newFood);
 
                 foodList.add(newFood.toString());
                 adapter1.notifyDataSetChanged( );

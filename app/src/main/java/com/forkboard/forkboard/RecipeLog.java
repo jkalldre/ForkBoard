@@ -59,15 +59,6 @@ public class RecipeLog {
         return null;
     }
 
-//    public Recipe get(int ID) {
-//       for (Recipe rec : cookbook) {
-//          if (rec.ID() == ID) {
-//             return rec;
-//          }
-//       }
-//       return null;
-//    }
-
     /**
      * Return the names of all the recipes listed in the cookbook
      *

@@ -57,10 +57,25 @@ public class Cookbook extends AppCompatActivity {
                 builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        handler.remove(handler.cookbook.get(name));
-                        handler.load();
-                        adapter.notifyDataSetChanged();
-                        refresh();
+                        AlertDialog.Builder builder1 = new AlertDialog.Builder(Cookbook.this);
+                        builder1.setTitle("Are You Sure?");
+                        builder1.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                handler.remove(handler.cookbook.get(name));
+                                handler.load();
+                                adapter.notifyDataSetChanged();
+                                refresh();
+                            }
+                        });
+                        builder1.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                        builder1.show();
+
 
                     }
                 });

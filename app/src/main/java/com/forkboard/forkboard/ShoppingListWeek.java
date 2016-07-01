@@ -26,6 +26,9 @@ public class ShoppingListWeek extends AppCompatActivity {
     private EditText mItemEdit;
     private Button mAddButton;
     private ArrayAdapter<String> mAdapter;
+    private RecipeLogHandler handler = new RecipeLogHandler(this);
+    private FoodInventory    allFood = new FoodInventory();
+    private ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,12 +37,21 @@ public class ShoppingListWeek extends AppCompatActivity {
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
 
+        handler.load();
+        for (Recipe recipe : handler.cookbook.getRecipes()) {
+            for (Food food : recipe.ingredients().toArray()){
+                allFood.add(food);
+            }
+        }
+
         mShoppingList = (ListView) findViewById(R.id.shopping_listView);
         mItemEdit = (EditText) findViewById(R.id.item_editText);
         mAddButton = (Button) findViewById(R.id.add_button);
 
-        mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
-        mShoppingList.setAdapter(mAdapter);
+        //mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
+        adapter = new ArrayAdapter<String>(getApplicationContext(),
+                android.R.layout.simple_list_item_1, allFood.ingredientList());
+        mShoppingList.setAdapter(adapter);
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -35,7 +35,7 @@ public class FoodInventory {
 
     public void clear() { store.clear(); }
 
-    public void add(Food more) {
+    public void replace(Food more) {
         Food located = find(more.type());
         if (located != null) {
             //located.add(more);
@@ -43,6 +43,14 @@ public class FoodInventory {
             store.add(more);
         }
         else store.add(more);
+    }
+
+    public void add(Food more){
+        Food located = find(more.type());
+        if(located != null)
+            located.add(more);
+        else
+            store.add(more);
     }
 
     public void subtract(Food less) {

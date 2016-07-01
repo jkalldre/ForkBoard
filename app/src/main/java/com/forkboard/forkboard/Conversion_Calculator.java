@@ -8,7 +8,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 /**
  * Created by Janine on 6/13/2016.
@@ -20,7 +22,13 @@ public class Conversion_Calculator extends AppCompatActivity {
     private Spinner s;
     private Spinner s2;
     private Spinner s3;
-    String  typeSelected = null;
+    private EditText unitValue;
+    private TextView result;
+    private String  typeSelected = "Weights";
+    private String  toType       = null;
+    private String  fromType     = null;
+    private double  toConvert    = 0.0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +39,8 @@ public class Conversion_Calculator extends AppCompatActivity {
         s  = (Spinner) findViewById(R.id.spinner);
         s2 = (Spinner) findViewById(R.id.spinner2);
         s3 = (Spinner) findViewById(R.id.spinner3);
+        unitValue = (EditText) findViewById(R.id.unit_value);
+        result    = (TextView) findViewById(R.id.convert_result);
         String[] choice = {"Weights", "Volumes"};
 
         final ArrayAdapter<String> weights = new ArrayAdapter<String>(this,
@@ -44,14 +54,40 @@ public class Conversion_Calculator extends AppCompatActivity {
         s2.setAdapter(weights);
         s3.setAdapter(choices);
 
+        s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                toType = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        s2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                fromType = parent.getItemAtPosition(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         s3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 if(parent.getItemAtPosition(position).equals("Weights")){
+                    typeSelected = "Weights";
                     s.setAdapter(weights);
                     s2.setAdapter(weights);
                 }
                 else{
+                    typeSelected = "Volumes";
                     s.setAdapter(volumes);
                     s2.setAdapter(volumes);
                 }
@@ -84,6 +120,19 @@ public class Conversion_Calculator extends AppCompatActivity {
 
     public void calc(View v) {
         System.out.println("Clicked");
-       // UnitConverter.
+        System.out.println("From " + fromType);
+        System.out.println("To   " + toType);
+        toConvert = Double.parseDouble(unitValue.getText().toString());
+        Double conversion = 0.0;
+
+        if (typeSelected.equals("Weights"))
+            conversion = UnitConverter.convertEnglish_weight(toConvert, Units.fromString(fromType),
+                    Units.fromString(toType));
+        else
+            conversion = UnitConverter.convertEnglish_volume(toConvert, Units.fromString(fromType),
+                    Units.fromString(toType));
+
+        result.setText(Format.fractionize(conversion) + " " + toType);
+
     }
 }
