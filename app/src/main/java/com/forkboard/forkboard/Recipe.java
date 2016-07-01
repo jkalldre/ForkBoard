@@ -16,7 +16,7 @@ public class Recipe {
     String        _name;           // title of the recipe
     int           _cookTime;       // how long it takes to prepare (in minutes)
     int           _serveCount;     // how many it feeds
-    String        _ID;
+    String        _ID = null;
 
     //---------------------------------------------------------------
     // Constructors
