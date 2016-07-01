@@ -10,7 +10,12 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
-
+/**
+ * Created by Janine on 6/13/2016.
+ * Modified by Jake on 6/29/2016.
+ * The purpose of this class is to handle the conversion of units
+ * by asking the user the conversion type, the unit from, the value, and the unit to.
+ */
 public class Conversion_Calculator extends AppCompatActivity {
     private Spinner s;
     private Spinner s2;
