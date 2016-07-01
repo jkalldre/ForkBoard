@@ -145,11 +145,16 @@ public class Format {
         return marginized.toString();
     }
 
+    /**
+     * Capatize every word in a string
+     * @param string string to capitalize
+     * @return capitalize string
+     */
     public static String capitalizeFully(String string) {
         String[] words = string.split(" ");
-        String output = null;
+        String output = "";
         for (String word : words) {
-            String cap = word.substring(0, 1).toUpperCase() + word.substring(1);
+            output += word.substring(0, 1).toUpperCase() + word.substring(1) + " ";
         }
         return output;
     }

@@ -16,7 +16,6 @@ public class FoodAdapter extends ArrayAdapter<Food> {
     private final Context context;
     private final Food[]  values;
 
-
     /**
      * CONSTRUCTOR for FoodAdapter
      * @param context our scope

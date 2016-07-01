@@ -27,11 +27,20 @@ public class Misc {
     };
 
 
-
+    /**
+     * Generates the ID string for printing to a file
+     * @param id concatenate 0's onto an int for an 8 digit number
+     * @return id in the form of "XXXXXXXX"
+     */
     public static String generateIDfromInt(int id){
         return Format.eight_place_ID(id);
     }
 
+    /**
+     * Take a users input for a value and interpret it
+     * @param value the string to be interpreted
+     * @return the double converted from the string
+     */
     public static double processUserQuantityInput(String value) {
         double ret;
         if (value.contains("/")) {

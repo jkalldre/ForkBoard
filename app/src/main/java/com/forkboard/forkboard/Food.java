@@ -190,14 +190,18 @@ public class Food {
      * @param comp the Food you are comparing
      * @return TRUE if comp is same food type
      */
-    public boolean isSameFoodType(Food comp)   { return _type.equals(comp._type); }
+    public boolean isSameFoodType(Food comp)   {
+        return this.isSameFoodType(comp.type());
+    }
 
     /**
      * COMPARE if two foods are the same
      * @param comp the type of the Food you are comparing
      * @return TRUE if comp is same food type
      */
-    public boolean isSameFoodType(String comp) { return _type.equals(comp);       }
+    public boolean isSameFoodType(String comp) {
+        return _type.toLowerCase().trim().equals(comp.toLowerCase().trim());
+    }
 
     /**
      * CHECK if Food amount is empty
@@ -241,6 +245,4 @@ public class Food {
 
         return printout;
     }
-
-
 }
