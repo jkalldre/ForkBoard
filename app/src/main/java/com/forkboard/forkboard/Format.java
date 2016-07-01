@@ -4,10 +4,12 @@ package com.forkboard.forkboard;
  * Created by Kyle on 6/25/2016.
  */
 public class Format {
-    /*******************************************************
+    /**
      * Take a double and converts it to the nearest fraction.
-     * supports: halves, thirds, fourths, eigths, sixteenths
-     *******************************************************/
+     * <p> supports: halves, thirds, fourths, eigths, sixteenths </p>
+     * @param number the thing to turn into a number
+     * @return the fractionized string
+     */
     public static String fractionize(double number) {
         if (number == 0) return "0";
 
@@ -41,10 +43,12 @@ public class Format {
         return fract;
     }
 
-    /*******************************************************
-     * Takes a fraction (mixed or otherwise) and converts it
-     * into its double form.
-     *******************************************************/
+
+    /**
+     * Takes a fraction (mixed or otherwise) and convert into double
+     * @param num the fraction string
+     * @return a double the fraction represneted
+     */
     public static double defractionize(String num) {
         String[] whole_from_fract = num.split("\\s+");
         String[] parts;
@@ -65,9 +69,11 @@ public class Format {
         return (nume / deno) + whole;
     }
 
-    /*******************************************************
+    /**
      * Generates an ID string in the form: "iiiiiiii" (i for int)
-     *******************************************************/
+     * @param id the int we will append zeros to
+     * @return the string in the form "iiiiiiii"
+     */
     public static String eight_place_ID(int id){
         String sid = "";
         if (id > 99999999) {
@@ -86,9 +92,12 @@ public class Format {
         return sid;
     }
 
-    /*******************************************************
-     * Takes a string of text and right justifies it.
-     *******************************************************/
+    /**
+     * Right justify output text
+     * @param text the text we want to align
+     * @param width how much space (in chars) we are in
+     * @return an aligned string
+     */
     public static String rightJustifyOnLine(String text, int width) {
         if (text.length() > width) return text;
         StringBuilder centered = new StringBuilder("");
@@ -99,9 +108,12 @@ public class Format {
         return centered.toString();
     }
 
-    /*******************************************************
-     * Takes a string of text and centers it.
-     *******************************************************/
+    /**
+     * Center justify output text
+     * @param text the text we want to align
+     * @param width how much space (in chars) we are in
+     * @return an aligned string
+     */
     public static String centerOnLine(String text, int width) {
         if (text.length() > width) return text;
         StringBuilder centered = new StringBuilder("");
@@ -112,9 +124,12 @@ public class Format {
         return centered.toString();
     }
 
-    /*******************************************************
+    /**
      * Wraps text block within a margin
-     *******************************************************/
+     * @param text the text block to wrap around
+     * @param width how much space (in chars) in each line
+     * @return an string of wrapped text
+     */
     public static String marginize(String text, int width) {
         StringBuilder marginized = new StringBuilder("");
         String[] words = text.split("\\s+");
