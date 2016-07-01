@@ -186,7 +186,7 @@ public class RecipeLogHandler implements DataHandler {
                         && line.substring(0,5).equals("@END!")) {
                     Recipe item = new Recipe(NAME, INGREDIENTS, INSTRUCTIONS, PREP, SERV);
                     item.ID(ID);
-                    Log.i("SAVED" + item.ID(),item.toFileString());
+                  //  Log.i("SAVED" + item.ID(),item.toFileString());
                     cookbook.add(item);
                 }
             }

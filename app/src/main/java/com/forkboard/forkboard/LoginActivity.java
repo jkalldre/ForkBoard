@@ -79,6 +79,9 @@ public class LoginActivity extends AppCompatActivity {
     }
     // TEMP //
 
+    /**
+     * Used to login user
+     */
     public void login() {
         Log.d(TAG, "Login");
 
@@ -130,17 +133,27 @@ public class LoginActivity extends AppCompatActivity {
         moveTaskToBack(true);
     }
 
+    /**
+     * Runs when user info is valid
+     */
     public void onLoginSuccess() {
         _loginButton.setEnabled(true);
         finish();
     }
 
+    /**
+     * Runs when user info is invalid
+     */
     public void onLoginFailed() {
         Toast.makeText(getBaseContext(), "Login failed", Toast.LENGTH_LONG).show();
 
         _loginButton.setEnabled(true);
     }
 
+    /**
+     * Validates user info
+     * @return if info is valid
+     */
     public boolean validate() {
         boolean valid = true;
 
@@ -164,8 +177,4 @@ public class LoginActivity extends AppCompatActivity {
         return valid;
     }
 
-  public void cheat(View v) {
-      Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-      startActivity(intent);
-  }
 }

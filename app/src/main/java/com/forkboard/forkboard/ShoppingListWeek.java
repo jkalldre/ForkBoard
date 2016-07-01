@@ -12,6 +12,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 /**
  * Activity for creating a shopping list
  *
@@ -29,6 +31,7 @@ public class ShoppingListWeek extends AppCompatActivity {
     private RecipeLogHandler handler = new RecipeLogHandler(this);
     private FoodInventory    allFood = new FoodInventory();
     private ArrayAdapter<String> adapter;
+    private ArrayList<String> foodList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,25 +50,23 @@ public class ShoppingListWeek extends AppCompatActivity {
         mShoppingList = (ListView) findViewById(R.id.shopping_listView);
         mItemEdit = (EditText) findViewById(R.id.item_editText);
         mAddButton = (Button) findViewById(R.id.add_button);
-
+        foodList = (ArrayList<String>)allFood.ingredientList();
         //mAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1);
         adapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_list_item_1, allFood.ingredientList());
+                android.R.layout.simple_list_item_1, foodList);
         mShoppingList.setAdapter(adapter);
 
         mAddButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String item = mItemEdit.getText().toString();
-                mAdapter.add(item);
-                mAdapter.notifyDataSetChanged();
-                mItemEdit.setText("");
+                //String item = mItemEdit.getText().toString();
+                //adapter.add(item);
+                //adapter.notifyDataSetChanged();
+                //mItemEdit.setText("");
             }
         });
 
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

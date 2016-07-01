@@ -126,8 +126,8 @@ public class Food {
      * Add amount to the Food's current quantity.
      * <p>
      *     You may add to food's together! They have to be the same
-     *     type though. 2 apples + 3 apples = 5 apples ==> makes since.
-     *     2 apples + 4 onions = one horrible monster ==> doesn't make since.
+     *     type though. 2 apples + 3 apples = 5 apples == makes since.
+     *     2 apples + 4 onions = one horrible monster == doesn't make since.
      * </p>
      * @param more int to add to the Food's quantity
      */
@@ -150,8 +150,8 @@ public class Food {
      * Subtract amount from the Food's current quantity.
      * <p>
      *     You may subtract food from each other! They have to be the same
-     *     type though. 4 apples - 2 apples = 2 apples ==> makes since.
-     *     8 apples - 4 onions = a genetic impossibility ==> doesn't make since.
+     *     type though. 4 apples - 2 apples = 2 apples == makes since.
+     *     8 apples - 4 onions = a genetic impossibility == doesn't make since.
      * </p>
      * @param less int to add to the Food's quantity
      */
@@ -211,7 +211,7 @@ public class Food {
 
     /**
      * CHECK if the Food is allowed to be less than zero
-     * @return TRUE if Food amount can be < 0
+     * @return TRUE if Food amount can be  0
      */
     public boolean canDeficit()                { return _deficitAllowed;          }
 

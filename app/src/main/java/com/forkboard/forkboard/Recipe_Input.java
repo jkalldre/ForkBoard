@@ -185,10 +185,10 @@ public class Recipe_Input extends AppCompatActivity {
                 if (edit.equals("edit"))
                     newFood = ingredients.get(food);
 
-                foodList.remove(newFood.toString());
+                foodList   .remove(newFood.toString());
                 newFood    .quantity(Misc.processUserQuantityInput(quantity.getText().toString()));
                 newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
-                newFood    .type(name.getText().toString());
+                newFood    .type(Format.capitalizeFully(name.getText().toString()));
 
                 ingredients.replace(newFood);
                 foodList.add(newFood.toString());
@@ -214,7 +214,7 @@ public class Recipe_Input extends AppCompatActivity {
     /**
      * onAddIngredient is used to add an ingredient to a new or existing recipe
      *
-     * @param v
+     * @param v button pressed
      */
     public void onAddIngredient(View v){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -253,7 +253,7 @@ public class Recipe_Input extends AppCompatActivity {
                 Food newFood = new Food();
                 newFood    .quantity(Misc.processUserQuantityInput(quantity.getText().toString()));
                 newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
-                newFood    .type(name.getText().toString());
+                newFood    .type(Format.capitalizeFully(name.getText().toString()));
 
                 ingredients.replace(newFood);
 
@@ -311,7 +311,7 @@ public class Recipe_Input extends AppCompatActivity {
                 rInstruc.setError("Directions are Required!");
         }
         else {
-        recipe1 = new Recipe(rName.getText().toString(), ingredients,
+        recipe1 = new Recipe(Format.capitalizeFully(rName.getText().toString()), ingredients,
                 rInstruc.getText().toString(), cooktime,//Integer.parseInt(rCookTime.getText().toString()),
                 Integer.parseInt(rServings.getText().toString()));
 

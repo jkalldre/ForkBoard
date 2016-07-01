@@ -32,9 +32,9 @@ import java.io.*;   // for File, FileReader, BufferedReader, and exceptions
 
 public class Day {
     private final String ext;
-    public Recipe breakfast;
-    public Recipe lunch;
-    public Recipe dinner;
+    public Recipe breakfast = new Recipe();
+    public Recipe lunch = new Recipe();
+    public Recipe dinner = new Recipe();
 
     private Context context;
 

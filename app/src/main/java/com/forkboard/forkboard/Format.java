@@ -154,8 +154,10 @@ public class Format {
         String[] words = string.split(" ");
         String output = "";
         for (String word : words) {
-            output += word.substring(0, 1).toUpperCase() + word.substring(1) + " ";
+            String cap = word.substring(0, 1).toUpperCase() + word.substring(1);
+            output += cap + " ";
         }
+        output = output.trim();
         return output;
     }
 

@@ -36,6 +36,10 @@ public class MainActivity extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Handles button input to change activity
+     * @param v button clicked
+     */
     public void changeActivity(View v){
         // for MainActivity buttons
         Intent intent = null;

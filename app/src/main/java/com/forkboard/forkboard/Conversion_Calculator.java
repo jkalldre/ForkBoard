@@ -118,6 +118,11 @@ public class Conversion_Calculator extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Calculate the conversion between two unit types
+     *
+     * @param v button clicked
+     */
     public void calc(View v) {
         System.out.println("Clicked");
         System.out.println("From " + fromType);

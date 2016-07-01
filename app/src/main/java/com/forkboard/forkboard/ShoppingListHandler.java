@@ -20,14 +20,24 @@ public class ShoppingListHandler implements DataHandler {
         shoppingList = new FoodInventory(list);
     }
 
+    /**
+     * Load Shopping List
+     */
     public void load() {
 
     }
 
+    /**
+     * Save Shopping List
+     */
     public void save() {
 
     }
 
+    /**
+     * Add to Shopping List
+     * @param item item to be added
+     */
     public void add(String item) {
 
     }
