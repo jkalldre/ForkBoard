@@ -31,15 +31,15 @@ public class Misc {
             Units.milliliter.toString(), Units.liter.toString()
     };
 
-    public static ArrayList<String> generateDateList(GregorianCalendar startDate, GregorianCalendar endDate) {
+    public static ArrayList<String> generateDateList(Calendar startDate, Calendar endDate) {
         ArrayList<String> dateList = new ArrayList<>();
 
         Calendar sDate = startDate;//new GregorianCalendar(2016,0,1);//startDate;
         Calendar eDate = endDate;//new GregorianCalendar(2016,0,11);//endDate;
-        int totalDays = daysBetween(sDate.getTime(), eDate.getTime());
+        int totalDays = daysBetween(sDate.getTime(), eDate.getTime()) + 1;
 
         for (int i = 0; i < totalDays; i++) {
-            String date = "" + sDate.YEAR + sDate.MONTH + sDate.DAY_OF_MONTH;
+            String date = "" + sDate.get(Calendar.YEAR) + sDate.get(Calendar.MONTH) + sDate.get(Calendar.DAY_OF_MONTH);
             dateList.add(date);
             sDate.add(Calendar.DAY_OF_MONTH, 1);
         }

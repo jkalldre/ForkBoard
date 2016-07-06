@@ -25,6 +25,7 @@ public class RecipeLogHandler implements DataHandler {
     public RecipeLogHandler(Context con) {
         context  = con;
         cookbook = new RecipeLog();
+        cookbook.replace(new Recipe("(No Meal Selected)", new FoodInventory(), ""));
     }
 
     /**
@@ -50,11 +51,12 @@ public class RecipeLogHandler implements DataHandler {
         File[] files = new File(dir).listFiles();
         for (File f : files) {
             if (f.getName().length() > 8 && f.getName().substring(f.getName().length() - 7).equals(".recipe")) {
-                System.out.println("Reading: " + f.getName());
+               // System.out.println("Reading: " + f.getName());
                 doFile(dir + f.getName());
             }
 
         }
+
     }
 
     /**

@@ -82,4 +82,14 @@ public class RecipeLog {
     public Recipe[] getRecipes() {
         return cookbook.toArray(new Recipe[cookbook.size()]);
     }
+
+    /**
+     * Replace existing recipe with given recipe
+     *
+     * @param repl recipe to be added/updated
+     */
+    public void replace(Recipe repl) {
+        remove(repl);
+        add(repl);
+    }
 }
