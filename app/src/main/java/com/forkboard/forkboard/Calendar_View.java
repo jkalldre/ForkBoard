@@ -26,9 +26,9 @@ public class Calendar_View extends AppCompatActivity {
         setContentView(R.layout.activity_calendar_view     );
         Toolbar tb =  (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
+
         intentToDay = new Intent(Calendar_View.this,Day_View.class);
         Calendar today = Calendar.getInstance();
-       // System.out.println("**********************" + "" + today.get(Calendar.MONTH) + " " + today.get(Calendar.DAY_OF_MONTH) + ", " + today.get(Calendar.YEAR));
 
         intentToDay.putExtra("Day"  , today.get(Calendar.DAY_OF_MONTH));
         intentToDay.putExtra("Month", today.get(Calendar.MONTH)       );
@@ -50,7 +50,6 @@ public class Calendar_View extends AppCompatActivity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.mainmenu, menu);
         return true;
     }
