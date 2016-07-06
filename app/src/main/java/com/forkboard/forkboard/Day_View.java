@@ -143,7 +143,8 @@ public class Day_View extends AppCompatActivity {
         intent.putExtra("Year", calendar.get(Calendar.YEAR));
         intent.putExtra("Day", calendar.get(Calendar.DAY_OF_MONTH));
         startActivity(intent);
-
+        overridePendingTransition(0, 0);
+        setChanges();
         finish();
     }
 
@@ -159,21 +160,29 @@ public class Day_View extends AppCompatActivity {
         intent.putExtra("Year", calendar.get(Calendar.YEAR));
         intent.putExtra("Day", calendar.get(Calendar.DAY_OF_MONTH));
         startActivity(intent);
-
+        overridePendingTransition(0, 0);
+        setChanges();
         finish();
     }
 
     @Override
     public void onBackPressed() {
+        setChanges();
         super.onBackPressed();
-
     }
 
-    public void setChanges(View v) {
+    public void setChanges() {
         dayObject.breakfast = handler.cookbook.get(mealchoice1.getText().toString());
         dayObject.lunch     = handler.cookbook.get(mealchoice2.getText().toString());
         dayObject.dinner    = handler.cookbook.get(mealchoice3.getText().toString());
         dayObject.save(file);
+        dayObject.generatePrintString();
        // Misc.generateDateList(new GregorianCalendar(), new GregorianCalendar());
+    }
+
+    @Override
+    protected void onPause() {
+        setChanges();
+        super.onPause();
     }
 }

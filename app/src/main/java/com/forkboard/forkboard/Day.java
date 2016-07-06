@@ -117,7 +117,7 @@ public class Day {
         }
     }
 
-    private String generatePrintString() {
+    public String generatePrintString() {
         String print = "";
         if (breakfast != null)
             print += "@BREAK " + breakfast.ID() + "\n";
