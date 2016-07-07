@@ -7,8 +7,7 @@
     app:titleTextColor="@color/secondary_accent"
     android:subtitleTextColor="@color/secondary_accent"
     android:titleTextAppearance="@style/Toolbar.TitleText"
-    android:id="@+id/my_toolbar">
-
-
+    android:id="@+id/my_toolbar"
+    android:actionOverflowButtonStyle="@mipmap/my_action_overflow_button">
 
 </android.support.v7.widget.Toolbar>

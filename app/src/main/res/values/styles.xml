@@ -8,12 +8,11 @@
         <item name="colorPrimaryDark">@color/primary_dark</item>
         <item name="colorAccent">@color/primary_accent</item>
         <item name="android:windowActionBar">false</item>
-        <item name="android:actionOverflowButtonStyle">@style/MyOverflow</item>
+        <item name="actionOverflowButtonStyle">@style/ActionOverflow</item>
         <item name="android:alertDialogStyle">@style/AlertDialogCustom</item>
-
     </style>
 
-    <style name="MyOverflow">
+    <style name="ActionOverflow">
         <item name="android:src">@mipmap/my_action_overflow_button</item>
     </style>
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
