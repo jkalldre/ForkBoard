@@ -37,8 +37,9 @@ public class Day {
     public Recipe lunch;
     public Recipe dinner;
 
-
     private Context context;
+
+    //TODO: Day.clean()
 
     public Day(Context con) {
         context = con;

@@ -28,6 +28,16 @@ public class RecipeLogHandler implements DataHandler {
         cookbook.replace(new Recipe("(No Meal Selected)", new FoodInventory(), ""));
     }
 
+    public Recipe getRecipeByID(String ID){
+        String ext = ".recipe";
+        String dir = context.getFilesDir().getPath() + "/";
+        File day = new File(dir + ID + ext);
+        if(day.exists() && day.canRead()) {
+            return doFile(dir + ID + ext);
+        }
+        return null;
+    }
+
     /**
      * Load reads all files saved in the android directory and loads them
      * into the cookbook to be used by the different activities. Providing
@@ -52,11 +62,12 @@ public class RecipeLogHandler implements DataHandler {
         for (File f : files) {
             if (f.getName().length() > 8 && f.getName().substring(f.getName().length() - 7).equals(".recipe")) {
                // System.out.println("Reading: " + f.getName());
-                doFile(dir + f.getName());
+                Recipe r = doFile(dir + f.getName());
+                if (r != null) {
+                    cookbook.add(r);
+                }
             }
-
         }
-
     }
 
     /**
@@ -119,7 +130,7 @@ public class RecipeLogHandler implements DataHandler {
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    protected void doFile(String filename) {
+    protected Recipe doFile(String filename) {
         if (okFile(filename)) {
             try(BufferedReader buffer = new BufferedReader(new FileReader(filename))) {
                 String ID           = "";
@@ -189,7 +200,8 @@ public class RecipeLogHandler implements DataHandler {
                     Recipe item = new Recipe(NAME, INGREDIENTS, INSTRUCTIONS, PREP, SERV);
                     item.ID(ID);
                   //  Log.i("SAVED" + item.ID(),item.toFileString());
-                    cookbook.add(item);
+                    //cookbook.add(item);
+                    return item;
                 }
             }
             catch(Exception ex) {
@@ -202,6 +214,7 @@ public class RecipeLogHandler implements DataHandler {
             Log.e(TAG,"Incorrect location for '" + filename + "'");
             //System.exit(-99);
         }
+        return null;
     }
 
     private Boolean okFile(String fname) {

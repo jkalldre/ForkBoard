@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".MainActivity"
+            android:name=".WelcomeScreen"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +37,8 @@
         <activity android:name=".Recipe_Input" />
         <activity android:name=".Cookbook_Selecter" />
         <activity android:name=".ShoppingListWeek" />
-        <activity android:name=".Display_Recipe_Item"></activity>
+        <activity android:name=".Display_Recipe_Item" />
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

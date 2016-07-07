@@ -12,7 +12,6 @@
     <include layout="@layout/my_toolbar"
         android:id="@+id/my_toolbar" />
 
-    // stuff janine added
     <ImageView android:src="@drawable/fork"
         android:layout_width="wrap_content"
         android:layout_height="72dp"
