@@ -75,8 +75,8 @@ public class ShoppingListWeek extends AppCompatActivity {
     public void generateList(Calendar start, Calendar end){
         FoodInventory newIngrList = new FoodInventory();
         Day dayObject = null;
-        Calendar tstart = new GregorianCalendar(2016, 6, 2);
-        Calendar tend   = new GregorianCalendar(2016, 6, 3);
+        Calendar tstart = new GregorianCalendar(2016, 6, 3);
+        Calendar tend   = new GregorianCalendar(2016, 6, 9);
         List<String> listDates = Misc.generateDateList(tstart, tend);
         for (String date : listDates) {
             dayObject = new Day(this);

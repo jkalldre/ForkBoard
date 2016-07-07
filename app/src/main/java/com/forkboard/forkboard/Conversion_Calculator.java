@@ -124,20 +124,20 @@ public class Conversion_Calculator extends AppCompatActivity {
      * @param v button clicked
      */
     public void calc(View v) {
-        System.out.println("Clicked");
-        System.out.println("From " + fromType);
-        System.out.println("To   " + toType);
-        toConvert = Double.parseDouble(unitValue.getText().toString());
-        Double conversion = 0.0;
+        if (!unitValue.getText().toString().equals("")) {
+            toConvert = Double.parseDouble(unitValue.getText().toString());
+            Double conversion = 0.0;
 
-        if (typeSelected.equals("Weights"))
-            conversion = UnitConverter.convertEnglish_weight(toConvert, Units.fromString(fromType),
-                    Units.fromString(toType));
+            if (typeSelected.equals("Weights"))
+                conversion = UnitConverter.convertEnglish_weight(toConvert, Units.fromString(fromType),
+                        Units.fromString(toType));
+            else
+                conversion = UnitConverter.convertEnglish_volume(toConvert, Units.fromString(fromType),
+                        Units.fromString(toType));
+
+            result.setText(Format.fractionize(conversion) + " " + toType);
+        }
         else
-            conversion = UnitConverter.convertEnglish_volume(toConvert, Units.fromString(fromType),
-                    Units.fromString(toType));
-
-        result.setText(Format.fractionize(conversion) + " " + toType);
-
+            unitValue.setError("A Unit Value is Required!");
     }
 }
