@@ -53,6 +53,9 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     private ArrayAdapter<String> adapter;
     private List<String> foodList = new ArrayList<>();
 
+    private Calendar fromDate = new GregorianCalendar();
+    private Calendar toDate   = new GregorianCalendar();
+
 
     //UI References for the DATE PICKER
     private EditText fromDateEtxt;
@@ -83,14 +86,7 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
 
         setDateTimeField();
 
-
         handler.load();
-        /*for (Recipe recipe : handler.cookbook.getRecipes()) {
-            for (Food food : recipe.ingredients().toArray()){
-                allFood.add(food);
-            }
-        }*/
-       // foodList = allFood.ingredientList();
         mShoppingList.setAdapter(adapter);
 
 
@@ -159,9 +155,14 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     public void generateList(Calendar start, Calendar end){
         FoodInventory newIngrList = new FoodInventory();
         Day dayObject = null;
-        Calendar tstart = new GregorianCalendar(2016, 6, 3);
-        Calendar tend   = new GregorianCalendar(2016, 6, 9);
-        List<String> listDates = Misc.generateDateList(tstart, tend);
+        fromDate = new GregorianCalendar(2016, 6, 3);
+        toDate   = new GregorianCalendar(2016, 6, 9);
+        if (!fromDateEtxt.getText().toString().equals("")
+                && !toDateEtxt.getText().toString().equals("")) {
+            fromDate = Format.MM$DD$YYYY_to_Gregorian(fromDateEtxt.getText().toString());
+            toDate   = Format.MM$DD$YYYY_to_Gregorian(toDateEtxt.getText().toString());
+        }
+        List<String> listDates = Misc.generateDateList(fromDate, toDate);
         for (String date : listDates) {
             dayObject = new Day(this);
             dayObject.load(date);
@@ -195,7 +196,6 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     protected void onResume() {
         super.onResume();
         generateList(new GregorianCalendar(), new GregorianCalendar());
-       // adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodList);
         adapter.notifyDataSetChanged();
     }
 }

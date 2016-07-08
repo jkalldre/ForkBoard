@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:background="@color/primary_dark"
     android:fitsSystemWindows="true"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context="com.forkboard.forkboard.ShoppingListWeek">
 
     <include layout="@layout/my_toolbar"/>
@@ -27,7 +27,10 @@
         android:id="@+id/shopping_listView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="45dp"
+        android:layout_below="@+id/from_Unit">
 
     </ListView>
 
@@ -35,19 +38,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="510dp">
+        android:layout_marginTop="510dp"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/ll">
 
     <EditText
         android:id="@+id/etxt_fromdate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight=".5"
-        android:hint="From Date"
-        android:layout_below="@+id/shopping_listView"/>
+        android:hint="From Date"/>
 
     <EditText
         android:id="@+id/etxt_todate"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight=".5"
         android:hint="To Date"
