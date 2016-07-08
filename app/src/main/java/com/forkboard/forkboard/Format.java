@@ -1,5 +1,7 @@
 package com.forkboard.forkboard;
 
+import java.util.GregorianCalendar;
+
 /**
  * Created by Kyle on 6/25/2016.
  */
@@ -188,5 +190,11 @@ public class Format {
      */
     public static String generateDateString(int year, int month, int day) {
         return "" + year + "_" + month + "_" + day;
+    }
+
+    public static GregorianCalendar MM$DD$YYYY_to_Gregorian(String date){
+        int[] iDate = new int[3];
+        String[] sDate = date.split("-");
+        return new GregorianCalendar(iDate[2], iDate[0], iDate[1]);
     }
 }
