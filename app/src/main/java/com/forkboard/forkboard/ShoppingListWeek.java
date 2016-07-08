@@ -81,8 +81,8 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
         Calendar cal = Calendar.getInstance();
         String today = "" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH) + "-" + cal.get(Calendar.YEAR);
-        String fDate = pref.getString("SHOPPING_LIST_toDate", today);
-        String tDate   = pref.getString("SHOPPING_LIST_fromDate", today);
+        String tDate = pref.getString("SHOPPING_LIST_toDate", today);
+        String fDate   = pref.getString("SHOPPING_LIST_fromDate", today);
 
         fromDateEtxt.setText(fDate);
         toDateEtxt.setText(tDate);
