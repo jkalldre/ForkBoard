@@ -200,4 +200,11 @@ public class Format {
         iDate[2] = Integer.parseInt(sDate[2]);
         return new GregorianCalendar(iDate[2], iDate[0] - 1, iDate[1]);
     }
+
+    public static String changeFormat(String date){
+        String[] dates = new String[3];
+        dates = date.split("-");
+        String toReturn = "" + dates[1] + "_" + dates[2] + "_" + dates[0];
+        return toReturn;
+    }
 }

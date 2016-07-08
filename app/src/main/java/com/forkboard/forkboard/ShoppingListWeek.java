@@ -86,7 +86,12 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         String today = "" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH) + "-" + cal.get(Calendar.YEAR);
         String tDate = pref.getString("SHOPPING_LIST_toDate", today);
         String fDate   = pref.getString("SHOPPING_LIST_fromDate", today);
-
+        String temp = "";
+        if (Misc.compareDates(Format.changeFormat(tDate),Format.changeFormat(fDate))){
+            temp = fDate;
+            fDate = tDate;
+            tDate = temp;
+        }
         fromDateEtxt.setText(fDate);
         toDateEtxt.setText(tDate);
 
