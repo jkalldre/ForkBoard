@@ -47,7 +47,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight=".5"
-        android:hint="From Date"/>
+        android:hint="From Date"
+        android:textAlignment="center" />
 
     <EditText
         android:id="@+id/etxt_todate"
@@ -55,7 +56,8 @@
         android:layout_height="wrap_content"
         android:layout_weight=".5"
         android:hint="To Date"
-        android:layout_below="@+id/shopping_listView"/>
+        android:layout_below="@+id/shopping_listView"
+        android:textAlignment="center" />
 
     </LinearLayout>
     <!-- Adding Items to Shopping List

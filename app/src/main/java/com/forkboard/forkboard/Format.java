@@ -192,9 +192,12 @@ public class Format {
         return "" + year + "_" + month + "_" + day;
     }
 
-    public static GregorianCalendar MM$DD$YYYY_to_Gregorian(String date){
+    public static GregorianCalendar MMDDYYYY_to_Gregorian(String date){
         int[] iDate = new int[3];
         String[] sDate = date.split("-");
-        return new GregorianCalendar(iDate[2], iDate[0]-1, iDate[1]);
+        iDate[0] = Integer.parseInt(sDate[0]);
+        iDate[1] = Integer.parseInt(sDate[1]);
+        iDate[2] = Integer.parseInt(sDate[2]);
+        return new GregorianCalendar(iDate[2], iDate[0] - 1, iDate[1]);
     }
 }

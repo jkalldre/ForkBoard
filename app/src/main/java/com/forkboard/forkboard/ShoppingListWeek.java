@@ -2,10 +2,13 @@ package com.forkboard.forkboard;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -88,7 +91,7 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         toDateEtxt.setText(tDate);
 
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        generateList(Format.MM$DD$YYYY_to_Gregorian(fDate), Format.MM$DD$YYYY_to_Gregorian(tDate));
+        generateList(Format.MMDDYYYY_to_Gregorian(fDate), Format.MMDDYYYY_to_Gregorian(tDate));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodList);
 
         // Picker stuff
@@ -100,6 +103,33 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         handler.load();
         mShoppingList.setAdapter(adapter);
 
+        TextWatcher tw = new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                SharedPreferences pref = ShoppingListWeek.this.getPreferences(Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = pref.edit();
+                edit.putString("SHOPPING_LIST_fromDate", fromDateEtxt.getText().toString());
+                edit.putString("SHOPPING_LIST_toDate", toDateEtxt.getText().toString());
+                edit.commit();
+                generateList(fromDate, toDate);
+                adapter.notifyDataSetChanged();
+                refresh();
+                //refresh();
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        };
+
+        fromDateEtxt.addTextChangedListener(tw);
+        toDateEtxt  .addTextChangedListener(tw);
 
 
     }
@@ -148,11 +178,7 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
             toDatePickerDialog.show();
         }
 
-        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = pref.edit();
-        edit.putString("SHOPPING_LIST_fromDate", fromDateEtxt.getText().toString());
-        edit.putString("SHOPPING_LIST_toDate", toDateEtxt.getText().toString());
-        edit.commit();
+
     }
 
 
@@ -169,39 +195,36 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     }
 
     public void generateList(Calendar start, Calendar end){
-        FoodInventory newIngrList = new FoodInventory();
+       // FoodInventory newIngrList = new FoodInventory();
         Day dayObject = null;
-       /* if (!fromDateEtxt.getText().toString().equals("")
-                && !toDateEtxt.getText().toString().equals("")) {
-            fromDate = Format.MM$DD$YYYY_to_Gregorian(fromDateEtxt.getText().toString());
-            toDate   = Format.MM$DD$YYYY_to_Gregorian(toDateEtxt.getText().toString());
-        }*/
-        List<String> listDates = Misc.generateDateList(fromDate, toDate);
+
+        List<String> listDates = Misc.generateDateList(start, end);
         for (String date : listDates) {
             dayObject = new Day(this);
             dayObject.load(date);
             if(!dayObject.breakfast.name().equals("(No Meal Selected)"))
-                loadFood(dayObject.breakfast, newIngrList);
+                loadFood(dayObject.breakfast);
             if(!dayObject.lunch.name().equals("(No Meal Selected)"))
-                loadFood(dayObject.lunch, newIngrList);
+                loadFood(dayObject.lunch);
             if(!dayObject.dinner.name().equals("(No Meal Selected)"))
-                loadFood(dayObject.dinner, newIngrList);
+                loadFood(dayObject.dinner);
 
-            System.out.println("++++" + "B:" + dayObject.breakfast.name() + " L:"
+            System.out.println("++++B:" + dayObject.breakfast.name() + " L:"
             + dayObject.lunch.name() + " D:" + dayObject.dinner.name() + "++++");
+            for (String food : foodList)
+                System.out.println(food);
         }
 
-        foodList = newIngrList.ingredientList();
+        foodList = allFood.ingredientList();
         adapter.notifyDataSetChanged();
         mShoppingList.setAdapter(adapter);
        // System.out.println("***" + allFood.toString());
-        for (String food : foodList)
-        System.out.println(food);
+
     }
 
-    private void loadFood(Recipe r, FoodInventory f) {
+    private void loadFood(Recipe r) {
         for(Food foodItem : r.ingredients().toArray()) {
-            f.add(foodItem);
+            allFood.add(foodItem);
         }
         System.out.println("---- added " + r.name() + "-----");
     }
@@ -211,5 +234,22 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         super.onResume();
         generateList(new GregorianCalendar(), new GregorianCalendar());
         adapter.notifyDataSetChanged();
+    }
+
+    /**
+     * refresh the current activity
+     */
+    private void refresh(){
+        Intent refresh = new Intent(this, ShoppingListWeek.class);
+        adapter.notifyDataSetChanged();
+        startActivity(refresh);
+        overridePendingTransition(0, 0);
+        finish();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

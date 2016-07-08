@@ -43,6 +43,8 @@ public class Misc {
             dateList.add(date);
             sDate.add(Calendar.DAY_OF_MONTH, 1);
         }
+        for (String date : dateList)
+            System.out.println(date);
         return dateList;
     }
 
@@ -82,6 +84,8 @@ public class Misc {
         return ret;
     }
 
+
+    //TODO allow for different string format MM-DD-YYYY
     public static boolean compareDates(String LHS, String RHS) {
         int[] l = Format.parseDate(LHS);
         int[] r = Format.parseDate(RHS);
