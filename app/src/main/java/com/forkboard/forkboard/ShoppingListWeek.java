@@ -84,16 +84,17 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         String fDate = pref.getString("SHOPPING_LIST_toDate", today);
         String tDate   = pref.getString("SHOPPING_LIST_fromDate", today);
 
+        fromDateEtxt.setText(fDate);
+        toDateEtxt.setText(tDate);
+
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         generateList(Format.MM$DD$YYYY_to_Gregorian(fDate), Format.MM$DD$YYYY_to_Gregorian(tDate));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodList);
-
 
         // Picker stuff
         dateFormatter = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
 
         findViewsById();
-
         setDateTimeField();
 
         handler.load();
