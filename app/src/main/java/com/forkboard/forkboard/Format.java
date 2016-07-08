@@ -161,4 +161,32 @@ public class Format {
         return output;
     }
 
+    /**
+     * Parse a date String of the form YYYY_M+_D+
+     * @param date the date YYYY_M+_D+
+     * @return int array with the respective {year,month,day}
+     */
+    public static int[] parseDate(String date) {
+        int[] iDate = new int[3];
+        String[] sDate = date.split("_");
+
+        if (sDate.length != 3) return null;
+
+        iDate[0] = Integer.parseInt(sDate[0]);
+        iDate[1] = Integer.parseInt(sDate[1]);
+        iDate[2] = Integer.parseInt(sDate[2]);
+
+        return iDate;
+    }
+
+    /**
+     * Generates a date string in the form : YYYY_M+_D+
+     * @param year the year int
+     * @param month the month int
+     * @param day the day int
+     * @return the date as a string YYYY_M+_D+
+     */
+    public static String generateDateString(int year, int month, int day) {
+        return "" + year + "_" + month + "_" + day;
+    }
 }

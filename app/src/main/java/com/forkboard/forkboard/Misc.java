@@ -81,4 +81,17 @@ public class Misc {
         }
         return ret;
     }
+
+    public static boolean compareDates(String LHS, String RHS) {
+        int[] l = Format.parseDate(LHS);
+        int[] r = Format.parseDate(RHS);
+
+        if (l[0] == r[0]) {
+            if (l[1] == r[1]) {
+                if (l[2] == r[2]) {
+                    return true;
+                } else return (l[2] < r[2]);
+            } else return (l[1] < r[1]);
+        } else return (l[0] < r[0]);
+    }
 }
