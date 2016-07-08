@@ -1,6 +1,8 @@
 package com.forkboard.forkboard;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -74,8 +76,14 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         setSupportActionBar(tb);
         mShoppingList = (ListView) findViewById(R.id.shopping_listView);
 
+        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        Calendar cal = Calendar.getInstance();
+        String today = "" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH) + "-" + cal.get(Calendar.YEAR);
+        String fDate = pref.getString("SHOPPING_LIST_toDate", today);
+        String tDate   = pref.getString("SHOPPING_LIST_fromDate", today);
+
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
-        generateList(new GregorianCalendar(), new GregorianCalendar());
+        generateList(Format.MM$DD$YYYY_to_Gregorian(fDate), Format.MM$DD$YYYY_to_Gregorian(tDate));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodList);
 
 
@@ -137,6 +145,12 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         } else if(view == toDateEtxt) {
             toDatePickerDialog.show();
         }
+
+        SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = pref.edit();
+        edit.putString("SHOPPING_LIST_fromDate", fromDateEtxt.getText().toString());
+        edit.putString("SHOPPING_LIST_toDate", toDateEtxt.getText().toString());
+        edit.commit();
     }
 
 
