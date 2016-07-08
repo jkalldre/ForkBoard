@@ -195,6 +195,6 @@ public class Format {
     public static GregorianCalendar MM$DD$YYYY_to_Gregorian(String date){
         int[] iDate = new int[3];
         String[] sDate = date.split("-");
-        return new GregorianCalendar(iDate[2], iDate[0], iDate[1]);
+        return new GregorianCalendar(iDate[2], iDate[0]-1, iDate[1]);
     }
 }
