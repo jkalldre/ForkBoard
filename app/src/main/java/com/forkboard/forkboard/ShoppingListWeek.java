@@ -75,6 +75,8 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
         mShoppingList = (ListView) findViewById(R.id.shopping_listView);
+        fromDateEtxt = (EditText) findViewById(R.id.etxt_fromdate);
+        toDateEtxt = (EditText) findViewById(R.id.etxt_todate);
 
         SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
         Calendar cal = Calendar.getInstance();
@@ -104,11 +106,10 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     // Date Picker
     // http://androidopentutorials.com/android-datepickerdialog-on-edittext-click-event/
     private void findViewsById() {
-        fromDateEtxt = (EditText) findViewById(R.id.etxt_fromdate);
+
         fromDateEtxt.setInputType(InputType.TYPE_NULL);
         fromDateEtxt.requestFocus();
 
-        toDateEtxt = (EditText) findViewById(R.id.etxt_todate);
         toDateEtxt.setInputType(InputType.TYPE_NULL);
     }
 
@@ -169,13 +170,11 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     public void generateList(Calendar start, Calendar end){
         FoodInventory newIngrList = new FoodInventory();
         Day dayObject = null;
-        fromDate = new GregorianCalendar(2016, 6, 3);
-        toDate   = new GregorianCalendar(2016, 6, 9);
-        if (!fromDateEtxt.getText().toString().equals("")
+       /* if (!fromDateEtxt.getText().toString().equals("")
                 && !toDateEtxt.getText().toString().equals("")) {
             fromDate = Format.MM$DD$YYYY_to_Gregorian(fromDateEtxt.getText().toString());
             toDate   = Format.MM$DD$YYYY_to_Gregorian(toDateEtxt.getText().toString());
-        }
+        }*/
         List<String> listDates = Misc.generateDateList(fromDate, toDate);
         for (String date : listDates) {
             dayObject = new Day(this);
