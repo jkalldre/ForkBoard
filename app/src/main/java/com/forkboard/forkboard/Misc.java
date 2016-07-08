@@ -39,7 +39,7 @@ public class Misc {
         int totalDays = daysBetween(sDate.getTime(), eDate.getTime()) + 1;
 
         for (int i = 0; i < totalDays; i++) {
-            String date = "" + sDate.get(Calendar.YEAR) + "_" + sDate.get(Calendar.MONTH) + "_" + sDate.get(Calendar.DAY_OF_MONTH);
+            String date = Format.generateDateString(sDate.get(Calendar.YEAR), sDate.get(Calendar.MONTH), sDate.get(Calendar.DAY_OF_MONTH));
             dateList.add(date);
             sDate.add(Calendar.DAY_OF_MONTH, 1);
         }

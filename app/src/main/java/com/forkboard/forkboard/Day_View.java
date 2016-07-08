@@ -51,7 +51,7 @@ public class Day_View extends AppCompatActivity {
         int month = getIntent().getIntExtra("Month", 0);
         int day   = getIntent().getIntExtra("Day"  , 0);
         int year  = getIntent().getIntExtra("Year" , 0);
-        file = "" + year + "_" +  month + "_" + day;
+        file = Format.generateDateString(year, month, day);
         dayObject = new Day(this);
         dayObject.load(file);
 
