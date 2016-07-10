@@ -41,7 +41,7 @@ public class Conversion_Calculator extends AppCompatActivity {
         s3 = (Spinner) findViewById(R.id.spinner3);
         unitValue = (EditText) findViewById(R.id.unit_value);
         result    = (TextView) findViewById(R.id.convert_result);
-        String[] choice = {"Weights", "Volumes"};
+        String[] choice = {"Volumes", "Weights"};
 
         final ArrayAdapter<String> weights = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, Misc._weights);
@@ -50,8 +50,8 @@ public class Conversion_Calculator extends AppCompatActivity {
         final ArrayAdapter<String> choices = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, choice);
 
-        s.setAdapter(weights);
-        s2.setAdapter(weights);
+        s.setAdapter(volumes);
+        s2.setAdapter(volumes);
         s3.setAdapter(choices);
 
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -130,7 +130,7 @@ public class Conversion_Calculator extends AppCompatActivity {
                 conversion = UnitConverter.convertEnglish_weight(toConvert, Units.fromString(fromType),
                         Units.fromString(toType));
             else
-                conversion = UnitConverter.convertEnglish_volume(toConvert, Units.fromString(fromType),
+                conversion = UnitConverter.convert_volume(toConvert, Units.fromString(fromType),
                         Units.fromString(toType));
 
             result.setText(Format.fractionize(conversion) + " " + toType);

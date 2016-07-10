@@ -49,7 +49,7 @@ public enum Units {
         switch (s) {
             case "tsp.":      return teaspoon;
             case "tbsp.":     return tablespoon;
-            case "fl. ox.":   return fluid_ounce;
+            case "fl. oz.":   return fluid_ounce;
 
             case "c.":        return cup;
             case "pt.":       return pint;

@@ -16,11 +16,23 @@ public class Format {
         if (number == 0) return "0";
 
         double num = number % 1;
+        if (num == 0) return "" + (int) number;
         String fract = "";
         double nume = 0;
         int deno = 0;
 
-        if (num % 0.5 > 0.0 && num % 0.25 > 0.0) deno = 3;
+        if ((num >= 0.29 && num <= 0.35) || // test if 1/3 ish
+                (num >= 0.59 && num <= 0.68))   // test if 2/3 ish
+        {
+            deno = 3;
+        }
+
+        if ((num >= 0.155 && num <= 0.175) || // test if 1/6 ish
+                (num >= 0.825 && num <= 0.845))   // test if 5/6 ish
+        {
+            deno = 6;
+        }
+
         if (num % 0.5 == 0.0) deno = 2;
         else if (num % 0.25 == 0.0) deno = 4;
         else if (num % 0.125 == 0.0) deno = 8;
@@ -33,12 +45,18 @@ public class Format {
             if (nume > 1 && nume < 2) nume = 2;
         }
 
+        if (deno == 6) {
+            if (nume <= 3) nume = 1;
+            else nume = 5;
+        }
+
         int whole = (int)(number - num);
         if (whole != 0) fract = "" + whole;
 
         if (whole != 0 && num >= 0.0625) fract += " ";
 
-        if (whole == 0 && num < 0.0625) return "" + number;
+        if ((whole == 0 && num < 0.0625) ||
+                (((int) nume) == 0 || deno == 0)) return "" + number;
         if (num < 0.0625) return fract;
         fract += "" + (int) nume + "/" + deno;
 
