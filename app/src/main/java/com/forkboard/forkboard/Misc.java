@@ -5,7 +5,7 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.GregorianCalendar;
+
 
 /**
  * Created by Kyle on 6/23/2016.
@@ -34,8 +34,8 @@ public class Misc {
     public static ArrayList<String> generateDateList(Calendar startDate, Calendar endDate) {
         ArrayList<String> dateList = new ArrayList<>();
 
-        Calendar sDate = startDate;//new GregorianCalendar(2016,0,1);//startDate;
-        Calendar eDate = endDate;//new GregorianCalendar(2016,0,11);//endDate;
+        Calendar sDate = startDate;
+        Calendar eDate = endDate;
         int totalDays = daysBetween(sDate.getTime(), eDate.getTime()) + 1;
 
         for (int i = 0; i < totalDays; i++) {

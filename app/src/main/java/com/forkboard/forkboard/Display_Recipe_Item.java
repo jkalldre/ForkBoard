@@ -14,10 +14,6 @@ import android.widget.TextView;
 import butterknife.Bind;
 
 public class Display_Recipe_Item extends AppCompatActivity {
-    @Bind(R.id.recipeName)  TextView recipeName;
-    @Bind(R.id.cookTime)    TextView cookTime;
-    @Bind(R.id.servingSize) TextView servingSize;
-    @Bind(R.id.directions)  TextView directions;
 
     private Recipe recipe = null;
     private RecipeLogHandler handler;

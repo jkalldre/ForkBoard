@@ -39,7 +39,6 @@ public class Calendar_View extends AppCompatActivity {
         calendar.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
             @Override
             public void onSelectedDayChange(CalendarView view, int year, int month, int dayOfMonth) {
-                // Intent intent = new Intent(Calendar_View.this,Day_View.class);
                 intentToDay.putExtra("Day"  , dayOfMonth);
                 intentToDay.putExtra("Month", month     );
                 intentToDay.putExtra("Year" , year      );

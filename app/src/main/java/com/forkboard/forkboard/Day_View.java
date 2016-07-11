@@ -176,8 +176,6 @@ public class Day_View extends AppCompatActivity {
         dayObject.lunch     = handler.cookbook.get(mealchoice2.getText().toString());
         dayObject.dinner    = handler.cookbook.get(mealchoice3.getText().toString());
         dayObject.save(file);
-        dayObject.generatePrintString();
-       // Misc.generateDateList(new GregorianCalendar(), new GregorianCalendar());
     }
 
     @Override

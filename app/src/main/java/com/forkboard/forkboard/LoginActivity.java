@@ -42,10 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        // TEMP //
-        Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
-        setSupportActionBar(tb);
-        // TEMP //
+
         
         _loginButton.setOnClickListener(new View.OnClickListener() {
 
@@ -66,18 +63,6 @@ public class LoginActivity extends AppCompatActivity {
         });
 
     }
-    // TEMP //
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.mainmenu, menu);
-        return true;
-    }
-
-    public boolean onOptionsItemSelected(MenuItem item){
-        new ActivityChanger().changeActivity(item, this);
-        return true;
-    }
-    // TEMP //
 
     /**
      * Used to login user

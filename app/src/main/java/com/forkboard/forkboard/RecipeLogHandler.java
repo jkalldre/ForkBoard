@@ -61,7 +61,6 @@ public class RecipeLogHandler implements DataHandler {
         File[] files = new File(dir).listFiles();
         for (File f : files) {
             if (f.getName().length() > 8 && f.getName().substring(f.getName().length() - 7).equals(".recipe")) {
-               // System.out.println("Reading: " + f.getName());
                 Recipe r = doFile(dir + f.getName());
                 if (r != null) {
                     cookbook.add(r);

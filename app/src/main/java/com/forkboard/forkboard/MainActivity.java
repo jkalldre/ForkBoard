@@ -18,14 +18,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar tb = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
-
-        /* // TODO: Working Login and Recipe Backup
-        // This will be great to add once we figure out FireBase.
-        if(!getIntent().getBooleanExtra("hasLogged", false)) {
-            Intent intent = new Intent(this, LoginActivity.class);
-            startActivity(intent);
-        }
-        */
     }
 
     @Override

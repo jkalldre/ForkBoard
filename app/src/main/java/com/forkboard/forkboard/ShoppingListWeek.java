@@ -50,9 +50,6 @@ import java.util.List;
 public class ShoppingListWeek extends AppCompatActivity implements OnClickListener {
 
     private ListView mShoppingList;
-    private EditText mItemEdit;
-    private Button mAddButton;
-    private ArrayAdapter<String> mAdapter;
     private RecipeLogHandler handler = new RecipeLogHandler(this);
     private FoodInventory    allFood = new FoodInventory();
     private ArrayAdapter<String> adapter;
@@ -60,7 +57,6 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
 
     private Calendar fromDate = new GregorianCalendar();
     private Calendar toDate   = new GregorianCalendar();
-
 
     //UI References for the DATE PICKER
     private EditText fromDateEtxt;
@@ -147,6 +143,7 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
         fromDateEtxt.requestFocus();
 
         toDateEtxt.setInputType(InputType.TYPE_NULL);
+        //toDateEtxt.requestFocus();
     }
 
     private void setDateTimeField() {
@@ -186,8 +183,6 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
 
     }
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.mainmenu, menu);
@@ -200,7 +195,6 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     }
 
     public void generateList(Calendar start, Calendar end){
-       // FoodInventory newIngrList = new FoodInventory();
         Day dayObject = null;
 
         List<String> listDates = Misc.generateDateList(start, end);
@@ -213,25 +207,17 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
                 loadFood(dayObject.lunch);
             if(!dayObject.dinner.name().equals("(No Meal Selected)"))
                 loadFood(dayObject.dinner);
-
-            System.out.println("++++B:" + dayObject.breakfast.name() + " L:"
-            + dayObject.lunch.name() + " D:" + dayObject.dinner.name() + "++++");
-            for (String food : foodList)
-                System.out.println(food);
         }
 
         foodList = allFood.ingredientList();
         adapter.notifyDataSetChanged();
         mShoppingList.setAdapter(adapter);
-       // System.out.println("***" + allFood.toString());
-
     }
 
     private void loadFood(Recipe r) {
         for(Food foodItem : r.ingredients().toArray()) {
             allFood.add(foodItem);
         }
-        System.out.println("---- added " + r.name() + "-----");
     }
 
     @Override
