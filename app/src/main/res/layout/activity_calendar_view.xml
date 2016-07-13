@@ -12,21 +12,20 @@
         android:id="@+id/my_toolbar" />
 
     <CalendarView
+        android:id="@+id/cv"
         android:layout_width="match_parent"
         android:layout_height="137dp"
-        android:id="@+id/cv"
-
         android:layout_weight="0.97"
         android:layout_below="@+id/my_toolbar"
         android:layout_alignParentStart="true"
         android:layout_above="@+id/button4" />
 
     <Button
+        android:id="@+id/button4"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Edit Selected Day"
         android:layout_alignParentBottom="true"
-        android:id="@+id/button4"
         android:onClick="toDay" />
 
 </RelativeLayout>

@@ -32,16 +32,17 @@ import android.util.Log;
 import java.io.*;   // for File, FileReader, BufferedReader, and exceptions
 
 public class Day {
+    // instance variables
     private final String ext;
     public Recipe breakfast;
     public Recipe lunch;
     public Recipe dinner;
-
     private Context context;
 
     //TODO: Day.clean()
 
     public Day(Context con) {
+        // handle cases where no recipes are selected
         context = con;
         ext = ".day";
         String n = "(No Meal Selected)";
@@ -57,6 +58,7 @@ public class Day {
     }
 
     public void load(String date) {
+        // load meals into approprate days
         System.out.println("READING: " + date + ext);
         String dir = context.getFilesDir().getPath() + "/";
         File day = new File(dir + date + ext);
@@ -66,6 +68,7 @@ public class Day {
     }
 
     public void save(String date) {
+        // save loaded days into .day files
         String print = generatePrintString();
         if (print.length() > 7) {
             FileOutputStream outputStream;
@@ -82,6 +85,7 @@ public class Day {
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private void readDay(String file) {
+        // handles the actual reading of the file
         String b_ID = "";
         String l_ID = "";
         String d_ID = "";
@@ -119,6 +123,7 @@ public class Day {
     }
 
     public String generatePrintString() {
+        // print out the meals held by day
         String print = "";
         if (breakfast != null)
             print += "@BREAK " + breakfast.ID() + "\n";

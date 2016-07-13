@@ -49,12 +49,12 @@ import java.util.List;
 
 public class ShoppingListWeek extends AppCompatActivity implements OnClickListener {
 
+    // Instance variables
     private ListView mShoppingList;
     private RecipeLogHandler handler = new RecipeLogHandler(this);
     private FoodInventory    allFood = new FoodInventory();
     private ArrayAdapter<String> adapter;
     private List<String> foodList = new ArrayList<>();
-
     private Calendar fromDate = new GregorianCalendar();
     private Calendar toDate   = new GregorianCalendar();
 
@@ -62,73 +62,87 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     private EditText fromDateEtxt;
     private EditText toDateEtxt;
 
+    // for date spinners
     private DatePickerDialog fromDatePickerDialog;
     private DatePickerDialog toDatePickerDialog;
-
     private SimpleDateFormat dateFormatter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Standard app startup //
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping_list_week);
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
+        // Standard app startup //
+
+        // initialize used views
         mShoppingList = (ListView) findViewById(R.id.shopping_listView);
         fromDateEtxt = (EditText) findViewById(R.id.etxt_fromdate);
         toDateEtxt = (EditText) findViewById(R.id.etxt_todate);
 
+        // shared pref to remember last selected days
         SharedPreferences pref = this.getPreferences(Context.MODE_PRIVATE);
         Calendar cal = Calendar.getInstance();
         String today = "" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH) + "-" + cal.get(Calendar.YEAR);
         String tDate = pref.getString("SHOPPING_LIST_toDate", today);
         String fDate   = pref.getString("SHOPPING_LIST_fromDate", today);
         String temp = "";
+
+        // in case earlier date is selected for toDate
         if (Misc.compareDates(Format.changeFormat(tDate),Format.changeFormat(fDate))){
             temp = fDate;
             fDate = tDate;
             tDate = temp;
         }
+
+        // set their text to appropriate date
         fromDateEtxt.setText(fDate);
         toDateEtxt.setText(tDate);
 
+        // populate list on initilize with total ingredients
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         generateList(Format.MMDDYYYY_to_Gregorian(fDate), Format.MMDDYYYY_to_Gregorian(tDate));
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, foodList);
 
         // Picker stuff
         dateFormatter = new SimpleDateFormat("MM-dd-yyyy", Locale.US);
-
         findViewsById();
         setDateTimeField();
 
+        // fill listview
         handler.load();
         mShoppingList.setAdapter(adapter);
 
+        // run when new date is selected
         TextWatcher tw = new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+            // required for override
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // save new date to shared pref
                 SharedPreferences pref = ShoppingListWeek.this.getPreferences(Context.MODE_PRIVATE);
                 SharedPreferences.Editor edit = pref.edit();
                 edit.putString("SHOPPING_LIST_fromDate", fromDateEtxt.getText().toString());
                 edit.putString("SHOPPING_LIST_toDate", toDateEtxt.getText().toString());
                 edit.commit();
+
+                // update list
                 generateList(fromDate, toDate);
                 adapter.notifyDataSetChanged();
                 refresh();
-                //refresh();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+            // required for override
             }
         };
 
+        // set listener for text change
         fromDateEtxt.addTextChangedListener(tw);
         toDateEtxt  .addTextChangedListener(tw);
 
@@ -138,18 +152,19 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     // Date Picker
     // http://androidopentutorials.com/android-datepickerdialog-on-edittext-click-event/
     private void findViewsById() {
-
+        // set up date wheel input type
         fromDateEtxt.setInputType(InputType.TYPE_NULL);
         fromDateEtxt.requestFocus();
-
         toDateEtxt.setInputType(InputType.TYPE_NULL);
-        //toDateEtxt.requestFocus();
+
     }
 
     private void setDateTimeField() {
+        // set onclick listener
         fromDateEtxt.setOnClickListener(this);
         toDateEtxt.setOnClickListener(this);
 
+        // tell datepicker what to display in dialog box
         Calendar newCalendar = Calendar.getInstance();
         fromDatePickerDialog = new DatePickerDialog(this, new OnDateSetListener() {
 
@@ -161,6 +176,7 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
 
         },newCalendar.get(Calendar.YEAR), newCalendar.get(Calendar.MONTH), newCalendar.get(Calendar.DAY_OF_MONTH));
 
+        // tell datepicker what to display in dialog box
         toDatePickerDialog = new DatePickerDialog(this, new OnDateSetListener() {
 
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
@@ -174,6 +190,7 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
 
     @Override
     public void onClick(View view) {
+        // display dialog when clicked
         if(view == fromDateEtxt) {
             fromDatePickerDialog.show();
         } else if(view == toDateEtxt) {
@@ -195,12 +212,15 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
     }
 
     public void generateList(Calendar start, Calendar end){
+        // generate list of dates from which ingredients will be collected
         Day dayObject = null;
-
         List<String> listDates = Misc.generateDateList(start, end);
+
         for (String date : listDates) {
             dayObject = new Day(this);
             dayObject.load(date);
+
+            // see if recipe is selected and add ingredients of selected recipes
             if(!dayObject.breakfast.name().equals("(No Meal Selected)"))
                 loadFood(dayObject.breakfast);
             if(!dayObject.lunch.name().equals("(No Meal Selected)"))
@@ -209,12 +229,14 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
                 loadFood(dayObject.dinner);
         }
 
+        // update listview
         foodList = allFood.ingredientList();
         adapter.notifyDataSetChanged();
         mShoppingList.setAdapter(adapter);
     }
 
     private void loadFood(Recipe r) {
+        // add all ingredients of passed recipe to allfood
         for(Food foodItem : r.ingredients().toArray()) {
             allFood.add(foodItem);
         }
@@ -222,6 +244,7 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
 
     @Override
     protected void onResume() {
+        // onResume update list in case recipes slected have changed
         super.onResume();
         generateList(new GregorianCalendar(), new GregorianCalendar());
         adapter.notifyDataSetChanged();
@@ -231,6 +254,7 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
      * refresh the current activity
      */
     private void refresh(){
+        // refresh activity and update list
         Intent refresh = new Intent(this, ShoppingListWeek.class);
         adapter.notifyDataSetChanged();
         startActivity(refresh);
@@ -240,6 +264,7 @@ public class ShoppingListWeek extends AppCompatActivity implements OnClickListen
 
     @Override
     protected void onPause() {
+        // if activity is left, close it
         super.onPause();
         finish();
     }

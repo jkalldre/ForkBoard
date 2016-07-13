@@ -97,30 +97,6 @@
         android:spinnerMode="dropdown"
         android:background="@android:drawable/btn_dropdown"
         />
-<!--
-    <TextView
-        android:id="@+id/results_convert"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:layout_below="@+id/spinner"
-        android:layout_alignLeft="@+id/spinner"
-        android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Results:"
-        android:textStyle="bold"/>
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:layout_alignLeft="@+id/convert_to"
-        android:width="200dp"
-        android:textSize="40dp"
-        android:padding="8dp"
-        android:layout_below="@id/results_convert"/>
-        <android:layout_marginBottom="85dp"
-        android:layout_alignParentBottom="true"-->
 
     <Button
         android:id="@+id/calculation_button"
