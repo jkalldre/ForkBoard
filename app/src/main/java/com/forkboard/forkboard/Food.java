@@ -133,7 +133,25 @@ public class Food {
      */
     public void add(Food more)   {
         if (isSameFoodType(more)) {
-            _quantity += more._quantity;
+            if (_units == more._units)
+                _quantity += more._quantity;
+            else {
+                if (_units == Units.item) {
+                    _quantity += more._quantity;
+                    _units = more._units;
+                }
+                else {
+                    double newAmountV = UnitConverter.convert_volume(more._quantity, more._units, _units);
+                    double newAmountW = UnitConverter.convert_weight(more._quantity, more._units, _units);
+                    if (newAmountV != -1 && newAmountW == -1) {
+                        _quantity += newAmountV;
+                    } else if (newAmountW != -1 && newAmountV == -1) {
+                        _quantity += newAmountW;
+                    } else {
+                        _quantity += more._quantity;
+                    }
+                }
+            }
         }
     }
 

@@ -127,7 +127,7 @@ public class Conversion_Calculator extends AppCompatActivity {
             Double conversion = 0.0;
 
             if (typeSelected.equals("Weights"))
-                conversion = UnitConverter.convertEnglish_weight(toConvert, Units.fromString(fromType),
+                conversion = UnitConverter.convert_weight(toConvert, Units.fromString(fromType),
                         Units.fromString(toType));
             else
                 conversion = UnitConverter.convert_volume(toConvert, Units.fromString(fromType),

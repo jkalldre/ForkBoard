@@ -4,7 +4,7 @@ package com.forkboard.forkboard;
  * Created by Kyle on 6/25/2016.
  */
 public class UnitConverter {
-    private static final int W_indexFinder(Units u) {
+    private static final int V_indexFinder(Units u) {
         int idx = -1;
         switch (u) {
             case teaspoon:    idx = 0; break;
@@ -20,30 +20,33 @@ public class UnitConverter {
         return idx;
     }
 
-    /**
-     * Method converts units of weight measurement
-     *
-     * @param quantity the current value we want to convert
-     * @param from the Units the Food is currently in
-     * @param to the Units we want to change to
-     * @return The results are converted units. If not valid returns -1
-     */
-    public static double convertEnglish_weight(double quantity, Units from, Units to) {
-        if (from == Units.ounce && to == Units.pound) return quantity / 16;
-        else
-        if (from == Units.pound && to == Units.ounce) return quantity * 16;
-        else
-            return -1;
+    private static final int W_indexFinder(Units u) {
+        int idx = -1;
+        switch (u) {
+            case pound:     idx = 0; break;
+            case ounce:     idx = 1; break;
+            case milligram: idx = 2; break;
+            case gram:      idx = 3; break;
+            case kilogram:  idx = 4; break;
+        }
+        return idx;
     }
 
-    /**
-     * Method converts units of volume measurement
-     *
-     * @param quantity the current value we want to convert
-     * @param from the Units the Food is currently in
-     * @param to the Units we want to change to
-     * @return The results are converted units. If not valid returns -1
-     */
+    public static double convert_weight(double quantity, Units from, Units to) {
+        double [][] weight_index = {
+                {1,16,45359.24,453.5924,0.4535924}, // pound
+                {0.0625,1,2834.952,28.34952,0.02834952}, // ounce
+                {0.000022046226,0.00035273962,1,0.01,0.000001}, // milligram
+                {0.0022046226,0.035273962,1000,1,0.001}, // gram
+                {2.2046226,35.273962,1000000,1000,1}  // kilogram
+        };
+
+        int f = W_indexFinder(from);
+        int t = W_indexFinder(to);
+        if (f < 0 || t < 0) return -1;
+        return quantity*weight_index[f][t];
+    }
+
     public static double convert_volume(double quantity, Units from, Units to) {
         double [][] volume_index = {
                 {1,0.33333333333333333333333333333333,
@@ -64,8 +67,8 @@ public class UnitConverter {
                 {202.884,67.628,33.814,4.16667,2.11338,1.05669,0.264172,  1000, 1} // liter
         };
 
-        int f = W_indexFinder(from);
-        int t = W_indexFinder(to);
+        int f = V_indexFinder(from);
+        int t = V_indexFinder(to);
         if (f < 0 || t < 0) return -1;
         return quantity*volume_index[f][t];
     }
