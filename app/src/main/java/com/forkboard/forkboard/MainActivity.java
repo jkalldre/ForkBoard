@@ -39,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
         // for MainActivity buttons
         Intent intent = null;
         if(v.getId() == R.id.buttonToInfo){
+            intent = new Intent(this, GetStarted.class);
         }
         if(v.getId() == R.id.buttonToCalendar){
             intent = new Intent(this, Calendar_View.class);
