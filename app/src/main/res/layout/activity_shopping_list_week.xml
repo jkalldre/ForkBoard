@@ -49,7 +49,7 @@
         android:layout_weight=".5"
         android:hint="From Date"
         android:textAlignment="center"
-        android:onClick="viewClicked" />
+        android:onClick="viewClick" />
 
     <EditText
         android:id="@+id/etxt_todate"
@@ -59,7 +59,7 @@
         android:hint="To Date"
         android:layout_below="@+id/shopping_listView"
         android:textAlignment="center"
-        android:onClick="viewClicked" />
+        android:onClick="viewClick" />
 
     </LinearLayout>
     <!-- Adding Items to Shopping List
