@@ -16,26 +16,31 @@ import android.widget.ListView;
 import java.util.ArrayList;
 
 public class Cookbook extends AppCompatActivity {
+    // instance variables
     private ArrayAdapter<String> adapter;
     private RecipeLogHandler handler;
     private RecipeLog cookbook = new RecipeLog();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Standard app startup //
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cook__book        );
         Toolbar tb =  (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
-        tb.setTitle("Cookbook");
+        // Standard app startup //
 
+        // bind view
         ListView list = (ListView) findViewById(R.id.listView);
         handler       = new RecipeLogHandler(this);
         handler.load();
 
+        // warn if cookbook is empty
         if (cookbook.recipeList().length == 0) {
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
         }
 
+        // load cookbook automatically from stored file
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, handler.cookbook.recipeList());
         list.setAdapter(adapter);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -44,8 +49,8 @@ public class Cookbook extends AppCompatActivity {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Cookbook.this);
                 final String name = (String)parent.getAdapter().getItem(position);
                 builder.setTitle("Options");
-                //builder.setMessage("Select one");
 
+                // set alertdialog positive button
                 builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -54,6 +59,7 @@ public class Cookbook extends AppCompatActivity {
                         startActivityForResult(intent, 003);
                     }
                 });
+                // set alertdialog negative button
                 builder.setNegativeButton("Delete", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -75,8 +81,6 @@ public class Cookbook extends AppCompatActivity {
                             }
                         });
                         builder1.show();
-
-
                     }
                 });
                 builder.show();
@@ -102,6 +106,7 @@ public class Cookbook extends AppCompatActivity {
      * @param v The v is a view object
      */
     public void toRecipeInput(View v){
+        // allow user to add recipes to cookbook
         Intent intent = new Intent(this,Recipe_Input.class);
         intent.putExtra("selected", "");
         startActivityForResult(intent, 002);
@@ -115,9 +120,10 @@ public class Cookbook extends AppCompatActivity {
      * @param data intent that holds data from child activity
      */
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super       .onActivityResult(requestCode, resultCode, data);
-        handler     .load();
-        adapter     .notifyDataSetChanged();
+        // refresh cookbook when returning to activity to show any changes
+        super  .onActivityResult(requestCode, resultCode, data);
+        handler.load();
+        adapter.notifyDataSetChanged();
         refresh();
     }
 
@@ -134,6 +140,7 @@ public class Cookbook extends AppCompatActivity {
      * refresh the current activity
      */
     private void refresh(){
+        // reset activity
         Intent refresh = new Intent(this, Cookbook.class);
         startActivity(refresh);
         this.finish();

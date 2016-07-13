@@ -10,8 +10,8 @@ import android.webkit.WebView;
  */
 public class GetStarted extends AppCompatActivity {
 
-    WebView webView = new WebView(this);
-    webView.getSettings().setJavaScriptEnabled(true);
+   // WebView webView = new WebView(this);
+   //// webView.getSettings().setJavaScriptEnabled(true);
     String urlDemo = "http://www.appdemostore.com/m/4934128529047552";
-    webView.loadUrl(urlDemo);
+ //   webView.loadUrl(urlDemo);
 }

@@ -19,6 +19,7 @@ import android.widget.TextView;
  * by asking the user the conversion type, the unit from, the value, and the unit to.
  */
 public class Conversion_Calculator extends AppCompatActivity {
+    // instance variables
     private Spinner s;
     private Spinner s2;
     private Spinner s3;
@@ -31,11 +32,14 @@ public class Conversion_Calculator extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        // Standard app startup //
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conversion__calculator);
         Toolbar tb = (Toolbar)findViewById(R.id.my_toolbar);
         setSupportActionBar(tb);
+        // Standard app startup //
 
+        // bind views
         s  = (Spinner) findViewById(R.id.spinner);
         s2 = (Spinner) findViewById(R.id.spinner2);
         s3 = (Spinner) findViewById(R.id.spinner3);
@@ -43,6 +47,7 @@ public class Conversion_Calculator extends AppCompatActivity {
         result    = (TextView) findViewById(R.id.convert_result);
         String[] choice = {"Volumes", "Weights"};
 
+        // set up spinner adapters
         final ArrayAdapter<String> weights = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, Misc._weights);
         final ArrayAdapter<String> volumes = new ArrayAdapter<String>(this,
@@ -50,10 +55,13 @@ public class Conversion_Calculator extends AppCompatActivity {
         final ArrayAdapter<String> choices = new ArrayAdapter<String>(this,
                 android.R.layout.simple_spinner_item, choice);
 
+        // set spinner adapters
         s.setAdapter(volumes);
         s2.setAdapter(volumes);
         s3.setAdapter(choices);
 
+        // set itemselectedlistener so when s3 is changed it will switch s & s2's adapters
+        // this prevents user from comparing volumes and weights
         s.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -123,6 +131,7 @@ public class Conversion_Calculator extends AppCompatActivity {
      */
     public void calc(View v) {
         if (!unitValue.getText().toString().equals("")) {
+            // calculate new value using our matrix of values
             toConvert = Double.parseDouble(unitValue.getText().toString());
             Double conversion = 0.0;
 

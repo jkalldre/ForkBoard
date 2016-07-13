@@ -12,6 +12,7 @@ import android.view.MenuItem;
 public class ActivityChanger {
 
     static boolean changeActivity(MenuItem item, Context context){
+        // depending on menuitem given, the related activity will be executed
         Intent intent = null;
         if(item.getTitle().equals("Main Menu")){
             intent = new Intent(context,MainActivity.class);
