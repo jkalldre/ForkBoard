@@ -33,6 +33,9 @@
             android:name=".SignupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
+
+        <activity android:name=".GetStarted"/>
+
         <activity android:name=".Conversion_Calculator" />
         <activity android:name=".Recipe_Input" />
         <activity android:name=".Cookbook_Selecter" />
