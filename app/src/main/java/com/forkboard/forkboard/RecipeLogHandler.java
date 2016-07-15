@@ -25,7 +25,6 @@ public class RecipeLogHandler implements DataHandler {
     public RecipeLogHandler(Context con) {
         context  = con;
         cookbook = new RecipeLog();
-        cookbook.replace(new Recipe("(No Meal Selected)", new FoodInventory(), ""));
     }
 
     /**
