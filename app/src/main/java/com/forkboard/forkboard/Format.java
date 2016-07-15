@@ -173,9 +173,11 @@ public class Format {
     public static String capitalizeFully(String string) {
         String[] words = string.split(" ");
         String output = "";
-        for (String word : words) {
-            String cap = word.substring(0, 1).toUpperCase() + word.substring(1);
-            output += cap + " ";
+        if (!string.equals("")) {
+            for (String word : words) {
+                String cap = word.substring(0, 1).toUpperCase() + word.substring(1);
+                output += cap + " ";
+            }
         }
         output = output.trim();
         return output;

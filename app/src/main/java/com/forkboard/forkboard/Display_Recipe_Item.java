@@ -14,7 +14,7 @@ import android.widget.TextView;
 import butterknife.Bind;
 
 public class Display_Recipe_Item extends AppCompatActivity {
-
+    // instance variables
     private Recipe recipe = null;
     private RecipeLogHandler handler;
     ArrayAdapter<String> adapter;

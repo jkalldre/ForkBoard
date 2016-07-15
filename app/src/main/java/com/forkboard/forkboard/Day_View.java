@@ -171,6 +171,9 @@ public class Day_View extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    /**
+     * sets the new recipe in the day object to be saved
+     */
     public void setChanges() {
         dayObject.breakfast = handler.cookbook.get(mealchoice1.getText().toString());
         dayObject.lunch     = handler.cookbook.get(mealchoice2.getText().toString());

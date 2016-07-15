@@ -11,7 +11,7 @@ import java.util.Date;
  * Created by Kyle on 6/23/2016.
  */
 public class Misc {
-
+    // instance variables
     public static String[] _units = {
             "(no units)",
             Units.teaspoon.toString(), Units.tablespoon.toString(), Units.fluid_ounce.toString(),
@@ -31,6 +31,12 @@ public class Misc {
             Units.milliliter.toString(), Units.liter.toString()
     };
 
+    /**
+     * Generates list of the dates between start and end date (file names)
+     * @param startDate day to start generating
+     * @param endDate generates up to this date
+     * @return return the list of dates
+     */
     public static ArrayList<String> generateDateList(Calendar startDate, Calendar endDate) {
         ArrayList<String> dateList = new ArrayList<>();
 
@@ -48,6 +54,12 @@ public class Misc {
         return dateList;
     }
 
+    /**
+     * calculates the days inbetween
+     * @param d1 start date
+     * @param d2 end date
+     * @return return number of days
+     */
     public static int daysBetween(Date d1, Date d2){
         return (int)( (d2.getTime() - d1.getTime()) / (1000 * 60 * 60 * 24));
     }

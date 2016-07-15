@@ -158,10 +158,11 @@ public class Recipe_Input extends AppCompatActivity {
         layout       .addView(name         );
         unitsDropdown.setAdapter(adapter   );
 
+
         // Specify the type of input expected
-        quantity.setInputType(InputType.TYPE_CLASS_TEXT);
+        quantity.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         name    .setInputType(InputType.TYPE_CLASS_TEXT);
-        builder .setView(layout                        );
+        builder .setView(layout);
 
         if (edit.equals("edit")) {
             Food editFood = ingredients.get(food);
@@ -175,6 +176,7 @@ public class Recipe_Input extends AppCompatActivity {
                 System.out.println("editFood is null");
         }
 
+
         // run if ok is clicked
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
@@ -184,6 +186,10 @@ public class Recipe_Input extends AppCompatActivity {
                 Food newFood = new Food();
                 if (edit.equals("edit"))
                     newFood = ingredients.get(food);
+                if (quantity.getText().toString().equals(""))
+                    quantity.setError("Quantity is Required");
+                if (name.getText().toString().equals(""))
+                    name.setError("Name is Required");
 
                 foodList   .remove(newFood.toString());
                 newFood    .quantity(Misc.processUserQuantityInput(quantity.getText().toString()));
@@ -207,8 +213,9 @@ public class Recipe_Input extends AppCompatActivity {
                 dialog.cancel();
             }
         });
-        //adapter1.notifyDataSetChanged();
+
         builder.show();
+        
     }
 
     /**
@@ -240,7 +247,7 @@ public class Recipe_Input extends AppCompatActivity {
         unitsDropdown.setAdapter(adapter   );
 
         // Specify the type of input expected
-        quantity.setInputType(InputType.TYPE_CLASS_TEXT);
+        quantity.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
         name    .setInputType(InputType.TYPE_CLASS_TEXT);
         builder .setView(layout                        );
 
@@ -251,6 +258,10 @@ public class Recipe_Input extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
                 ListView lv1 = (ListView)findViewById(R.id.ingredients);
                 Food newFood = new Food();
+                if (quantity.getText().toString().equals(""))
+                    quantity.setError("Quantity is Required");
+                if (name.getText().toString().equals(""))
+                    name.setError("Name is Required");
                 newFood    .quantity(Misc.processUserQuantityInput(quantity.getText().toString()));
                 newFood    .units(Units.fromString(unitsDropdown.getSelectedItem().toString()));
                 newFood    .type(Format.capitalizeFully(name.getText().toString()));

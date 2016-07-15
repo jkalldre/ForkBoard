@@ -11,6 +11,13 @@ import android.view.MenuItem;
  */
 public class ActivityChanger {
 
+    /**
+     * Handles all activity changes using the menu
+     *
+     * @param item the item selected
+     * @param context the context of the activity colling
+     * @return not important
+     */
     static boolean changeActivity(MenuItem item, Context context){
         // depending on menuitem given, the related activity will be executed
         Intent intent = null;

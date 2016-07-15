@@ -62,6 +62,10 @@ public class Calendar_View extends AppCompatActivity {
         return true;
     }
 
+    /**
+     * Send user to selected day
+     * @param v button clicked. not used.
+     */
     public void toDay(View v) {
         // when button is clicked open selected day (Day_View)
         startActivity(intentToDay);
