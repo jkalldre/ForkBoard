@@ -4,6 +4,9 @@ import android.content.Context;
 
 /**
  * Created by Kyle on 6/30/2016.
+ *
+ *
+ * This Object is not used in the project, but meant for future productions
  */
 public class ShoppingListHandler implements DataHandler {
     private Context context;

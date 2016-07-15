@@ -28,6 +28,11 @@ public class RecipeLogHandler implements DataHandler {
         cookbook.replace(new Recipe("(No Meal Selected)", new FoodInventory(), ""));
     }
 
+    /**
+     * Pass in an ID and returns the associated Recipe
+     * @param ID the ID string
+     * @return the Recipe
+     */
     public Recipe getRecipeByID(String ID){
         String ext = ".recipe";
         String dir = context.getFilesDir().getPath() + "/";

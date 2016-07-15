@@ -85,8 +85,14 @@ public class Misc {
     }
 
 
-    //TODO allow for different string format MM-DD-YYYY
+    /**
+     * Compare if LHS is less than or equal to RHS
+     * @param LHS date string in the form : YYYY_M+_D+
+     * @param RHS date string in the form : YYYY_M+_D+
+     * @return true if LHS <= RHS
+     */
     public static boolean compareDates(String LHS, String RHS) {
+        //TODO: (Long term) allow for different string format MM-DD-YYYY
         int[] l = Format.parseDate(LHS);
         int[] r = Format.parseDate(RHS);
 

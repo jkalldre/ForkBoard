@@ -32,6 +32,13 @@ public class UnitConverter {
         return idx;
     }
 
+    /**
+     * Convert a weight unit to another weight unit
+     * @param quantity the current amount
+     * @param from the units it is currently in
+     * @param to the units we want it to be
+     * @return the converted amount
+     */
     public static double convert_weight(double quantity, Units from, Units to) {
         double [][] weight_index = {
                 {1,16,45359.24,453.5924,0.4535924}, // pound
@@ -47,6 +54,13 @@ public class UnitConverter {
         return quantity*weight_index[f][t];
     }
 
+    /**
+     * Convert a volume unit to another weight unit
+     * @param quantity the current amount
+     * @param from the units it is currently in
+     * @param to the units we want it to be
+     * @return the converted amount
+     */
     public static double convert_volume(double quantity, Units from, Units to) {
         double [][] volume_index = {
                 {1,0.33333333333333333333333333333333,

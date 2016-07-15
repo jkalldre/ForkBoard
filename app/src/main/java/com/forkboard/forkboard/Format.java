@@ -210,6 +210,11 @@ public class Format {
         return "" + year + "_" + month + "_" + day;
     }
 
+    /**
+     * Converts a date string of the form MM-DD-YYYY to a GregorianCalendar
+     * @param date the formatted string
+     * @return the GregorianCalendar date object
+     */
     public static GregorianCalendar MMDDYYYY_to_Gregorian(String date){
         int[] iDate = new int[3];
         String[] sDate = date.split("-");
@@ -219,9 +224,13 @@ public class Format {
         return new GregorianCalendar(iDate[2], iDate[0] - 1, iDate[1]);
     }
 
+    /**
+     * Changes the date string of the form: M+-D+-YYYY to YYYY_M+_D+
+     * @param date the date as a string M+-D+-YYYY
+     * @return the date formatted as YYYY_M+_D+
+     */
     public static String changeFormat(String date){
-        String[] dates = new String[3];
-        dates = date.split("-");
+        String[] dates = date.split("-");
         String toReturn = "" + dates[1] + "_" + dates[2] + "_" + dates[0];
         return toReturn;
     }

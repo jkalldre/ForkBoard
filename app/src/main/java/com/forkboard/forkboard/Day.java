@@ -2,27 +2,6 @@ package com.forkboard.forkboard;
 
 /**
  * Created by Kyle on 6/30/2016.
- *
- *
- * TODO: tie into calendar
- *      In the calendar day viewer during the onCreate, create an instance of Day.
- *      Then do the following:
- *
- *          Day day = new Day(this);
- *          day.load("YYYYMMDD"); // where YYYY is the year, MM the month, and DD the day
- *
- *      Now the Day object is populated with a Recipe for each meal. If the day has never been
- *      set recipes before, then a blank recipe by the name of "(No Meal Selected)" is inserted
- *      into each meal.
- *
- *      for the Day viewer, simply type:
- *
- *          day.breakfast.name() to place in the text box.
- *
- *      Day has three Recipes:
- *          day.breakfast
- *          day.lunch
- *          day.dinner
  */
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -39,8 +18,10 @@ public class Day {
     public Recipe dinner;
     private Context context;
 
-    //TODO: Day.clean()
-
+    /**
+     * CONSTRUCTOR
+     * @param con the context we are in
+     */
     public Day(Context con) {
         // handle cases where no recipes are selected
         context = con;
@@ -57,6 +38,10 @@ public class Day {
         dinner.ID("EMPTY_ID");
     }
 
+    /**
+     * Load in a single day's worth of recipes
+     * @param date the date to read in. In the form: YYYY_M+_D+
+     */
     public void load(String date) {
         // load meals into approprate days
         System.out.println("READING: " + date + ext);
@@ -67,6 +52,10 @@ public class Day {
         }
     }
 
+    /**
+     * Save a day's meal selections
+     * @param date the date to write. In the form: YYYY_M+_D+
+     */
     public void save(String date) {
         // save loaded days into .day files
         String print = generatePrintString();
@@ -83,6 +72,10 @@ public class Day {
         }
     }
 
+    /**
+     * Parses the *.day file and loads in associated recipes
+     * @param file the name of the *.day file to read.
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     private void readDay(String file) {
         // handles the actual reading of the file
@@ -122,6 +115,10 @@ public class Day {
         }
     }
 
+    /**
+     * Create the string to print to the *.day file.
+     * @return the formatted string.
+     */
     public String generatePrintString() {
         // print out the meals held by day
         String print = "";
