@@ -120,7 +120,7 @@ public class RecipeLogHandler implements DataHandler {
                         Context.MODE_PRIVATE);
 
                 Log.i(TAG,"Writing: " + recipe.ID() + ".recipe");
-                String prnt = recipe.toFileString();
+                String prnt = recipe.toFileString().replace("\n\n\n", "\n\n");
                 outputStream.write(prnt.getBytes());
                 outputStream.close();
                 File file = new File(context.getFilesDir(), recipe.ID() + ".recipe");
@@ -191,9 +191,10 @@ public class RecipeLogHandler implements DataHandler {
                 if ( (line = buffer.readLine()) != null
                         && line.substring(0,5).equals("@INSS")) {
                     while (true) {
-                        if ( (line = buffer.readLine()) != null
-                                && !line.substring(0,1).equals("@")) {
-                            INSTRUCTIONS += line;
+                        if ( (line = buffer.readLine()) != null &&
+                             ((line.length() == 0 || !line.substring(0,1).equals("@")))) {
+                            if (line.length() == 0) INSTRUCTIONS += "\n";
+                            INSTRUCTIONS += line + "\n";
                         } else break;
                     }
                 }
@@ -202,20 +203,16 @@ public class RecipeLogHandler implements DataHandler {
                         && line.substring(0,5).equals("@END!")) {
                     Recipe item = new Recipe(NAME, INGREDIENTS, INSTRUCTIONS, PREP, SERV);
                     item.ID(ID);
-                  //  Log.i("SAVED" + item.ID(),item.toFileString());
-                    //cookbook.add(item);
                     return item;
                 }
             }
             catch(Exception ex) {
                 Log.e(TAG,"Error with '" + filename + "'");
                 Log.e(TAG,ex.getMessage());
-                //System.exit(-98);
             }
         }
         else {
             Log.e(TAG,"Incorrect location for '" + filename + "'");
-            //System.exit(-99);
         }
         return null;
     }

@@ -47,6 +47,7 @@ public class Calendar_View extends AppCompatActivity {
                 intentToDay.putExtra("Day"  , dayOfMonth);
                 intentToDay.putExtra("Month", month     );
                 intentToDay.putExtra("Year" , year      );
+                toDay(view);
             }
         });
     }
