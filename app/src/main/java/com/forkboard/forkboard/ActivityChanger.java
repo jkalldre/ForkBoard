@@ -25,7 +25,7 @@ public class ActivityChanger {
             intent = new Intent(context,MainActivity.class);
         }
         if(item.getTitle().equals("Calendar")){
-            intent = new Intent(context,Calendar_View.class);
+            intent = new Intent(context,ForkBoardCalendarView.class);
         }
         if(item.getTitle().equals("Shopping List")){
             intent = new Intent(context,ShoppingListWeek.class);

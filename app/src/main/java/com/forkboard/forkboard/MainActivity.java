@@ -42,7 +42,9 @@ public class MainActivity extends AppCompatActivity {
             intent = new Intent(this, GetStarted.class);
         }
         if(v.getId() == R.id.buttonToCalendar){
-            intent = new Intent(this, Calendar_View.class);
+            //intent = new Intent(this, Calendar_View.class);
+            // TODO: CHANGE BACK
+            intent = new Intent(this, ForkBoardCalendarView.class);
         }
         if(v.getId() == R.id.buttonToCookbook){
             intent = new Intent(this, Cookbook.class);

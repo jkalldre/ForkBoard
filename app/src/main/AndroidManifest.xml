@@ -33,15 +33,14 @@
             android:name=".SignupActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.Dark" />
-
-        <activity android:name=".GetStarted"/>
-
+        <activity android:name=".GetStarted" />
         <activity android:name=".Conversion_Calculator" />
         <activity android:name=".Recipe_Input" />
         <activity android:name=".Cookbook_Selecter" />
         <activity android:name=".ShoppingListWeek" />
         <activity android:name=".Display_Recipe_Item" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ForkBoardCalendarView"></activity>
     </application>
 
 </manifest>

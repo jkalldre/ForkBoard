@@ -160,7 +160,8 @@ public class Recipe_Input extends AppCompatActivity {
 
 
         // Specify the type of input expected
-        quantity.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        //quantity.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        quantity.setInputType(InputType.TYPE_CLASS_DATETIME);
         name    .setInputType(InputType.TYPE_CLASS_TEXT);
         builder .setView(layout);
 
@@ -247,7 +248,8 @@ public class Recipe_Input extends AppCompatActivity {
         unitsDropdown.setAdapter(adapter   );
 
         // Specify the type of input expected
-        quantity.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        //quantity.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        quantity.setInputType(InputType.TYPE_CLASS_DATETIME);
         name    .setInputType(InputType.TYPE_CLASS_TEXT);
         builder .setView(layout                        );
 
