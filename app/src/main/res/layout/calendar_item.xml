@@ -4,7 +4,7 @@
     android:layout_height="60px"
     android:padding="8dp"
     android:orientation="vertical"
-    >
+    android:background="@color/primary_accent">
     <TextView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/date"
         android:layout_width="fill_parent"

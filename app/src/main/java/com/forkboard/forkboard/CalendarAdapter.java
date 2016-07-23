@@ -23,9 +23,12 @@ public class CalendarAdapter extends BaseAdapter {
     // references to our items
     public String[] days;
 
-    public CalendarAdapter(Context c, Calendar monthCalendar) {
+    public CalendarAdapter(Context c, Calendar monthCalendar, Calendar selected) {
         month = monthCalendar;
-        selectedDate = (Calendar)monthCalendar.clone();
+        if (selected == null)
+            selectedDate = (Calendar)monthCalendar.clone();
+        else
+            selectedDate = selected;
         mContext = c;
         month.set(Calendar.DAY_OF_MONTH, 1);
         this.items = new ArrayList<String>();
@@ -64,7 +67,7 @@ public class CalendarAdapter extends BaseAdapter {
         if(days[position].equals("")) {
             dayView.setClickable(false);
             dayView.setFocusable(false);
-            //dayView.setBackgroundColor(Color.alpha(0));
+            dayView.setBackgroundColor(Color.alpha(0));
         }
         else {
             // mark current day as focused
@@ -73,6 +76,8 @@ public class CalendarAdapter extends BaseAdapter {
                 days[position].equals(""+selectedDate.get(Calendar.DAY_OF_MONTH))) {
                 // The current item
                 dayView.setTextColor(Color.WHITE);
+                dayView.setBackgroundColor(Color.TRANSPARENT);
+
             }
             else {
                 //items not in focus, may be useful later

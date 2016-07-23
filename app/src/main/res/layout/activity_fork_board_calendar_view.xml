@@ -4,7 +4,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:background="@color/primary_dark"
-    android:weightSum="1">
+    android:weightSum="6">
     <include layout="@layout/my_toolbar"
         android:id="@+id/my_toolbar"
         android:background="@color/primary_dark"/>
@@ -65,7 +65,7 @@
     <GridView xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/gridview"
         android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:layout_height="0dp"
 
         android:numColumns="7"
         android:verticalSpacing="2dp"
@@ -73,6 +73,85 @@
         android:stretchMode="columnWidth"
 
         android:gravity="center"
-        android:layout_weight="0.33" />
+        android:layout_weight="4" />
+
+
+    <TableLayout
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_weight="2"
+        android:weightSum="3"
+        android:background="@color/primary">
+
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/b"
+            android:background="@color/secondary_accent"
+            android:padding="5dp"
+            android:onClick="goToCookbook"
+            android:clickable="true">
+            <TextView
+                android:id="@+id/meal_t_b"
+                android:text="Breakfast"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:textSize="25dp"
+                android:gravity="center"/>
+            <TextView
+                android:id="@+id/meal_b"
+                android:text="meal"
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/l"
+            android:background="@color/secondary"
+            android:padding="5dp"
+            android:onClick="goToCookbook"
+            android:clickable="true">
+            <TextView
+                android:id="@+id/meal_t_l"
+                android:text="Lunch"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="25dp" />
+            <TextView
+                android:id="@+id/meal_l"
+                android:text="meal"
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </TableRow>
+        <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/d"
+            android:background="@color/secondary_accent"
+            android:padding="5dp"
+            android:onClick="goToCookbook"
+            android:clickable="true">
+            <TextView
+                android:id="@+id/meal_t_d"
+                android:text="Dinner"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="25dp" />
+            <TextView
+                android:id="@+id/meal_d"
+                android:text="meal"
+                android:layout_weight="1"
+                android:gravity="center"/>
+        </TableRow>
+
+    </TableLayout>
 
 </LinearLayout>

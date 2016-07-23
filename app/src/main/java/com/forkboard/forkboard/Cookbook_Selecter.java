@@ -34,7 +34,7 @@ public class Cookbook_Selecter extends AppCompatActivity {
         curMeal = getIntent().getStringExtra("Current Meal");
 
         // warnings if object is null or cookbook is empty
-        if (cookbook.recipeList().length == 0)
+        if (cookbook.recipeList().length == 1) // we put in one blank item
             Log.i(Warnings.EMPTY_OBJECT, "There is nothing in the cookbook!");
 
         else if (cookbook == null || cookbook.recipeList() == null || cookbook.recipeList().length == 0)
