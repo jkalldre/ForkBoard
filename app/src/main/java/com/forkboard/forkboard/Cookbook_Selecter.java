@@ -28,9 +28,9 @@ public class Cookbook_Selecter extends AppCompatActivity {
         // bind views
         ListView list            = (ListView) findViewById(R.id.listView3);
         RecipeLogHandler handler = new RecipeLogHandler(this);
-        handler.load();
         final RecipeLog cookbook = handler.cookbook;
         cookbook.add(new Recipe("(No Meal Selected)", new FoodInventory(),"")); // for empty save
+        handler.load();
         curMeal = getIntent().getStringExtra("Current Meal");
 
         // warnings if object is null or cookbook is empty

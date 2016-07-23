@@ -48,7 +48,11 @@ public class Cookbook extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Cookbook.this);
                 final String name = (String)parent.getAdapter().getItem(position);
-                builder.setTitle("Options");
+                Intent intent = new Intent(getApplicationContext(), Display_Recipe_Item.class);
+                intent.putExtra("selected", name);
+                startActivityForResult(intent, 003);
+
+                /*builder.setTitle("Options");
 
                 // set alertdialog positive button
                 builder.setPositiveButton("View", new DialogInterface.OnClickListener() {
@@ -83,7 +87,7 @@ public class Cookbook extends AppCompatActivity {
                         builder1.show();
                     }
                 });
-                builder.show();
+                builder.show();*/
 
             }
         });

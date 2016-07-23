@@ -19,7 +19,8 @@
         android:layout_marginRight="20dp"
         android:layout_marginTop="10dp"
         android:textSize="30dp"
-        android:hint="Recipe&apos;s Name" />
+        android:hint="Recipe&apos;s Name"
+        android:background="@color/primary_dark" />
 
     <TextView
         android:id="@+id/cookTime"
@@ -27,12 +28,15 @@
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/recipeName"
-        android:layout_alignStart="@+id/recipeName"
         android:layout_weight="1"
         android:textSize="20dp"
         android:gravity="center_vertical"
         android:hint="Cook Time (min)"
-        android:inputType="number" />
+        android:inputType="number"
+        android:background="@color/primary_accent"
+        android:layout_alignParentStart="true"
+        android:layout_toStartOf="@+id/servingSize"
+        android:textAlignment="center" />
 
     <TextView
         android:id="@+id/servingSize"
@@ -40,12 +44,14 @@
         android:layout_height="40dp"
         android:layout_marginTop="5dp"
         android:layout_below="@+id/recipeName"
-        android:layout_alignEnd="@+id/recipeName"
         android:hint="Serving Size"
         android:layout_weight="1"
         android:textSize="20dp"
         android:gravity="center_vertical"
-        android:inputType="number" />
+        android:inputType="number"
+        android:background="@color/primary_accent"
+        android:layout_alignEnd="@+id/del"
+        android:textAlignment="center" />
 
     <ListView
         android:id="@+id/ingredients"
@@ -54,31 +60,45 @@
         android:layout_marginTop="0dp"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/directions"
-        android:layout_below="@id/cookTime" />
+        android:layout_below="@id/cookTime"
+        android:background="@color/secondary" />
 
     <TextView
         android:id="@+id/directions"
         android:layout_width="fill_parent"
         android:layout_height="100dp"
         android:layout_above="@+id/edit"
-        android:layout_marginRight="20dp"
         android:layout_marginBottom="0dp"
-        android:layout_centerHorizontal="true"
         android:layout_weight="1"
         android:textSize="20dp"
         android:hint="Directions to Prepare Meal"
         android:textAlignment="viewStart"
         android:maxLines="4"
-        android:scrollbars="vertical"/>
+        android:scrollbars="vertical"
+        android:background="@color/primary_accent"
+        android:layout_alignParentStart="true"
+        android:layout_alignEnd="@+id/del"
+        android:scrollIndicators="right"
+        android:textIsSelectable="true" />
 
     <Button
         android:id="@+id/edit"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:text="Edit"
-        android:layout_marginRight="16dp"
+        android:onClick="toEdit"
+        android:layout_alignTop="@+id/del"
+        android:layout_alignStart="@+id/directions"
+        android:layout_toStartOf="@+id/del" />
+
+    <Button
+        android:id="@+id/del"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="Delete"
+        android:onClick="delete"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:onClick="toEdit" />
+        android:layout_alignParentEnd="true"
+        android:textColor="@color/design_textinput_error_color_light" />
 
 </RelativeLayout>

@@ -1,7 +1,9 @@
 package com.forkboard.forkboard;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.text.method.ScrollingMovementMethod;
@@ -65,6 +67,26 @@ public class Display_Recipe_Item extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), Recipe_Input.class);
         intent.putExtra("selected", recipe.name());
         startActivityForResult(intent, 003);
+    }
+
+    public void delete(View v) {
+        AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
+        builder1.setTitle("Are You Sure?");
+        builder1.setMessage("You cannot undo this action.");
+        builder1.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                handler.remove(recipe);
+                finish();
+            }
+        });
+        builder1.setNegativeButton("No", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+        builder1.show();
     }
 
     @Override
